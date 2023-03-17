@@ -51,15 +51,7 @@ public class FPC : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, yRotation, 0);
         joint.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
 
-        //Hauteur cam / isCrouching
-        /*if(isCrouching)
-        {
-            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x,-0.75f,playerCamera.transform.position.z);
-        }
-        else
-        {
-            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x,0,playerCamera.transform.position.z);
-        }*/
+        
 
         if(Input.GetKeyDown(KeyCode.E))
         {
