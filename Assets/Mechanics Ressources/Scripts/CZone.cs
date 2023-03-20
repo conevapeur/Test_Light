@@ -21,16 +21,7 @@ public class CZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player")
-        {
-            GameObject eyes = other.GetComponent<FPC>().joint;
-            if(other.GetComponent<FPC>().isCrouching == false)
-            {
-                other.GetComponent<FPC>().isCrouching = true;
-                eyes.transform.position = new Vector3(eyes.transform.position.x, eyes.transform.position.y - 0.75f ,eyes.transform.position.z);
-            }
-            //Debug.Log(other.GetComponent<FPC>().isCrouching);  
-        }
+        
         //Debug.Log(other.transform.tag);
     }
 
@@ -46,5 +37,19 @@ public class CZone : MonoBehaviour
             }
         }
         //Debug.Log(other.transform.tag);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            GameObject eyes = other.GetComponent<FPC>().joint;
+            if (other.GetComponent<FPC>().isCrouching == false)
+            {
+                other.GetComponent<FPC>().isCrouching = true;
+                eyes.transform.position = new Vector3(eyes.transform.position.x, eyes.transform.position.y - 0.75f, eyes.transform.position.z);
+            }
+            //Debug.Log(other.GetComponent<FPC>().isCrouching);  
+        }
     }
 }
