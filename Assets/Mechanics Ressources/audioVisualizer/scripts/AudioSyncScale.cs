@@ -16,10 +16,10 @@ public class AudioSyncScale : AudioSyncer
     // Update is called once per frame
     void Update()
     {
-        
+        OnUpdate();
     }
 
-    public void OnUpdate()
+    public override void OnUpdate()
     {
         base.OnUpdate();
 
@@ -28,7 +28,7 @@ public class AudioSyncScale : AudioSyncer
         transform.localScale = Vector3.Lerp(transform.localScale, restScale, restSmoothTime * Time.deltaTime);
     }
 
-    public void OnBeat()
+    public override void OnBeat()
     {
         base.OnBeat();
 
