@@ -210,7 +210,7 @@ MonoBehaviour:
     m_Value: 65.17
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 400
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -314,7 +314,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   meteringMode:
     m_OverrideState: 0
     m_Value: 2
