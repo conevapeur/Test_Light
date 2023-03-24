@@ -145,3 +145,8 @@ public class FPC : MonoBehaviour
     }
     
 }
+// boutons intéragir
+// pièce test
+// baisser, escalader
+// viualiser
+// exemple rencontre monstre
