@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIStart : MonoBehaviour
 {
 
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject playButton;
 
 
-    [SerializeField] private string scene;
+    private void Awake()
+    {
+        _eventSystem.SetSelectedGameObject(playButton);
+
+    }
 
     public void Play()
     {
@@ -24,7 +31,7 @@ public class UIStart : MonoBehaviour
     IEnumerator ButtonCoroutine()
     {
         yield return new WaitForSeconds(0.2f);
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene("TEST LD");
 
     }
 }

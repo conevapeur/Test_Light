@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 
-public class LookAt : MonoBehaviour
+public class lookAt : MonoBehaviour
 {
     [SerializeField]
     private Transform target;

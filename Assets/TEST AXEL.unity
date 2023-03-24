@@ -12892,6 +12892,9 @@ MonoBehaviour:
   maxVelocityChange: 7
   joint: {fileID: 1555342200}
   isCrouching: 0
+  Height: 1
+  Force: 10
+  SpringDamper: 1
 --- !u!136 &1757091055
 CapsuleCollider:
   m_ObjectHideFlags: 0

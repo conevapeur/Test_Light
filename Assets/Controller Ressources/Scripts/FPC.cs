@@ -32,6 +32,12 @@ public class FPC : MonoBehaviour
     public GameObject joint;
     public bool isCrouching = false;
 
+    [SerializeField] float Height = 1f;
+    [SerializeField] float Force = 10f;
+    [SerializeField] float SpringDamper = 1f;
+
+      
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,28 +50,36 @@ public class FPC : MonoBehaviour
     void Update()
     {
         yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity;
+        yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
         xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity;
+        xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
 
-        xRotation = Mathf.Clamp(xRotation , -maxLookAngle, maxLookAngle);
+        xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
 
         transform.localEulerAngles = new Vector3(0, yRotation, 0);
         joint.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
 
-        
 
-        if(Input.GetKeyDown(KeyCode.E))
+        // sprint
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Joystick1Button8))
         {
             moveSpeed = 4f;
         }
-        if(Input.GetKeyUp(KeyCode.E))
-        {
-            moveSpeed = 2f;
-        }
-    }
 
+        if (moveSpeed != 2f)
+        {
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+            {
+                moveSpeed = 2f;
+            }
+        }
+
+        
+
+    }
     void FixedUpdate()
     {
-        Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0 ,Input.GetAxis("Vertical"));
+        Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         targetVelocity = transform.TransformDirection(targetVelocity) * moveSpeed;
 
         //Apply a force
@@ -75,6 +89,8 @@ public class FPC : MonoBehaviour
         velocityChange.y = 0;
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
+      
+        /*
         Vector3 gravity = new Vector3(0, -9.81f, 0);
         float gravityMultiplier = 5f;
         gravity *= gravityMultiplier;
@@ -83,7 +99,7 @@ public class FPC : MonoBehaviour
         {
             rb.AddForce(gravity, ForceMode.Force);
         }
-
-        
+        */
     }
+    
 }
