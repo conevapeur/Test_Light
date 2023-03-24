@@ -36,7 +36,10 @@ public class FPC : MonoBehaviour
     [SerializeField] float Force = 10f;
     [SerializeField] float SpringDamper = 1f;
 
-      
+    [SerializeField] float floatHeight = 1f;
+    [SerializeField] float floatForce = 10f;
+    [SerializeField] float floatSpringDamper = 1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +92,7 @@ public class FPC : MonoBehaviour
         velocityChange.y = 0;
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-      
+
         /*
         Vector3 gravity = new Vector3(0, -9.81f, 0);
         float gravityMultiplier = 5f;
@@ -100,6 +103,45 @@ public class FPC : MonoBehaviour
             rb.AddForce(gravity, ForceMode.Force);
         }
         */
+
+        RaycastHit hit;
+
+        Vector3 rayDir = transform.TransformDirection(Vector3.down);
+
+        int layerMask = 1 << 6;
+
+        layerMask = ~layerMask;
+        if (Physics.Raycast(transform.position, rayDir, out hit, floatHeight, layerMask))
+        {
+
+            Vector3 velocity = rb.velocity;
+
+            Vector3 otherVelocity = Vector3.zero;
+
+            Rigidbody contactBody = hit.rigidbody;
+
+            if (contactBody != null)
+            {
+                otherVelocity = contactBody.velocity;
+            }
+
+            float rayDirVelocity = Vector3.Dot(rayDir, velocity);
+            float otherDirVelocity = Vector3.Dot(rayDir, otherVelocity);
+
+            float relativeVelocity = rayDirVelocity - otherDirVelocity;
+
+            float x = hit.distance - floatHeight;
+
+            float springForce = (x * floatForce) - (relativeVelocity * floatSpringDamper);
+
+            rb.AddForce(rayDir * springForce);
+
+            if (contactBody != null)
+            {
+                contactBody.AddForceAtPosition(rayDir * -springForce, hit.point);
+            }
+        }
+
     }
     
 }
