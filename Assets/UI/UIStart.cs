@@ -14,7 +14,7 @@ public class UIStart : MonoBehaviour
     private void Awake()
     {
         _eventSystem.SetSelectedGameObject(playButton);
-
+        Time.timeScale = 1f;
     }
 
     public void Play()

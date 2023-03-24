@@ -15,3 +15,13 @@ MonoBehaviour:
   coloredTitles:
   - name: ouais
     color: {r: 0.21248412, g: 1, b: 0, a: 1}
+  - name: REGLAGES
+    color: {r: 0.21248412, g: 1, b: 0, a: 1}
+  - name: PLAYER AXEL
+    color: {r: 1, g: 0.8816934, b: 0, a: 1}
+  - name: SALLES
+    color: {r: 1, g: 0.50616264, b: 0, a: 1}
+  - name: REGLAGES
+    color: {r: 0.7824282, g: 0.8490566, b: 0.76495194, a: 1}
+  - name: CANVAS
+    color: {r: 1, g: 0.2475431, b: 0, a: 1}

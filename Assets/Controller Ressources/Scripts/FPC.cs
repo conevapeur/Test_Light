@@ -31,12 +31,8 @@ public class FPC : MonoBehaviour
 
     public GameObject joint;
     public bool isCrouching = false;
-
-    [SerializeField] float Height = 1f;
-    [SerializeField] float Force = 10f;
-    [SerializeField] float SpringDamper = 1f;
-
-      
+    
+     
 
     // Start is called before the first frame update
     void Start()
@@ -73,9 +69,7 @@ public class FPC : MonoBehaviour
                 moveSpeed = 2f;
             }
         }
-
         
-
     }
     void FixedUpdate()
     {
@@ -89,7 +83,7 @@ public class FPC : MonoBehaviour
         velocityChange.y = 0;
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-      
+
         /*
         Vector3 gravity = new Vector3(0, -9.81f, 0);
         float gravityMultiplier = 5f;
