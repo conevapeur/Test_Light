@@ -40,8 +40,10 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(resumeButton);
+
         }
-        
+
     }
 
     public void Quit()
