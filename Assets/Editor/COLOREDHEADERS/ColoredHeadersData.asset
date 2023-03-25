@@ -15,3 +15,21 @@ MonoBehaviour:
   coloredTitles:
   - name: ouais
     color: {r: 0.21248412, g: 1, b: 0, a: 1}
+  - name: REGLAGES
+    color: {r: 0.86426115, g: 1, b: 0, a: 1}
+  - name: CROUCH ZONES
+    color: {r: 1, g: 0.8455281, b: 0, a: 1}
+  - name: CLIMB ZONES
+    color: {r: 1, g: 0.6615062, b: 0, a: 1}
+  - name: ICON
+    color: {r: 1, g: 0.55313706, b: 0, a: 1}
+  - name: SOUND EFFECT
+    color: {r: 1, g: 0.42313176, b: 0, a: 1}
+  - name: SALLES
+    color: {r: 1, g: 0.27120164, b: 0, a: 1}
+  - name: PLAYER AXEL
+    color: {r: 1, g: 0.23750053, b: 0, a: 1}
+  - name: BLD
+    color: {r: 1, g: 0.06511342, b: 0, a: 1}
+  - name: PROPS
+    color: {r: 1, g: 0, b: 0.20881367, a: 1}
