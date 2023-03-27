@@ -40,13 +40,19 @@ public class FPC : MonoBehaviour
     [SerializeField] float floatForce = 10f;
     [SerializeField] float floatSpringDamper = 1f;
 
+    public Camera cam;
 
+    public bool canMove = true;
+
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
+        //cam = transform.GetChild(0).GetComponent<Camera>();
+
     }
 
     // Update is called once per frame
@@ -77,8 +83,14 @@ public class FPC : MonoBehaviour
             }
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            canMove = false;
+            StartCoroutine(climb());
+        }
 
+
+        rayLook();
     }
     void FixedUpdate()
     {
@@ -143,7 +155,62 @@ public class FPC : MonoBehaviour
         }
 
     }
-    
+
+    private void rayLook()
+    {
+        GameObject obj = null;
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            obj = hit.transform.gameObject;
+            //print("I'm looking at " + hit.transform.name);
+            //Debug.Log(hit.transform.name + " est à " +Vector3.Distance(hit.point, transform.position));
+            /*Debug.Log(obj.transform.name);
+            Debug.Log(obj.GetComponent<Collider>().bounds.min.y);
+            Debug.Log(obj.GetComponent<Collider>().bounds.max.y);
+            Debug.Log(obj.GetComponent<Collider>().bounds.size);
+            */
+
+
+        }
+            
+        else
+            print("I'm looking at nothing!");
+    }
+
+    private void interact(GameObject target)
+    {
+        switch (target.transform.tag)
+        {
+            case "climlbable":
+
+                break;
+            case "lever":
+
+                break;
+            case "button":
+
+                break;
+        }
+    }
+
+    IEnumerator climb ()
+    {
+        rb.useGravity = false;
+        do
+        {
+            transform.Translate(Vector3.up * 4 * Time.deltaTime, Space.World);
+            yield return null;
+        }
+        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y);
+        
+
+        canMove = true;
+        rb.useGravity = true;
+        yield return null;
+    }
+
 }
 // boutons intéragir
 // pièce test

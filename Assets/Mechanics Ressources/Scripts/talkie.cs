@@ -27,9 +27,14 @@ public class talkie : MonoBehaviour
     public int curFreq = 0;
 
     public float cap = 0;
+
+
+
+    
     // Start is called before the first frame update
     void Start()
     {
+        
         //myAudioSource = GetComponent<AudioSource>();
         StartCoroutine(changeCurFreq());
     }
@@ -73,7 +78,7 @@ public class talkie : MonoBehaviour
 
         }
 
-        Debug.Log(Vector3.Distance(target.transform.position, transform.position));
+        //Debug.Log(Vector3.Distance(target.transform.position, transform.position));
 
         setVolume();
     }
@@ -128,8 +133,8 @@ public class talkie : MonoBehaviour
 
         }*/
 
-        myAudioSource.volume = cap / Mathf.Pow(2, Mathf.Abs(state - curFreq));
-        noise.volume = cap - myAudioSource.volume;
+        myAudioSource.volume = cap / Mathf.Pow(2, Mathf.Abs(state - curFreq)) - cap/10;
+        noise.volume = cap - myAudioSource.volume + cap/10;
     }
 
     private void setCap()
@@ -170,4 +175,6 @@ public class talkie : MonoBehaviour
         
         
     }
+
+    
 }
