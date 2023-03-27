@@ -53,9 +53,9 @@ public class FPC : MonoBehaviour
     void Update()
     {
         yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity;
-        yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
+        //yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
         xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity;
-        xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
+        //xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
 
         xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
 
