@@ -61,6 +61,34 @@ public partial class @UI : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ActionTest"",
+            ""id"": ""1a0f9b3e-63fd-4c9b-859d-f8fc3005bc96"",
+            ""actions"": [
+                {
+                    ""name"": ""interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""65057a85-5af6-4afe-add7-a58c5a7cb2c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3c76adaf-0bef-4518-99b0-7286fd94257e"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -68,6 +96,9 @@ public partial class @UI : IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_escape = m_Menu.FindAction("escape", throwIfNotFound: true);
+        // ActionTest
+        m_ActionTest = asset.FindActionMap("ActionTest", throwIfNotFound: true);
+        m_ActionTest_interact = m_ActionTest.FindAction("interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -156,8 +187,45 @@ public partial class @UI : IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // ActionTest
+    private readonly InputActionMap m_ActionTest;
+    private IActionTestActions m_ActionTestActionsCallbackInterface;
+    private readonly InputAction m_ActionTest_interact;
+    public struct ActionTestActions
+    {
+        private @UI m_Wrapper;
+        public ActionTestActions(@UI wrapper) { m_Wrapper = wrapper; }
+        public InputAction @interact => m_Wrapper.m_ActionTest_interact;
+        public InputActionMap Get() { return m_Wrapper.m_ActionTest; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionTestActions set) { return set.Get(); }
+        public void SetCallbacks(IActionTestActions instance)
+        {
+            if (m_Wrapper.m_ActionTestActionsCallbackInterface != null)
+            {
+                @interact.started -= m_Wrapper.m_ActionTestActionsCallbackInterface.OnInteract;
+                @interact.performed -= m_Wrapper.m_ActionTestActionsCallbackInterface.OnInteract;
+                @interact.canceled -= m_Wrapper.m_ActionTestActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_ActionTestActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @interact.started += instance.OnInteract;
+                @interact.performed += instance.OnInteract;
+                @interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public ActionTestActions @ActionTest => new ActionTestActions(this);
     public interface IMenuActions
     {
         void OnEscape(InputAction.CallbackContext context);
+    }
+    public interface IActionTestActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
