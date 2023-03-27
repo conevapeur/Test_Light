@@ -40,7 +40,7 @@ public class FPC : MonoBehaviour
     [SerializeField] float floatForce = 10f;
     [SerializeField] float floatSpringDamper = 1f;
 
-    public Camera cam;
+    
 
     public bool canMove = true;
 
@@ -159,7 +159,7 @@ public class FPC : MonoBehaviour
     private void rayLook()
     {
         GameObject obj = null;
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
