@@ -200,6 +200,9 @@ public class FPC : MonoBehaviour
                 case "pushable":
 
                     break;
+                case "chair":
+
+                    break;
             }
         }
         
@@ -229,7 +232,7 @@ public class FPC : MonoBehaviour
         do
         {
             transform.Translate(Vector3.up * 1 * Time.deltaTime, Space.World);
-            Debug.Log("first phase");
+            //Debug.Log("first phase");
             yield return null;
         }
         while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.5);
@@ -238,7 +241,7 @@ public class FPC : MonoBehaviour
         do
         {
             transform.Translate(dir * 1 * Time.deltaTime, Space.World);
-            Debug.Log("first phase"+ Vector3.Distance(targetPos, transform.position));
+            //Debug.Log("first phase"+ Vector3.Distance(targetPos, transform.position));
             yield return null;
         }
         while (Vector3.Distance(targetPos, transform.position) > 0.1f);
