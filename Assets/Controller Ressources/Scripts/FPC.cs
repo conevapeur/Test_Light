@@ -83,14 +83,16 @@ public class FPC : MonoBehaviour
             }
         }
 
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
-            canMove = false;
-            StartCoroutine(climb());
+            target = null;
+            rayLook();
+            interact(target);
         }
 
 
-        rayLook();
+        
     }
     void FixedUpdate()
     {
@@ -158,12 +160,12 @@ public class FPC : MonoBehaviour
 
     private void rayLook()
     {
-        GameObject obj = null;
+        
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            obj = hit.transform.gameObject;
+            target = hit.transform.gameObject;
             //print("I'm looking at " + hit.transform.name);
             //Debug.Log(hit.transform.name + " est à " +Vector3.Distance(hit.point, transform.position));
             /*Debug.Log(obj.transform.name);
@@ -175,36 +177,71 @@ public class FPC : MonoBehaviour
 
         }
             
-        else
-            print("I'm looking at nothing!");
+        
     }
 
     private void interact(GameObject target)
     {
-        switch (target.transform.tag)
+        if(target != null)
         {
-            case "climlbable":
+            switch (target.transform.tag)
+            {
+                case "climbable":
 
-                break;
-            case "lever":
+                    StartCoroutine(climb());
 
-                break;
-            case "button":
+                    break;
+                case "lever":
 
-                break;
+                    break;
+                case "button":
+
+                    break;
+                case "pushable":
+
+                    break;
+            }
         }
+        
+
+        Debug.Log("cet objet est " + target.transform.tag);
     }
 
     IEnumerator climb ()
     {
+        canMove = false;
         rb.useGravity = false;
+        
+        Transform mimic = target.transform.GetChild(0);
+        Vector3 targetPos = new Vector3(0,0,0);
+        Vector3 dir;
+
+        transform.position = mimic.position;
+        transform.rotation = mimic.rotation;
+
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            targetPos = new Vector3 (hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3 (0,1.3f,0);
+        }
+
         do
         {
-            transform.Translate(Vector3.up * 4 * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.up * 1 * Time.deltaTime, Space.World);
+            Debug.Log("first phase");
             yield return null;
         }
-        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y);
-        
+        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.5);
+        dir = targetPos - transform.position;
+        dir = dir.normalized;
+        do
+        {
+            transform.Translate(dir * 1 * Time.deltaTime, Space.World);
+            Debug.Log("first phase"+ Vector3.Distance(targetPos, transform.position));
+            yield return null;
+        }
+        while (Vector3.Distance(targetPos, transform.position) > 0.1f);
 
         canMove = true;
         rb.useGravity = true;
