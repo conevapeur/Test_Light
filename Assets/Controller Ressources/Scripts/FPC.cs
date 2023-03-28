@@ -26,6 +26,7 @@ public class FPC : MonoBehaviour
 
     public float moveSpeed = 2f;
     public float maxVelocityChange = 7f;
+    private float baseMoveSpeed;
 
     #endregion
 
@@ -43,14 +44,20 @@ public class FPC : MonoBehaviour
     
 
     public bool canMove = true;
+    public bool canLook = true;
+    public bool canSidewalk = true;
 
     public GameObject target;
+
+    public GameObject carried;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
+
+        baseMoveSpeed = moveSpeed;
         //cam = transform.GetChild(0).GetComponent<Camera>();
 
     }
@@ -58,29 +65,33 @@ public class FPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove)
+        if(canLook)
         {
             #region move
-            yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity;
-            //yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
-            xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity;
-            //xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
+            if(canSidewalk)
+            {
+                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity;
+                //yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
+                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity;
+                //xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
 
-            xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
+                xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
 
-            transform.localEulerAngles = new Vector3(0, yRotation, 0);
-            joint.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
+                transform.localEulerAngles = new Vector3(0, yRotation, 0);
+                joint.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
+            }
+            
 
 
             // sprint
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Joystick1Button8))
+            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Joystick1Button8)) && carried == null)
             {
                 moveSpeed = 4f;
             }
 
             if (moveSpeed != 2f)
             {
-                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && carried == null)
                 {
                     moveSpeed = 2f;
                 }
@@ -88,15 +99,30 @@ public class FPC : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                target = null;
-                rayLook();
-                interact(target);
+                if (carried != null)
+                {
+                    carried.gameObject.transform.SetParent(null);
+                    carried = null;
+                    canSidewalk = true;
+                    moveSpeed = baseMoveSpeed;
+                }
+                else
+                {
+                    target = null;
+                    rayLook();
+                    interact(target);
+
+                }
+                
             }
 
             #endregion
         }
 
-
+        /*if(carried != null)
+        {
+            carried.transform.position = new Vector3(carried.transform.position.x, Mathf.Clamp(carried.transform.position.y, transform.position.y, transform.position.y +1) ,carried.transform.position.z);
+        }*/
         
 
 
@@ -107,7 +133,15 @@ public class FPC : MonoBehaviour
         if(canMove)
         {
             #region move
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+            Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
+
+            if(canSidewalk)
+            {
+                targetVelocity = new Vector3(Input.GetAxis("Horizontal"), targetVelocity.y, targetVelocity.z);
+            }
+            
+
             targetVelocity = transform.TransformDirection(targetVelocity) * moveSpeed;
 
             //Apply a force
@@ -201,10 +235,10 @@ public class FPC : MonoBehaviour
 
                     break;
                 case "pushable":
-
+                    push();
                     break;
-                case "chair":
-
+                case "carryable":
+                    carry();
                     break;
             }
         }
@@ -216,6 +250,7 @@ public class FPC : MonoBehaviour
     IEnumerator climb ()
     {
         canMove = false;
+        canLook = false;
         rb.useGravity = false;
         rb.velocity = new Vector3(0,0,0);
         
@@ -251,10 +286,37 @@ public class FPC : MonoBehaviour
         while (Vector3.Distance(targetPos, transform.position) > 0.1f);
 
         canMove = true;
+        canLook = true;
         rb.useGravity = true;
         yield return null;
     }
 
+    private void setchild(GameObject target)
+    {
+        target.transform.SetParent(transform/*.GetChild(0)*/);
+        carried = target;
+    }
+
+    private void push()
+    {
+        Transform mimic = target.transform.GetChild(0);
+        
+
+        transform.position = mimic.position;
+        transform.rotation = mimic.rotation;
+        
+        setchild(target);
+        canSidewalk = false;
+
+        moveSpeed = baseMoveSpeed * 0.6f;
+
+    }
+
+    private void carry()
+    {
+        setchild(target);
+        moveSpeed = baseMoveSpeed * 0.7f;
+    }
 }
 // boutons intéragir
 // pièce test
