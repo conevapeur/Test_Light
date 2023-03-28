@@ -275,10 +275,11 @@ public class FPC : MonoBehaviour
             yield return null;
         }
         while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.5);
-        dir = targetPos - transform.position;
-        dir = dir.normalized;
+        
         do
         {
+            dir = targetPos - transform.position;
+            dir = dir.normalized;
             transform.Translate(dir * 1 * Time.deltaTime, Space.World);
             //Debug.Log("first phase"+ Vector3.Distance(targetPos, transform.position));
             yield return null;
