@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class FPC : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class FPC : MonoBehaviour
     private float yRotation = 0f;
 
     #endregion   
+
+    public CinemachineVirtualCamera vCam;
+
+    [SerializeField] float vCamAmplitude;
+    [SerializeField] float vCamFrequency;
 
     #region Movement
 
@@ -62,11 +68,14 @@ public class FPC : MonoBehaviour
         baseMoveSpeed = moveSpeed;
         //cam = transform.GetChild(0).GetComponent<Camera>();
 
+        vCamFrequency = 0.2f;
+        vCamAmplitude = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(rb.velocity.magnitude);
         if(canLook)
         {
             #region move
@@ -89,6 +98,7 @@ public class FPC : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Joystick1Button8)) && carried == null)
             {
                 moveSpeed = 4f;
+                
             }
 
             if (moveSpeed != 2f)
@@ -96,6 +106,7 @@ public class FPC : MonoBehaviour
                 if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && carried == null)
                 {
                     moveSpeed = 2f;
+                    
                 }
             }
 
@@ -119,16 +130,16 @@ public class FPC : MonoBehaviour
             }
 
             #endregion
+
         }
 
-        /*if(carried != null)
-        {
-            carried.transform.position = new Vector3(carried.transform.position.x, Mathf.Clamp(carried.transform.position.y, transform.position.y, transform.position.y +1) ,carried.transform.position.z);
-        }*/
-        
+
+        setBob();
+
+        vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = vCamAmplitude;
+        vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = vCamFrequency;
 
 
-        
     }
     void FixedUpdate()
     {
@@ -197,6 +208,25 @@ public class FPC : MonoBehaviour
 
     }
 
+    private void setBob()
+    {
+        if(rb.velocity.magnitude > 3)
+        {
+            vCamFrequency = 1.4f;
+            vCamAmplitude = 1f;
+        }
+        else if (rb.velocity.magnitude > 0.5)
+        {
+            vCamFrequency = .7f;
+            vCamAmplitude = 1f;
+        }
+        else
+        {
+            vCamFrequency = .2f;
+            vCamAmplitude = 1f;
+        }
+    }
+
     private void rayLook()
     {
         
@@ -245,7 +275,7 @@ public class FPC : MonoBehaviour
 
                     break;
                 case "pushable":
-                    push();
+                    StartCoroutine(push());
                     break;
                 case "carryable":
                     carry();
@@ -345,6 +375,9 @@ public class FPC : MonoBehaviour
     {
         Transform mimic = target.transform.GetChild(0);
 
+        canMove = false;
+        canLook = false;
+
         StartCoroutine(goTo(mimic));
         /*transform.position = mimic.position;
         transform.rotation = mimic.rotation;
@@ -355,6 +388,9 @@ public class FPC : MonoBehaviour
             yield return null;
         }
         while (toMimic == false);
+
+        canMove = true;
+        canLook = true;
 
         setchild(target);
         canSidewalk = false;
