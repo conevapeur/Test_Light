@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5921130542321685068}
   - component: {fileID: 7640731379984201920}
   m_Layer: 0
-  m_Name: BLD_floor_3x025_01_v2
+  m_Name: BLD_floorInt_3x025_01_v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1002458b93468c6458a976bf5a4e01ae, type: 2}
+  - {fileID: 2100000, guid: ac50875104e03f842b557cbe7eb26d6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
