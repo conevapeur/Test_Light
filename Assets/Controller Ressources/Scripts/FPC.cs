@@ -225,6 +225,7 @@ public class FPC : MonoBehaviour
             vCamFrequency = .2f;
             vCamAmplitude = 1f;
         }
+
     }
 
     private void rayLook()

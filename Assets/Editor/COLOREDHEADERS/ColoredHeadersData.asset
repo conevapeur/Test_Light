@@ -33,3 +33,43 @@ MonoBehaviour:
     color: {r: 1, g: 0.06511342, b: 0, a: 1}
   - name: PROPS
     color: {r: 1, g: 0, b: 0.20881367, a: 1}
+  - name: Accueil
+    color: {r: 0, g: 0.62411404, b: 1, a: 1}
+  - name: Archives
+    color: {r: 0, g: 0.7031784, b: 1, a: 1}
+  - name: Atelier
+    color: {r: 0, g: 0.7809465, b: 1, a: 1}
+  - name: Bureau Scientifique
+    color: {r: 0, g: 0.8663821, b: 1, a: 1}
+  - name: Bureau 1
+    color: {r: 0, g: 0.9731083, b: 1, a: 1}
+  - name: Bureau 2
+    color: {r: 0, g: 1, b: 0.8774605, a: 1}
+  - name: Couloir 1
+    color: {r: 0, g: 1, b: 0.7921188, a: 1}
+  - name: Couloir 2
+    color: {r: 0, g: 1, b: 0.6470318, a: 1}
+  - name: Couloir 3
+    color: {r: 0, g: 1, b: 0.443995, a: 1}
+  - name: Debarras
+    color: {r: 0, g: 1, b: 0.34482765, a: 1}
+  - name: Depart
+    color: {r: 0, g: 1, b: 0.20283651, a: 1}
+  - name: Escalier
+    color: {r: 0, g: 1, b: 0.052033424, a: 1}
+  - name: Laboratoire
+    color: {r: 0.06549895, g: 1, b: 0, a: 1}
+  - name: Local Technique
+    color: {r: 0.1490072, g: 1, b: 0, a: 1}
+  - name: Open Fesse
+    color: {r: 0.21807075, g: 1, b: 0, a: 1}
+  - name: Reserve Logistique
+    color: {r: 0.38614988, g: 1, b: 0, a: 1}
+  - name: Salle de controle
+    color: {r: 0.4652003, g: 1, b: 0, a: 1}
+  - name: "Salle des securit\xE9s"
+    color: {r: 0.5932267, g: 1, b: 0, a: 1}
+  - name: Toillettes 1
+    color: {r: 0.6817943, g: 1, b: 0, a: 1}
+  - name: Toillettes 2
+    color: {r: 0.8350264, g: 1, b: 0, a: 1}
