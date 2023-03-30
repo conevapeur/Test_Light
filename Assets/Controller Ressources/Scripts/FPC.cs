@@ -235,7 +235,7 @@ public class FPC : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if(Vector3.Distance(hit.transform.position, transform.position) < 5)
+            if(Vector3.Distance(hit.transform.position, transform.position) < 3)
             {
                 target = hit.transform.gameObject;
             }
