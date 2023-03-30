@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3744277}
   - component: {fileID: 3744278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: playerCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 53568986}
   - component: {fileID: 53568988}
   - component: {fileID: 53568987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: freq
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 179006399}
   - component: {fileID: 179006398}
   - component: {fileID: 179006397}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bras droit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312513188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3892,7 +3892,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65514
+  m_Name: pb_Mesh149210
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5145,7 +5145,7 @@ GameObject:
   - component: {fileID: 921301817}
   - component: {fileID: 921301816}
   - component: {fileID: 921301815}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bras gauche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5248,7 +5248,7 @@ GameObject:
   - component: {fileID: 928979380}
   - component: {fileID: 928979381}
   - component: {fileID: 928979382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: talkie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6496,7 +6496,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65684
+  m_Name: pb_Mesh149380
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7916,7 +7916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555342201}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7988,7 +7988,7 @@ GameObject:
   - component: {fileID: 1590327231}
   - component: {fileID: 1590327230}
   - component: {fileID: 1590327229}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: freqSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13560,7 +13560,7 @@ GameObject:
   - component: {fileID: 1757091056}
   - component: {fileID: 1757091055}
   - component: {fileID: 1757091054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -13867,7 +13867,7 @@ GameObject:
   - component: {fileID: 1790752388}
   - component: {fileID: 1790752391}
   - component: {fileID: 1790752392}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14566,7 +14566,7 @@ GameObject:
   - component: {fileID: 1968822239}
   - component: {fileID: 1968822238}
   - component: {fileID: 1968822237}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

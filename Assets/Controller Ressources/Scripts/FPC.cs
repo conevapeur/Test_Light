@@ -298,7 +298,10 @@ public class FPC : MonoBehaviour
             dir = target.position - transform.position;
             dir = dir.normalized;
             transform.Translate(dir * 2 * Time.deltaTime, Space.World);
-            Debug.Log(Vector3.Distance(target.position, transform.position));
+            //Debug.Log(Vector3.Distance(target.position, transform.position));
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, 1f * Time.deltaTime);
+
             yield return null;
         }
         while (Vector3.Distance(target.position, transform.position) > 0.5f);

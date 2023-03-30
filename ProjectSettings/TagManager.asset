@@ -9,6 +9,7 @@ TagManager:
   - button
   - climbable
   - carryable
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - floor
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
