@@ -50,6 +50,8 @@ public class FPC : MonoBehaviour
     public GameObject target;
 
     public GameObject carried;
+
+    private bool toMimic = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -202,7 +204,15 @@ public class FPC : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            target = hit.transform.gameObject;
+            if(Vector3.Distance(hit.transform.position, transform.position) < 5)
+            {
+                target = hit.transform.gameObject;
+            }
+            else
+            {
+                Debug.Log("trop loin");
+            }
+            
             //print("I'm looking at " + hit.transform.name);
             //Debug.Log(hit.transform.name + " est à " +Vector3.Distance(hit.point, transform.position));
             /*Debug.Log(obj.transform.name);
@@ -247,6 +257,28 @@ public class FPC : MonoBehaviour
         Debug.Log("cet objet est " + target.transform.tag);
     }
 
+    IEnumerator goTo(Transform target)
+    {
+        Vector3 dir;
+
+        toMimic = false;
+        do
+        {
+            dir = target.position - transform.position;
+            dir = dir.normalized;
+            transform.Translate(dir * 2 * Time.deltaTime, Space.World);
+            Debug.Log(Vector3.Distance(target.position, transform.position));
+            yield return null;
+        }
+        while (Vector3.Distance(target.position, transform.position) > 0.5f);
+
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+
+        toMimic = true;
+
+        yield return null;
+    }
     IEnumerator climb ()
     {
         canMove = false;
@@ -258,14 +290,22 @@ public class FPC : MonoBehaviour
         Vector3 targetPos = new Vector3(0,0,0);
         Vector3 dir;
 
-        transform.position = mimic.position;
-        transform.rotation = mimic.rotation;
+        
 
+        StartCoroutine(goTo(mimic));
+
+        do
+        {
+            yield return null;
+        }
+        while (toMimic == false);
+        
+        
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            targetPos = new Vector3 (hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3 (0,1.3f,0);
+            targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1.3f, 0);
         }
 
         do
@@ -275,7 +315,7 @@ public class FPC : MonoBehaviour
             yield return null;
         }
         while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.5);
-        
+
         do
         {
             dir = targetPos - transform.position;
@@ -290,6 +330,9 @@ public class FPC : MonoBehaviour
         canLook = true;
         rb.useGravity = true;
         yield return null;
+        
+            
+        
     }
 
     private void setchild(GameObject target)
@@ -298,19 +341,27 @@ public class FPC : MonoBehaviour
         carried = target;
     }
 
-    private void push()
+    IEnumerator push()
     {
         Transform mimic = target.transform.GetChild(0);
-        
 
-        transform.position = mimic.position;
+        StartCoroutine(goTo(mimic));
+        /*transform.position = mimic.position;
         transform.rotation = mimic.rotation;
-        
+        */
+
+        do
+        {
+            yield return null;
+        }
+        while (toMimic == false);
+
         setchild(target);
         canSidewalk = false;
 
         moveSpeed = baseMoveSpeed * 0.6f;
 
+        
     }
 
     private void carry()

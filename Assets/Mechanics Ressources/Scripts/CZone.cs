@@ -33,7 +33,7 @@ public class CZone : MonoBehaviour
             if(other.GetComponent<FPC>().isCrouching == true)
             {
                 other.GetComponent<FPC>().isCrouching = false;
-                eyes.transform.position = new Vector3(eyes.transform.position.x,eyes.transform.position.y + 0.75f, eyes.transform.position.z);
+                eyes.transform.position = new Vector3(eyes.transform.position.x,eyes.transform.position.y + 0.45f, eyes.transform.position.z);
             }
         }
         //Debug.Log(other.transform.tag);
@@ -47,7 +47,7 @@ public class CZone : MonoBehaviour
             if (other.GetComponent<FPC>().isCrouching == false)
             {
                 other.GetComponent<FPC>().isCrouching = true;
-                eyes.transform.position = new Vector3(eyes.transform.position.x, eyes.transform.position.y - 0.75f, eyes.transform.position.z);
+                eyes.transform.position = new Vector3(eyes.transform.position.x, eyes.transform.position.y - 0.45f, eyes.transform.position.z);
             }
             //Debug.Log(other.GetComponent<FPC>().isCrouching);  
         }
