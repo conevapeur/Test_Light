@@ -270,7 +270,7 @@ public class FPC : MonoBehaviour
 
                     break;
                 case "lever":
-
+                    lever(target);
                     break;
                 case "button":
 
@@ -364,7 +364,6 @@ public class FPC : MonoBehaviour
         canLook = true;
         rb.useGravity = true;
         yield return null;
-        
             
         
     }
@@ -408,6 +407,14 @@ public class FPC : MonoBehaviour
     {
         setchild(target);
         moveSpeed = baseMoveSpeed * 0.7f;
+    }
+
+    private void lever(GameObject _target)
+    {
+        // pick a random color
+        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        // apply it on current object's material
+        _target.GetComponent<MeshRenderer>().material.color = newColor;
     }
 }
 // boutons intéragir
