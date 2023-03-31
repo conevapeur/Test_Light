@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8211772552019644770}
   - component: {fileID: 5069302988047130311}
   - component: {fileID: 7042855196223924749}
+  - component: {fileID: 231616387821372919}
   m_Layer: 0
   m_Name: BLD_stairs_01_v2
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &231616387821372919
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844439700771916760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2402574084398989452, guid: c02833b397ab7f44985c39818660ac4a, type: 3}

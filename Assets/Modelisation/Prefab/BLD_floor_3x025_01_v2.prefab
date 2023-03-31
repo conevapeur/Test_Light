@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4784854736112396579}
   - component: {fileID: 8487283717102642822}
   - component: {fileID: 5921130542321685068}
-  - component: {fileID: 7640731379984201920}
+  - component: {fileID: 3117842363848751766}
   m_Layer: 0
   m_Name: BLD_floor_3x025_01_v2
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7640731379984201920
+--- !u!64 &3117842363848751766
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,4 +97,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -5825726965901125278, guid: 00515d8ef2e30f24b829b78ba3f1ba8d, type: 3}
+  m_Mesh: {fileID: 1068563656645820402, guid: 00515d8ef2e30f24b829b78ba3f1ba8d, type: 3}
