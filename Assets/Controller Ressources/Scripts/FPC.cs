@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class FPC : MonoBehaviour
 {
@@ -415,6 +416,7 @@ public class FPC : MonoBehaviour
         Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
         // apply it on current object's material
         _target.GetComponent<MeshRenderer>().material.color = newColor;
+    
     }
 }
 // boutons intéragir
