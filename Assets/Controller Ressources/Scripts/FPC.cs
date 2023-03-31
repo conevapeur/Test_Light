@@ -172,7 +172,7 @@ public class FPC : MonoBehaviour
             int layerMask = 1 << 6;
 
             layerMask = ~layerMask;
-            if (Physics.Raycast(transform.position, rayDir, out hit, floatHeight, layerMask))
+            if (Physics.Raycast(transform.position, rayDir, out hit, floatHeight, layerMask, QueryTriggerInteraction.Ignore))
             {
 
                 Vector3 velocity = rb.velocity;
