@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class FPC : MonoBehaviour
 {
@@ -241,7 +242,7 @@ public class FPC : MonoBehaviour
             }
             else
             {
-                Debug.Log("trop loin");
+                //Debug.Log("trop loin");
             }
             
             //print("I'm looking at " + hit.transform.name);
@@ -270,7 +271,7 @@ public class FPC : MonoBehaviour
 
                     break;
                 case "lever":
-
+                    lever(target);
                     break;
                 case "button":
 
@@ -282,10 +283,12 @@ public class FPC : MonoBehaviour
                     carry();
                     break;
             }
+
+            Debug.Log("cet objet est " + target.transform.tag);
         }
         
 
-        Debug.Log("cet objet est " + target.transform.tag);
+        
     }
 
     IEnumerator goTo(Transform target)
@@ -364,7 +367,6 @@ public class FPC : MonoBehaviour
         canLook = true;
         rb.useGravity = true;
         yield return null;
-        
             
         
     }
@@ -408,6 +410,15 @@ public class FPC : MonoBehaviour
     {
         setchild(target);
         moveSpeed = baseMoveSpeed * 0.7f;
+    }
+
+    private void lever(GameObject _target)
+    {
+        // pick a random color
+        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        // apply it on current object's material
+        _target.GetComponent<MeshRenderer>().material.color = newColor;
+    
     }
 }
 // boutons intéragir
