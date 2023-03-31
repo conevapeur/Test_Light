@@ -242,7 +242,7 @@ public class FPC : MonoBehaviour
             }
             else
             {
-                Debug.Log("trop loin");
+                //Debug.Log("trop loin");
             }
             
             //print("I'm looking at " + hit.transform.name);
@@ -283,10 +283,12 @@ public class FPC : MonoBehaviour
                     carry();
                     break;
             }
+
+            Debug.Log("cet objet est " + target.transform.tag);
         }
         
 
-        Debug.Log("cet objet est " + target.transform.tag);
+        
     }
 
     IEnumerator goTo(Transform target)
