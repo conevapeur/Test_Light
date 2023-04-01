@@ -58,6 +58,8 @@ public class FPC : MonoBehaviour
 
     public GameObject carried;
 
+    public LightmapData[] _lightmapData;
+
     private bool toMimic = false;
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,9 @@ public class FPC : MonoBehaviour
 
         vCamFrequency = 0.2f;
         vCamAmplitude = 1f;
+
+    _lightmapData = LightmapSettings.lightmaps;
+    LightmapSettings.lightmaps = new LightmapData[] { };
     }
 
     // Update is called once per frame
@@ -418,6 +423,8 @@ public class FPC : MonoBehaviour
         Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
         // apply it on current object's material
         _target.GetComponent<MeshRenderer>().material.color = newColor;
+
+        LightmapSettings.lightmaps = _lightmapData;
     
     }
 }
