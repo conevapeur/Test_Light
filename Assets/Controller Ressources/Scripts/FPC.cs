@@ -58,7 +58,12 @@ public class FPC : MonoBehaviour
 
     public GameObject carried;
 
-    public LightmapData[] _lightmapData;
+   
+
+    LightmapData[] _lightmapData;
+    [SerializeField] private GameObject _redLigths;
+    [SerializeField] private GameObject _naturalLigths;
+
 
     private bool toMimic = false;
     // Start is called before the first frame update
@@ -76,6 +81,8 @@ public class FPC : MonoBehaviour
 
     _lightmapData = LightmapSettings.lightmaps;
     LightmapSettings.lightmaps = new LightmapData[] { };
+
+        _redLigths.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -279,7 +286,7 @@ public class FPC : MonoBehaviour
                     lever(target);
                     break;
                 case "button":
-
+                    buttton(target);
                     break;
                 case "pushable":
                     StartCoroutine(push());
@@ -420,14 +427,22 @@ public class FPC : MonoBehaviour
     private void lever(GameObject _target)
     {
         // pick a random color
-        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        //Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
         // apply it on current object's material
-        _target.GetComponent<MeshRenderer>().material.color = newColor;
+        //_target.GetComponent<MeshRenderer>().material.color = newColor;
 
         LightmapSettings.lightmaps = _lightmapData;
-    
+        _naturalLigths.gameObject.SetActive(false);
     }
+
+    private void buttton(GameObject _target)
+    {
+        _redLigths.gameObject.SetActive(true);
+        LightmapSettings.lightmaps = new LightmapData[] { };
+    }
+    
 }
+
 // boutons intéragir
 // pièce test
 // baisser, escalader
