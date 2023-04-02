@@ -59,10 +59,14 @@ public class FPC : MonoBehaviour
     public GameObject carried;
 
    
-
+    // lights
     LightmapData[] _lightmapData;
     [SerializeField] private GameObject _redLigths;
     [SerializeField] private GameObject _naturalLigths;
+
+    // doors
+    [SerializeField] private Animator _animator;
+
 
 
     private bool toMimic = false;
@@ -433,12 +437,15 @@ public class FPC : MonoBehaviour
 
         LightmapSettings.lightmaps = _lightmapData;
         _naturalLigths.gameObject.SetActive(false);
+        _animator.SetTrigger("Lever");
+
     }
 
     private void buttton(GameObject _target)
     {
         _redLigths.gameObject.SetActive(true);
         LightmapSettings.lightmaps = new LightmapData[] { };
+
     }
     
 }
