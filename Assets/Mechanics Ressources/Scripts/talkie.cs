@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class talkie : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class talkie : MonoBehaviour
 
     public float cap = 0;
 
+
+    [SerializeField] private Animator _animator;
 
 
     
@@ -66,8 +69,10 @@ public class talkie : MonoBehaviour
             state -= 1;
             if (state < 0)
                 state = 4;
-
+            
             refreshFreq();
+
+            _animator.SetTrigger("trigger");
         }
         if(Input.GetKeyDown(KeyCode.M))
         {
@@ -75,6 +80,8 @@ public class talkie : MonoBehaviour
             state = state % 5;
 
             refreshFreq();
+
+            _animator.SetTrigger("trigger");
 
         }
 

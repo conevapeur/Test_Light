@@ -20,11 +20,12 @@ public class anmi : MonoBehaviour
         var dist = Vector3.Distance(target.position, transform.position);
         if (dist < 2)
         {
-            animator.SetTrigger("isActivated");
+            animator.SetBool("trigger", true);
+            Debug.Log("chien mou");
         }
         if (dist >= 2)
         {
-            animator.SetTrigger("isDesactivated");
+            animator.SetBool("trigger", false);
         }
         
     }
