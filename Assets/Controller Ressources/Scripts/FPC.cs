@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class FPC : MonoBehaviour
 {
@@ -65,7 +66,9 @@ public class FPC : MonoBehaviour
     [SerializeField] private GameObject _naturalLigths;
 
     // doors
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _stairs;
+    [SerializeField] private Animator _security;
+    [SerializeField] private Animator _archives;
 
 
 
@@ -292,6 +295,9 @@ public class FPC : MonoBehaviour
                 case "button":
                     buttton(target);
                     break;
+                case "card":
+                    card(target);
+                    break;
                 case "pushable":
                     StartCoroutine(push());
                     break;
@@ -437,7 +443,7 @@ public class FPC : MonoBehaviour
 
         LightmapSettings.lightmaps = _lightmapData;
         _naturalLigths.gameObject.SetActive(false);
-        _animator.SetTrigger("Lever");
+        _stairs.SetTrigger("trigger");
 
     }
 
@@ -445,7 +451,13 @@ public class FPC : MonoBehaviour
     {
         _redLigths.gameObject.SetActive(true);
         LightmapSettings.lightmaps = new LightmapData[] { };
+        _archives.SetTrigger("trigger");
 
+    }
+
+    private void card(GameObject _target)
+    {
+        _security.SetTrigger("trigger");
     }
     
 }

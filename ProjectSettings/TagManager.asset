@@ -10,6 +10,7 @@ TagManager:
   - climbable
   - carryable
   - CinemachineTarget
+  - card
   layers:
   - Default
   - TransparentFX
