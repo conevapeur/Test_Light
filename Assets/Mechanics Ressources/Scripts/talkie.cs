@@ -161,7 +161,7 @@ public class talkie : MonoBehaviour
             cap = 1 - (dist - minDist) / (maxDist - minDist);
             
         }
-
+        cap = cap / 2;
     }
 
     IEnumerator changeCurFreq()
