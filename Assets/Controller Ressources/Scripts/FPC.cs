@@ -317,9 +317,12 @@ public class FPC : MonoBehaviour
     {
         Vector3 dir;
 
+        rb.velocity = Vector3.zero;
+        rb.useGravity = false;
         toMimic = false;
         do
         {
+            
             dir = target.position - transform.position;
             dir = dir.normalized;
             transform.Translate(dir * 2 * Time.deltaTime, Space.World);
@@ -330,7 +333,7 @@ public class FPC : MonoBehaviour
             yield return null;
         }
         while (Vector3.Distance(target.position, transform.position) > 0.5f);
-
+        rb.useGravity = true;
         transform.position = target.position;
         transform.rotation = target.rotation;
 
@@ -342,7 +345,7 @@ public class FPC : MonoBehaviour
     {
         canMove = false;
         canLook = false;
-        rb.useGravity = false;
+        
         rb.velocity = new Vector3(0,0,0);
         
         Transform mimic = target.transform.GetChild(0);
@@ -358,8 +361,9 @@ public class FPC : MonoBehaviour
             yield return null;
         }
         while (toMimic == false);
-        
-        
+
+        rb.useGravity = false;
+
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
