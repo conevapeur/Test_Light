@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9073909358474167066}
   - component: {fileID: 5351081101680774335}
   - component: {fileID: 7901051665462982773}
+  - component: {fileID: 6757741138514913118}
   m_Layer: 0
   m_Name: BLD_wall_3x1_01_v2
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6757741138514913118
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549750538563115424}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4383700198203235721, guid: faf7f4bcf3b47ef40a94a8f7c8c92e7a, type: 3}
