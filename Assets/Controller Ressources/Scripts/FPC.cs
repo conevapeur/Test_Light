@@ -101,9 +101,9 @@ public class FPC : MonoBehaviour
             #region move
             if(canSidewalk)
             {
-                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity;
+                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity + Input.GetAxis("Gamepad X") * mouseSensivity;
                 //yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
-                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity;
+                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity - Input.GetAxis("Gamepad Y") * mouseSensivity;
                 //xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
 
                 xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
@@ -130,7 +130,7 @@ public class FPC : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
                 if (carried != null)
                 {

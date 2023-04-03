@@ -64,7 +64,7 @@ public class talkie : MonoBehaviour
         freqTMP.SetText(freq.ToString());
         */
 
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
             state -= 1;
             if (state < 0)
@@ -74,7 +74,7 @@ public class talkie : MonoBehaviour
 
             _animator.SetTrigger("trigger");
         }
-        if(Input.GetKeyDown(KeyCode.M))
+        if(Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
             state += 1;
             state = state % 5;
