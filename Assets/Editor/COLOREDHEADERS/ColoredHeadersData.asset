@@ -22,17 +22,15 @@ MonoBehaviour:
   - name: CLIMB ZONES
     color: {r: 1, g: 0.6615062, b: 0, a: 1}
   - name: ICON
-    color: {r: 1, g: 0.55313706, b: 0, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - name: SOUND EFFECT
     color: {r: 1, g: 0.42313176, b: 0, a: 1}
   - name: SALLES
     color: {r: 1, g: 0.27120164, b: 0, a: 1}
-  - name: PLAYER AXEL
-    color: {r: 1, g: 0.23750053, b: 0, a: 1}
-  - name: BLD
-    color: {r: 1, g: 0.06511342, b: 0, a: 1}
-  - name: PROPS
-    color: {r: 1, g: 0, b: 0.20881367, a: 1}
+  - name: Player
+    color: {r: 0, g: 1, b: 0.032362938, a: 1}
+  - name: Lights
+    color: {r: 0.6791291, g: 0, b: 1, a: 1}
   - name: Accueil
     color: {r: 0, g: 0.62411404, b: 1, a: 1}
   - name: Archives

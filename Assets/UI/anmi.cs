@@ -12,6 +12,7 @@ public class anmi : MonoBehaviour
     [SerializeField] private Animator animator;
 
 
+
     // Update is called once per frame
     void Update()
     {

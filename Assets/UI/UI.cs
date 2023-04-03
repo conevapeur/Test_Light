@@ -41,7 +41,7 @@ public partial class @UI : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9048fcff-5b91-41c5-8bbc-6b9712eadbca"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
