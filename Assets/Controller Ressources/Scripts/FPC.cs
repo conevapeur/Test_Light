@@ -142,11 +142,25 @@ public class FPC : MonoBehaviour
                 else
                 {
                     target = null;
-                    rayLook();
+                    rayInteract();
                     interact(target);
 
                 }
                 
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+            {
+                if(carried == null)
+                {
+                    target = null;
+                    rayClimb();
+                    if(target.transform.tag == "climbable")
+                    {
+                        StartCoroutine(climb());
+                    }
+                    
+                }
             }
 
             #endregion
@@ -248,12 +262,13 @@ public class FPC : MonoBehaviour
 
     }
 
-    private void rayLook()
+    private void rayInteract()
     {
-        
+        int layerMask = 1 << 6;
+        layerMask = ~layerMask;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit,10,layerMask, QueryTriggerInteraction.Ignore))
         {
             if(Vector3.Distance(hit.transform.position, transform.position) < 3)
             {
@@ -263,19 +278,24 @@ public class FPC : MonoBehaviour
             {
                 //Debug.Log("trop loin");
             }
-            
-            //print("I'm looking at " + hit.transform.name);
-            //Debug.Log(hit.transform.name + " est à " +Vector3.Distance(hit.point, transform.position));
-            /*Debug.Log(obj.transform.name);
-            Debug.Log(obj.GetComponent<Collider>().bounds.min.y);
-            Debug.Log(obj.GetComponent<Collider>().bounds.max.y);
-            Debug.Log(obj.GetComponent<Collider>().bounds.size);
-            */
 
 
         }
             
         
+    }
+
+    private void rayClimb()
+    {
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (Vector3.Distance(hit.transform.position, transform.position) < 3)
+            {
+                target = hit.transform.gameObject;
+            }
+        }
     }
 
     private void interact(GameObject target)
@@ -284,11 +304,11 @@ public class FPC : MonoBehaviour
         {
             switch (target.transform.tag)
             {
-                case "climbable":
+                /*case "climbable":
 
                     StartCoroutine(climb());
 
-                    break;
+                    break;*/
                 case "lever":
                     lever(target);
                     break;

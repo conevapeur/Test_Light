@@ -20,7 +20,7 @@ public class talkie : MonoBehaviour
     public AudioSource myAudioSource;
     public AudioSource noise;
     public GameObject target;
-    private int maxDist = 20;
+    public int maxDist = 50;
     private int minDist = 10;
 
     public int state = 0;
