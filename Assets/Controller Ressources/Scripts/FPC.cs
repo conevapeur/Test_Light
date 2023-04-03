@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using Unity.VisualScripting;
+
+
+
+/*using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+*/
+
 
 public class FPC : MonoBehaviour
 {
@@ -318,11 +323,21 @@ public class FPC : MonoBehaviour
                 case "card":
                     card(target);
                     break;
+                 
                 case "pushable":
                     StartCoroutine(push());
                     break;
                 case "carryable":
                     carry();
+                    break;
+                case "interactable":
+                    
+                    //target.TryGetComponent<IInteract>().OnInteract();
+                    if (target.TryGetComponent(out IInteract _target))
+                    {
+                        Debug.Log("patate");
+                        _target.OnInteract();
+                    }
                     break;
             }
 
@@ -465,9 +480,9 @@ public class FPC : MonoBehaviour
         // apply it on current object's material
         //_target.GetComponent<MeshRenderer>().material.color = newColor;
 
-        LightmapSettings.lightmaps = _lightmapData;
-        _naturalLigths.gameObject.SetActive(false);
-        _stairs.SetTrigger("trigger");
+        //LightmapSettings.lightmaps = _lightmapData;
+       // _naturalLigths.gameObject.SetActive(false);
+       // _stairs.SetTrigger("trigger");
 
     }
 
