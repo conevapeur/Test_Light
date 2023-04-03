@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class interactCard: MonoBehaviour, IInteract
 {
+    [SerializeField] private Animator _security;
+
     public void OnInteract()
     {
-
+        _security.SetTrigger("trigger");
     }
 }

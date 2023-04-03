@@ -66,7 +66,7 @@ public class FPC : MonoBehaviour
 
    
     // lights
-    LightmapData[] _lightmapData;
+   // LightmapData[] _lightmapData;
     [SerializeField] private GameObject _redLigths;
     [SerializeField] private GameObject _naturalLigths;
 
@@ -91,8 +91,7 @@ public class FPC : MonoBehaviour
         vCamFrequency = 0.2f;
         vCamAmplitude = 1f;
 
-    _lightmapData = LightmapSettings.lightmaps;
-    LightmapSettings.lightmaps = new LightmapData[] { };
+    
 
         _redLigths.gameObject.SetActive(false);
     }
@@ -488,15 +487,15 @@ public class FPC : MonoBehaviour
 
     private void buttton(GameObject _target)
     {
-        _redLigths.gameObject.SetActive(true);
-        LightmapSettings.lightmaps = new LightmapData[] { };
-        _archives.SetTrigger("trigger");
+       // _redLigths.gameObject.SetActive(true);
+       // LightmapSettings.lightmaps = new LightmapData[] { };
+       // _archives.SetTrigger("trigger");
 
     }
 
     private void card(GameObject _target)
     {
-        _security.SetTrigger("trigger");
+        //_security.SetTrigger("trigger");
     }
     
 }
