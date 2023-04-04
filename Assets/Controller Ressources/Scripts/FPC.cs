@@ -138,6 +138,12 @@ public class FPC : MonoBehaviour
             {
                 if (carried != null)
                 {
+                    if (carried.TryGetComponent(out Rigidbody rb))
+                    {
+                        Debug.Log("patate");
+                        rb.isKinematic = false;
+                    }
+                    //carried.TryGetComponent<Rigidbody>().isKinematic = false;
                     carried.gameObject.transform.SetParent(null);
                     carried = null;
                     canSidewalk = true;
@@ -145,6 +151,7 @@ public class FPC : MonoBehaviour
                 }
                 else
                 {
+
                     target = null;
                     rayInteract();
                     interact(target);
@@ -241,6 +248,8 @@ public class FPC : MonoBehaviour
             }
 
             #endregion
+
+            
         }
 
 
@@ -292,11 +301,13 @@ public class FPC : MonoBehaviour
     private void rayClimb()
     {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             if (Vector3.Distance(hit.transform.position, transform.position) < 3)
             {
+                Debug.Log(hit.transform.gameObject.name);
                 target = hit.transform.gameObject;
             }
         }
@@ -334,7 +345,7 @@ public class FPC : MonoBehaviour
                     //target.TryGetComponent<IInteract>().OnInteract();
                     if (target.TryGetComponent(out IInteract _target))
                     {
-                        Debug.Log("patate");
+                        //Debug.Log("patate");
                         _target.OnInteract();
                     }
                     break;
@@ -439,6 +450,8 @@ public class FPC : MonoBehaviour
 
     IEnumerator push()
     {
+        target.GetComponent<Rigidbody>().isKinematic = true;
+
         Transform mimic = target.transform.GetChild(0);
 
         canMove = false;
@@ -468,6 +481,7 @@ public class FPC : MonoBehaviour
 
     private void carry()
     {
+        target.GetComponent<Rigidbody>().isKinematic = true;
         setchild(target);
         moveSpeed = baseMoveSpeed * 0.7f;
     }
