@@ -74,6 +74,7 @@ public class FPC : MonoBehaviour
     [SerializeField] private Animator _stairs;
     [SerializeField] private Animator _security;
     [SerializeField] private Animator _archives;
+    [SerializeField] private Animator _escalade;
 
 
 
@@ -397,6 +398,8 @@ public class FPC : MonoBehaviour
         Vector3 targetPos = new Vector3(0,0,0);
         Vector3 dir;
 
+
+
         
 
         StartCoroutine(goTo(mimic));
@@ -415,6 +418,8 @@ public class FPC : MonoBehaviour
         {
             targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1.3f, 0);
         }
+
+        _escalade.SetTrigger("trigger");
 
         do
         {
