@@ -18,12 +18,25 @@ public class Devtool : MonoBehaviour
 
     public bool triggerEvent;
     public UnityEvent _event;
-   
 
+    public bool triggerBool;
+    public bool _bool;
+
+    private void Update()
+    {
+        if (interactReadable.card == true)
+        {
+            _bool= true;
+        }
+    }
 
     public void DoSomething()
     {
-        Debug.Log(_debug);
+        if (_bool == true)
+        {
+            Debug.Log(_debug);
+            _animator.SetTrigger("trigger");
+        }
     }
 }
 
@@ -53,6 +66,11 @@ public class DevtoolEditor :  Editor
         myDevtool.triggerDebug = GUILayout.Toggle(myDevtool.triggerDebug, "Debug ?");
         if (myDevtool.triggerDebug)
             myDevtool._debug = EditorGUILayout.TextField(myDevtool._debug);
+
+        EditorGUILayout.Space(10);
+        EditorGUILayout.LabelField("Bool", EditorStyles.boldLabel);
+
+        myDevtool._bool = EditorGUILayout.Toggle("Test (always true)",myDevtool._bool);
 
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField("Event", EditorStyles.boldLabel);

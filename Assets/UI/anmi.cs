@@ -16,17 +16,24 @@ public class anmi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         var dist = Vector3.Distance(target.position, transform.position);
-        if (dist < 2)
+
+        if (dist < 3)
         {
-            animator.SetBool("trigger", true);
-            Debug.Log("chien mou");
+            gameObject.GetComponent<Image>().enabled = true;
+            if (dist < 1.5)
+            {
+                animator.SetBool("trigger", true);
+                Debug.Log("chien mou");
+            }
+            if (dist >= 1.5)
+            {
+                animator.SetBool("trigger", false);
+            }
         }
-        if (dist >= 2)
+        else       
         {
-            animator.SetBool("trigger", false);
+            gameObject.GetComponent<Image>().enabled = false;
         }
         
     }
