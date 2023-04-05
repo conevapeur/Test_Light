@@ -76,7 +76,7 @@ public class FPC : MonoBehaviour
     [SerializeField] private Animator _archives;
     [SerializeField] private Animator _escalade;
 
-
+    [SerializeField] private float climbDelay;
 
     private bool toMimic = false;
     // Start is called before the first frame update
@@ -420,6 +420,8 @@ public class FPC : MonoBehaviour
         }
 
         _escalade.SetTrigger("trigger");
+
+        yield return new WaitForSeconds(climbDelay);
 
         do
         {
