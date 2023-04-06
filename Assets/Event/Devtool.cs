@@ -49,8 +49,8 @@ public class DevtoolEditor :  Editor
        
         EditorGUILayout.LabelField("Animation", EditorStyles.boldLabel); // header
 
-        myDevtool.triggerAnim = GUILayout.Toggle(myDevtool.triggerAnim, "Trigger Animation ?"); // switch
-        if (myDevtool.triggerAnim)
+        myDevtool.triggerAnim = GUILayout.Toggle(myDevtool.triggerAnim, "Trigger Animation ?"); // affichage du switch
+        if (myDevtool.triggerAnim) // switch
             myDevtool._animator = (Animator)EditorGUILayout.ObjectField("Animator", myDevtool._animator, typeof(Animator), true); // cast type Object en Animator
 
         EditorGUILayout.Space(10);
@@ -70,7 +70,7 @@ public class DevtoolEditor :  Editor
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField("Bool", EditorStyles.boldLabel);
 
-        myDevtool._bool = EditorGUILayout.Toggle("Test (always true)",myDevtool._bool);
+        myDevtool._bool = EditorGUILayout.Toggle("Test (always true)",myDevtool._bool); // laisser en true mdr
 
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField("Event", EditorStyles.boldLabel);
