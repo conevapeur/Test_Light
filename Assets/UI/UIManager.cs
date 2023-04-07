@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -38,10 +39,16 @@ public class UIManager : MonoBehaviour
     [Header("Event")] // selectionner le bouton quand l'ui s'affiche
    
     [SerializeField] private GameObject resumeButton;
-    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject optionButton;
+    [SerializeField] private GameObject infosButton;
+    [SerializeField] private GameObject volumeButton;
     [SerializeField] private EventSystem _eventSystem;
 
     [SerializeField] private string scene;
+
+    [SerializeField] private GameObject _volume;
+    [SerializeField] private GameObject _controls;
+    [SerializeField] private GameObject _language;
     private void Awake()
     {
         pauseMenu.SetActive(false);
@@ -50,18 +57,14 @@ public class UIManager : MonoBehaviour
 
         controls = new UI();
         controls.Menu.escape.performed += ctx => Pause();
+        controls.Menu.back.performed += ctx => Back();
 
         readable1.gameObject.SetActive(false);
         readable2.gameObject.SetActive(false);
         readable3.gameObject.SetActive(false);
         readable4.gameObject.SetActive(false);
-    }
-
-    
-    public void Resume()
-    {
-        Time.timeScale = 1f;
-        pauseMenu.SetActive(false);
+        _controls.gameObject.SetActive(false);
+        _language.gameObject.SetActive(false);
     }
 
     private void Pause()
@@ -88,27 +91,86 @@ public class UIManager : MonoBehaviour
 
     public void Back()
     {
-        infosMenu.SetActive(false);
-        pauseMenu.SetActive(true);
-        optionsMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(resumeButton);
 
+        if (pauseMenu.activeInHierarchy) 
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+        }
+        //else if (_eventSystem.currentSelectedGameObject)
+        else if (optionsMenu.activeInHierarchy)
+        {
+            optionsMenu.SetActive(false);
+            pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(optionButton);
+
+        }
+        else if (readable1.activeInHierarchy)
+        {
+            readable1.SetActive(false);
+            _eventSystem.SetSelectedGameObject(readableButton1);
+        }
+        else if (readable2.activeInHierarchy)
+        {
+            readable2.SetActive(false);
+            _eventSystem.SetSelectedGameObject(readableButton2);
+        }
+        else if (readable3.activeInHierarchy)
+        {
+            readable3.SetActive(false);
+            _eventSystem.SetSelectedGameObject(readableButton3);
+        }
+        else if (readable4.activeInHierarchy)
+        {
+            readable4.SetActive(false);
+            _eventSystem.SetSelectedGameObject(readableButton4);
+        }
+        else if (infosMenu.activeInHierarchy)
+        {
+            infosMenu.SetActive(false);
+            pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(infosButton);
+        }
+
+
+       
     }
     public void Options()
     {
         optionsMenu.SetActive(true);
         pauseMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(backButton);
+        _eventSystem.SetSelectedGameObject(volumeButton);
 
     }
 
-    private void Update()
+    public void Volume()
+    {
+        _volume.SetActive(true);
+        _controls.SetActive(false);
+        _language.SetActive(false);
+    }
+    public void Controls()
+    {
+        _volume.SetActive(false);
+        _controls.SetActive(true);
+        _language.SetActive(false);
+    }
+    public void Language()
+    {
+        _volume.SetActive(false);
+        _controls.SetActive(false);
+        _language.SetActive(true);
+    }
+
+    public void readable()  // ici c'est pas terrible mais ca marche
     {
         if (_eventSystem.currentSelectedGameObject == readableButton1)
         {
             if (interactReadable.readable1 == true)
             {
                 readable1.gameObject.SetActive(true);
+                _eventSystem.SetSelectedGameObject(null);
             }
             readable2.gameObject.SetActive(false);
             readable3.gameObject.SetActive(false);
@@ -119,6 +181,7 @@ public class UIManager : MonoBehaviour
             if (interactReadable.readable2 == true)
             {
                 readable2.gameObject.SetActive(true);
+                _eventSystem.SetSelectedGameObject(null);
             }
             readable1.gameObject.SetActive(false);
             readable3.gameObject.SetActive(false);
@@ -129,6 +192,7 @@ public class UIManager : MonoBehaviour
             if (interactReadable.readable3 == true)
             {
                 readable3.gameObject.SetActive(true);
+                _eventSystem.SetSelectedGameObject(null);
             }
             readable1.gameObject.SetActive(false);
             readable2.gameObject.SetActive(false);
@@ -139,16 +203,51 @@ public class UIManager : MonoBehaviour
             if (interactReadable.readable4 == true)
             {
                 readable4.gameObject.SetActive(true);
+                _eventSystem.SetSelectedGameObject(null);
             }
             readable1.gameObject.SetActive(false);
             readable2.gameObject.SetActive(false);
             readable3.gameObject.SetActive(false);
+        }
+    }
+
+    public void French()
+    {
+        //changer langue
+    }
+
+    public void English()
+    {
+        //changer langue
+
+    }
+
+
+
+    private void Update()
+    {
+        if (interactReadable.readable1 == true)
+        {
+            readableButton1.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable2 == true)
+        {
+            readableButton2.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable3 == true)
+        {
+            readableButton3.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable4 == true)
+        {
+            readableButton4.gameObject.SetActive(true);
         }
 
         text1.text = ("volume principal ") + (slider1.value * 100).ToString();
         text2.text = ("volume musique ") + (slider2.value * 100).ToString();
         text3.text = ("volume effet sonore ") + (slider3.value * 100).ToString();
         text4.text = ("volume dialogue ") + (slider4.value * 100).ToString();
+        
     }
     private void OnEnable()
     {

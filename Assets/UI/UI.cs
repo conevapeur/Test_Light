@@ -35,6 +35,15 @@ public partial class @UI : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""back"",
+                    ""type"": ""Button"",
+                    ""id"": ""c13a86c9-c5ac-47a3-be4f-f720ba8121c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -57,6 +66,39 @@ public partial class @UI : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""551f3816-58b9-44cc-a1f4-dd26c0653170"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c779e5b0-f0fd-49ab-ba3c-a29f8736b406"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfcc73de-2520-4b8b-bbfa-b5f33c588d65"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -96,6 +138,7 @@ public partial class @UI : IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_escape = m_Menu.FindAction("escape", throwIfNotFound: true);
+        m_Menu_back = m_Menu.FindAction("back", throwIfNotFound: true);
         // ActionTest
         m_ActionTest = asset.FindActionMap("ActionTest", throwIfNotFound: true);
         m_ActionTest_interact = m_ActionTest.FindAction("interact", throwIfNotFound: true);
@@ -159,11 +202,13 @@ public partial class @UI : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_escape;
+    private readonly InputAction m_Menu_back;
     public struct MenuActions
     {
         private @UI m_Wrapper;
         public MenuActions(@UI wrapper) { m_Wrapper = wrapper; }
         public InputAction @escape => m_Wrapper.m_Menu_escape;
+        public InputAction @back => m_Wrapper.m_Menu_back;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -176,6 +221,9 @@ public partial class @UI : IInputActionCollection2, IDisposable
                 @escape.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
                 @escape.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
                 @escape.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
+                @back.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
+                @back.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
+                @back.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -183,6 +231,9 @@ public partial class @UI : IInputActionCollection2, IDisposable
                 @escape.started += instance.OnEscape;
                 @escape.performed += instance.OnEscape;
                 @escape.canceled += instance.OnEscape;
+                @back.started += instance.OnBack;
+                @back.performed += instance.OnBack;
+                @back.canceled += instance.OnBack;
             }
         }
     }
@@ -223,6 +274,7 @@ public partial class @UI : IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         void OnEscape(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
     public interface IActionTestActions
     {
