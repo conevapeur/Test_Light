@@ -1,19 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class triggerEmit : MonoBehaviour
 {
-    public delegate void TrigerAction();
-    public static event TrigerAction OnTrigger;
-
-
-
-    GameObject[] triggers = new GameObject[10];
-
-    AudioClip[] dialogues = new AudioClip[20];
-
-    GameObject[] locations = new GameObject[10];
+    public UnityEvent OnEnter;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +19,14 @@ public class triggerEmit : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            OnTrigger();
+            OnEnter.Invoke();
         }
     }
+
+    
 }

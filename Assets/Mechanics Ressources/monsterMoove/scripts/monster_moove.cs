@@ -23,14 +23,7 @@ public class monster_moove : MonoBehaviour
         //updatePosition();
     }
 
-    private void OnEnable()
-    {
-        triggerEmit.OnTrigger += updatePosition;
-    }
-    private void OnDisable()
-    {
-        triggerEmit.OnTrigger += updatePosition;
-    }
+    
 
     
 
