@@ -40,7 +40,7 @@ public class BABAR : MonoBehaviour
 
     public void getKey()
     {
-       DebugGetKey = 
+       
     }
 
     public void changeKeyState()
