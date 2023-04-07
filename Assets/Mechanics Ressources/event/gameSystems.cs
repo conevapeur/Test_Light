@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class gameSystems : MonoBehaviour
 {
-    GameObject[] triggers = new GameObject[10];
-
-    AudioClip[] dialogues = new AudioClip[20];
-
-    GameObject[] locations = new GameObject[10];
+    
 
     private int cpt;
 
