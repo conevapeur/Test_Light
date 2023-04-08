@@ -56,9 +56,9 @@ public class FPC : MonoBehaviour
 
     
 
-    public bool canMove = true;
-    public bool canLook = true;
-    public bool canSidewalk = true;
+    public static bool canMove = true;
+    public static bool canLook = true; // je l'ai passé en static pour l'appeler dans l'UI je sais pas faire autrement mdr
+    public static bool canSidewalk = true;
 
     public GameObject target;
 

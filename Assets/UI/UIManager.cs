@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject readableButton3;
     [SerializeField] private GameObject readableButton4;
 
-    [Header("Info")]
+    [Header("option")]
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private Slider slider1;
     [SerializeField] private GameObject _slider1;
@@ -37,6 +37,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text text2;
     [SerializeField] private TMP_Text text3;
     [SerializeField] private TMP_Text text4;
+    [SerializeField] private GameObject panelVolume;
+    [SerializeField] private GameObject frenchButton;
+    [SerializeField] private GameObject englishButton;
+    [SerializeField] private GameObject languageButton;
+
 
     private UI controls;
 
@@ -69,6 +74,19 @@ public class UIManager : MonoBehaviour
         readable4.gameObject.SetActive(false);
         _controls.gameObject.SetActive(false);
         _language.gameObject.SetActive(false);
+        panelVolume.gameObject.SetActive(false);
+
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        FPC.canLook = true;
+        FPC.canMove = true;
+        FPC.canSidewalk = true;
+
     }
 
     private void Pause()
@@ -78,6 +96,9 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(resumeButton);
+            FPC.canLook = false;
+            FPC.canMove = false;
+            FPC.canSidewalk = false;
         }
     }
 
@@ -90,7 +111,6 @@ public class UIManager : MonoBehaviour
         infosMenu.SetActive(true);
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(readableButton1);
-
     }
 
     public void Back()
@@ -98,23 +118,25 @@ public class UIManager : MonoBehaviour
 
         if (pauseMenu.activeInHierarchy) 
         {
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
-            pauseMenu.SetActive(false);
+            Resume();
         }
+
         else if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
         {
             _eventSystem.SetSelectedGameObject(volumeButton);
+            panelVolume.gameObject.SetActive(false);
         }
-
-        
+        else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
+        {
+            _eventSystem.SetSelectedGameObject(languageButton);
+        }
         else if (optionsMenu.activeInHierarchy)
         {
             optionsMenu.SetActive(false);
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(optionButton);
-
         }
+
         else if (readable1.activeInHierarchy)
         {
             readable1.SetActive(false);
@@ -252,10 +274,19 @@ public class UIManager : MonoBehaviour
             readableButton4.gameObject.SetActive(true);
         }
 
-        text1.text = ("volume principal ") + (slider1.value * 100).ToString();
-        text2.text = ("volume musique ") + (slider2.value * 100).ToString();
-        text3.text = ("volume effet sonore ") + (slider3.value * 100).ToString();
-        text4.text = ("volume dialogue ") + (slider4.value * 100).ToString();
+        if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
+        {
+            panelVolume.gameObject.SetActive(true);
+        }
+        if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
+        {
+            panelVolume.gameObject.SetActive(true);
+        }
+        
+        text1.text = ("volume principal ") + (slider1.value ).ToString();
+        text2.text = ("volume musique ") + (slider2.value ).ToString();
+        text3.text = ("volume effet sonore ") + (slider3.value ).ToString();
+        text4.text = ("volume dialogue ") + (slider4.value ).ToString();
         
     }
     private void OnEnable()
