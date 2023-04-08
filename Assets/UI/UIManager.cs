@@ -26,9 +26,13 @@ public class UIManager : MonoBehaviour
     [Header("Info")]
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private Slider slider1;
+    [SerializeField] private GameObject _slider1;
     [SerializeField] private Slider slider2;
+    [SerializeField] private GameObject _slider2;
     [SerializeField] private Slider slider3;
+    [SerializeField] private GameObject _slider3;
     [SerializeField] private Slider slider4;
+    [SerializeField] private GameObject _slider4;
     [SerializeField] private TMP_Text text1;
     [SerializeField] private TMP_Text text2;
     [SerializeField] private TMP_Text text3;
@@ -98,7 +102,12 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1f;
             pauseMenu.SetActive(false);
         }
-        //else if (_eventSystem.currentSelectedGameObject)
+        else if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
+        {
+            _eventSystem.SetSelectedGameObject(volumeButton);
+        }
+
+        
         else if (optionsMenu.activeInHierarchy)
         {
             optionsMenu.SetActive(false);
