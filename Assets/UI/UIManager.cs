@@ -10,73 +10,129 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Pause")]
     [SerializeField] private GameObject pauseMenu;
-    
-    [Header("Info")] 
     [SerializeField] private GameObject infosMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private string scene;
+
+    [Space(10)]
+
+    [SerializeField] private GameObject resumeButton;
+    [SerializeField] private GameObject optionButton;
+    [SerializeField] private GameObject infosButton;
+    [SerializeField] private GameObject quitButton;
+
+    [Space(10)]
+    [Header("Quit")]
+    [SerializeField] private GameObject quitPanel;
+    [SerializeField] private GameObject noButton;
+
+
+    [Space (10)]
+    [Header("Readables")] 
     [SerializeField] private GameObject readable1;
     [SerializeField] private GameObject readable2;
     [SerializeField] private GameObject readable3;
     [SerializeField] private GameObject readable4;
+    [SerializeField] private GameObject readable5;
+
+    [Space(10)]
+
     [SerializeField] private GameObject readableButton1;
     [SerializeField] private GameObject readableButton2;
     [SerializeField] private GameObject readableButton3;
     [SerializeField] private GameObject readableButton4;
+    [SerializeField] private GameObject readableButton5;
 
-    [Header("option")]
-    [SerializeField] private GameObject optionsMenu;
+    [Space(10)]
+    [Header("Option")]
+    [SerializeField] private GameObject languageButton;
+    [SerializeField] private GameObject volumeButton;
+    [SerializeField] private GameObject panelOption;
+
+
+    [Header("Volume")]
+    [SerializeField] private GameObject _volume;
+
+    [Space(10)]
+
     [SerializeField] private Slider slider1;
     [SerializeField] private GameObject _slider1;
+    [SerializeField] private TMP_Text text1;
+
+    [Space(10)]
+
     [SerializeField] private Slider slider2;
     [SerializeField] private GameObject _slider2;
+    [SerializeField] private TMP_Text text2;
+
+    [Space(10)]
+
     [SerializeField] private Slider slider3;
     [SerializeField] private GameObject _slider3;
+    [SerializeField] private TMP_Text text3;
+
+    [Space(10)]
+
     [SerializeField] private Slider slider4;
     [SerializeField] private GameObject _slider4;
-    [SerializeField] private TMP_Text text1;
-    [SerializeField] private TMP_Text text2;
-    [SerializeField] private TMP_Text text3;
     [SerializeField] private TMP_Text text4;
-    [SerializeField] private GameObject panelVolume;
+
+    [Space(10)]
+    [Header("Controls")]
+    [SerializeField] private GameObject _controls;
+
+    [Space(10)]
+    [Header("Language")]
+    [SerializeField] private GameObject _language;
     [SerializeField] private GameObject frenchButton;
     [SerializeField] private GameObject englishButton;
-    [SerializeField] private GameObject languageButton;
 
+    [Space(10)]
+    [Header("Event")] 
+    [SerializeField] private EventSystem _eventSystem;
 
     private UI controls;
 
-    [Header("Event")] // selectionner le bouton quand l'ui s'affiche
-   
-    [SerializeField] private GameObject resumeButton;
-    [SerializeField] private GameObject optionButton;
-    [SerializeField] private GameObject infosButton;
-    [SerializeField] private GameObject volumeButton;
-    [SerializeField] private EventSystem _eventSystem;
-
-    [SerializeField] private string scene;
-
-    [SerializeField] private GameObject _volume;
-    [SerializeField] private GameObject _controls;
-    [SerializeField] private GameObject _language;
     private void Awake()
     {
-        pauseMenu.SetActive(false);
-        infosMenu.SetActive(false);
-        optionsMenu.SetActive(false);
-
         controls = new UI();
         controls.Menu.escape.performed += ctx => Pause();
         controls.Menu.back.performed += ctx => Back();
 
-        readable1.gameObject.SetActive(false);
-        readable2.gameObject.SetActive(false);
-        readable3.gameObject.SetActive(false);
-        readable4.gameObject.SetActive(false);
-        _controls.gameObject.SetActive(false);
-        _language.gameObject.SetActive(false);
-        panelVolume.gameObject.SetActive(false);
+        pauseMenu.SetActive(false);
+        infosMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+        quitPanel.SetActive(false);
+
+        readable1.SetActive(false);
+        readable2.SetActive(false);
+        readable3.SetActive(false);
+        readable4.SetActive(false);
+        readable5.SetActive(false);
+
+        _controls.SetActive(false);
+        _language.SetActive(false);
+        panelOption.SetActive(false);
+        
+        
 
     }
+
+    private void Pause()
+    {
+        if (Time.timeScale != 0f)
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(resumeButton);
+            FPC.canLook = false;
+            FPC.canMove = false;
+            FPC.canSidewalk = false;
+        }
+    }
+
 
     public void Resume()
     {
@@ -88,23 +144,25 @@ public class UIManager : MonoBehaviour
         FPC.canSidewalk = true;
 
     }
-
-    private void Pause()
-    {
-        if (Time.timeScale != 0f) 
-        {
-            Time.timeScale = 0f;
-            pauseMenu.SetActive(true);
-            _eventSystem.SetSelectedGameObject(resumeButton);
-            FPC.canLook = false;
-            FPC.canMove = false;
-            FPC.canSidewalk = false;
-        }
-    }
-
     public void Quit()
     {
+        quitPanel.SetActive(true);
+        pauseMenu.SetActive(false);
+        _eventSystem.SetSelectedGameObject(noButton);
+        //SceneManager.LoadScene(scene);
+    }
+
+    public void Yes()
+    {
         SceneManager.LoadScene(scene);
+
+    }
+    public void No()
+    {
+        quitPanel.SetActive(false);
+        pauseMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(quitButton);
+
     }
     public void Infos()
     {
@@ -112,6 +170,13 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(readableButton1);
     }
+    public void Options()
+    {
+        optionsMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+        _eventSystem.SetSelectedGameObject(volumeButton);
+    }
+
 
     public void Back()
     {
@@ -121,14 +186,22 @@ public class UIManager : MonoBehaviour
             Resume();
         }
 
+        else if (quitPanel.activeInHierarchy)
+        {
+            quitPanel.SetActive(false);
+            pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(quitButton);
+        }
+
         else if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
         {
             _eventSystem.SetSelectedGameObject(volumeButton);
-            panelVolume.gameObject.SetActive(false);
+            panelOption.gameObject.SetActive(false);
         }
         else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
         {
             _eventSystem.SetSelectedGameObject(languageButton);
+            panelOption.gameObject.SetActive(false);
         }
         else if (optionsMenu.activeInHierarchy)
         {
@@ -136,6 +209,7 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(optionButton);
         }
+
 
         else if (readable1.activeInHierarchy)
         {
@@ -157,23 +231,19 @@ public class UIManager : MonoBehaviour
             readable4.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton4);
         }
+        else if (readable5.activeInHierarchy)
+        {
+            readable5.SetActive(false);
+            _eventSystem.SetSelectedGameObject(readableButton5);
+        }
         else if (infosMenu.activeInHierarchy)
         {
             infosMenu.SetActive(false);
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(infosButton);
         }
-
-
-       
     }
-    public void Options()
-    {
-        optionsMenu.SetActive(true);
-        pauseMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(volumeButton);
-
-    }
+    
 
     public void Volume()
     {
@@ -193,55 +263,6 @@ public class UIManager : MonoBehaviour
         _controls.SetActive(false);
         _language.SetActive(true);
     }
-
-    public void readable()  // ici c'est pas terrible mais ca marche
-    {
-        if (_eventSystem.currentSelectedGameObject == readableButton1)
-        {
-            if (interactReadable.readable1 == true)
-            {
-                readable1.gameObject.SetActive(true);
-                _eventSystem.SetSelectedGameObject(null);
-            }
-            readable2.gameObject.SetActive(false);
-            readable3.gameObject.SetActive(false);
-            readable4.gameObject.SetActive(false);
-        }
-        if (_eventSystem.currentSelectedGameObject == readableButton2)
-        {
-            if (interactReadable.readable2 == true)
-            {
-                readable2.gameObject.SetActive(true);
-                _eventSystem.SetSelectedGameObject(null);
-            }
-            readable1.gameObject.SetActive(false);
-            readable3.gameObject.SetActive(false);
-            readable4.gameObject.SetActive(false);
-        }
-        if (_eventSystem.currentSelectedGameObject == readableButton3)
-        {
-            if (interactReadable.readable3 == true)
-            {
-                readable3.gameObject.SetActive(true);
-                _eventSystem.SetSelectedGameObject(null);
-            }
-            readable1.gameObject.SetActive(false);
-            readable2.gameObject.SetActive(false);
-            readable4.gameObject.SetActive(false);
-        }
-        if (_eventSystem.currentSelectedGameObject == readableButton4)
-        {
-            if (interactReadable.readable4 == true)
-            {
-                readable4.gameObject.SetActive(true);
-                _eventSystem.SetSelectedGameObject(null);
-            }
-            readable1.gameObject.SetActive(false);
-            readable2.gameObject.SetActive(false);
-            readable3.gameObject.SetActive(false);
-        }
-    }
-
     public void French()
     {
         //changer langue
@@ -253,10 +274,63 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void Readable1()
+    {
+        readable1.gameObject.SetActive(true);
+        readable2.gameObject.SetActive(false);
+        readable3.gameObject.SetActive(false);
+        readable4.gameObject.SetActive(false);
+        readable5.gameObject.SetActive(false);
+        _eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void Readable2()
+    {
+        readable1.gameObject.SetActive(false);
+        readable2.gameObject.SetActive(true);
+        readable3.gameObject.SetActive(false);
+        readable4.gameObject.SetActive(false);
+        readable5.gameObject.SetActive(false);
+        _eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void Readable3()
+    {
+        readable1.gameObject.SetActive(false);
+        readable2.gameObject.SetActive(false);
+        readable3.gameObject.SetActive(true);
+        readable4.gameObject.SetActive(false);
+        readable5.gameObject.SetActive(false);
+        _eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void Readable4()
+    {
+        readable1.gameObject.SetActive(false);
+        readable2.gameObject.SetActive(false);
+        readable3.gameObject.SetActive(false);
+        readable4.gameObject.SetActive(true); 
+        readable5.gameObject.SetActive(false);
+        _eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void Readable5()
+    {
+        readable1.gameObject.SetActive(false);
+        readable2.gameObject.SetActive(false);
+        readable3.gameObject.SetActive(false);
+        readable4.gameObject.SetActive(false);
+        readable5.gameObject.SetActive(true);
+        _eventSystem.SetSelectedGameObject(null);
+    }
+
+
+
 
 
     private void Update()
     {
+        //readable found ?
         if (interactReadable.readable1 == true)
         {
             readableButton1.gameObject.SetActive(true);
@@ -273,22 +347,32 @@ public class UIManager : MonoBehaviour
         {
             readableButton4.gameObject.SetActive(true);
         }
+        if (interactReadable.readable5 == true)
+        {
+            readableButton5.gameObject.SetActive(true);
+        }
 
+        // panel behind sliders and language buttons
         if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
         {
-            panelVolume.gameObject.SetActive(true);
+            panelOption.gameObject.SetActive(true);
         }
         if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
         {
-            panelVolume.gameObject.SetActive(true);
+            panelOption.gameObject.SetActive(true);
         }
         
+        //sliders
         text1.text = ("volume principal ") + (slider1.value ).ToString();
         text2.text = ("volume musique ") + (slider2.value ).ToString();
         text3.text = ("volume effet sonore ") + (slider3.value ).ToString();
         text4.text = ("volume dialogue ") + (slider4.value ).ToString();
         
     }
+
+
+
+
     private void OnEnable()
     {
         controls.Menu.Enable();

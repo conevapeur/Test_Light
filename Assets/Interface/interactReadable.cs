@@ -9,6 +9,7 @@ public class interactReadable : MonoBehaviour, IInteract
     public static bool readable2;
     public static bool readable3;
     public static bool readable4;
+    public static bool readable5;
     public static bool card;
 
     [SerializeField] private int number;
@@ -20,6 +21,7 @@ public class interactReadable : MonoBehaviour, IInteract
         readable2 = true;
         readable3 = true;
         readable4 = true;
+        readable5 = true;
         card = false;
 
     }

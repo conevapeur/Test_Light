@@ -19,8 +19,7 @@ public class UIStart : MonoBehaviour
 
     public void Play()
     {
-        StartCoroutine(ButtonCoroutine());
-        
+        StartCoroutine(ButtonCoroutine()); 
     }
 
     public void Quit()
