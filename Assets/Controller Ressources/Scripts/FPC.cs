@@ -79,6 +79,8 @@ public class FPC : MonoBehaviour
     [SerializeField] private float climbDelay;
 
     private bool toMimic = false;
+
+    public bool isScared;
     // Start is called before the first frame update
     void Start()
     {
@@ -141,7 +143,7 @@ public class FPC : MonoBehaviour
                 {
                     if (carried.TryGetComponent(out Rigidbody rb))
                     {
-                        Debug.Log("patate");
+                        //Debug.Log("patate");
                         rb.isKinematic = false;
                     }
                     //carried.TryGetComponent<Rigidbody>().isKinematic = false;
@@ -308,7 +310,7 @@ public class FPC : MonoBehaviour
         {
             if (Vector3.Distance(hit.transform.position, transform.position) < 3)
             {
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log(hit.transform.gameObject.name);
                 target = hit.transform.gameObject;
             }
         }
@@ -352,7 +354,7 @@ public class FPC : MonoBehaviour
                     break;
             }
 
-            Debug.Log("cet objet est " + target.transform.tag);
+            //Debug.Log("cet objet est " + target.transform.tag);
         }
         
 
@@ -389,9 +391,10 @@ public class FPC : MonoBehaviour
     }
     IEnumerator climb ()
     {
-        canMove = false;
-        canLook = false;
-        
+        //canMove = false;
+        //canLook = false;
+        lockAbilities("climb");
+
         rb.velocity = new Vector3(0,0,0);
         
         Transform mimic = target.transform.GetChild(0);
@@ -419,7 +422,7 @@ public class FPC : MonoBehaviour
             targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1.3f, 0);
         }
 
-        _escalade.SetTrigger("trigger");
+        //_escalade.SetTrigger("trigger");
 
         yield return new WaitForSeconds(climbDelay);
 
@@ -441,8 +444,9 @@ public class FPC : MonoBehaviour
         }
         while (Vector3.Distance(targetPos, transform.position) > 0.1f);
 
-        canMove = true;
-        canLook = true;
+        recover();
+        //canMove = true;
+        //canLook = true;
         rb.useGravity = true;
         yield return null;
             
@@ -461,8 +465,9 @@ public class FPC : MonoBehaviour
 
         Transform mimic = target.transform.GetChild(0);
 
-        canMove = false;
-        canLook = false;
+        //canMove = false;
+        //canLook = false;
+        lockAbilities("push");
 
         StartCoroutine(goTo(mimic));
         /*transform.position = mimic.position;
@@ -475,8 +480,9 @@ public class FPC : MonoBehaviour
         }
         while (toMimic == false);
 
-        canMove = true;
-        canLook = true;
+        //canMove = true;
+        //canLook = true;
+        recover();
 
         setchild(target);
         canSidewalk = false;
@@ -517,6 +523,43 @@ public class FPC : MonoBehaviour
     private void card(GameObject _target)
     {
         //_security.SetTrigger("trigger");
+    }
+
+    public void lockAbilities(string _situation)
+    {
+        switch(_situation)
+        {
+            case "climb":
+                canLook = false;
+                canMove = false;
+                break;
+
+            case "push":
+                canLook = false;
+                canMove = false;
+                break;
+
+            case "scared":
+                canMove = false;
+                canLook = false;
+                canSidewalk=false;
+                break;
+
+
+        }
+    }
+
+    public void recover()
+    {
+        canLook = true;
+        canMove = true;
+        canSidewalk = true;
+        rb.useGravity = true;
+    }
+
+    public void Die()
+    {
+        Debug.Log("you died");
     }
     
 }

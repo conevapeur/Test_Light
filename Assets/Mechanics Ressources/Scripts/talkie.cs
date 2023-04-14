@@ -95,23 +95,23 @@ public class talkie : MonoBehaviour
         switch(state)
         {
             case 0:
-                Debug.Log(state + 1);
+                //Debug.Log(state + 1);
                 freqTMP.SetText("preset 1");
                 break;
             case 1:
-                Debug.Log(state + 1);
+                //Debug.Log(state + 1);
                 freqTMP.SetText("preset 2");
                 break;
             case 2:
-                Debug.Log(state + 1);
+                //Debug.Log(state + 1);
                 freqTMP.SetText("preset 3");
                 break;
             case 3:
-                Debug.Log(state + 1);
+                //Debug.Log(state + 1);
                 freqTMP.SetText("preset 4");
                 break;
             case 4:
-                Debug.Log(state + 1);
+                //Debug.Log(state + 1);
                 freqTMP.SetText("preset 5");
                 break;
             default:

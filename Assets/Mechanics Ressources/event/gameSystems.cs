@@ -35,7 +35,7 @@ public class gameSystems : MonoBehaviour
     public void testFunction()
     {
         monster.transform.position = locations[cpt].transform.position;
-        Debug.Log("position du monstre : " + (cpt+1));
+        //Debug.Log("position du monstre : " + (cpt+1));
         //Debug.Log("dialogue n° " + (cpt +1) +" : "+ dialogues[cpt]);
         getExchange(cpt);
 

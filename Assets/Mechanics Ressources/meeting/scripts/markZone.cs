@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class markZone : MonoBehaviour
 {
+    public UnityEvent OnEnter;
+
     public GameObject monster;
     public GameObject aSpot;
 
@@ -23,6 +26,7 @@ public class markZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        
         if (other.transform.tag == "Player")
         {
 
@@ -32,8 +36,15 @@ public class markZone : MonoBehaviour
                 StartCoroutine(visit());
             }
             //Debug.Log(other.GetComponent<FPC>().isCrouching);  
+
+            //OnEnter.Invoke();
         }
+        
         //Debug.Log(other.transform.tag);
+        /*if (other.CompareTag("Player"))
+        {
+            OnEnter.Invoke();
+        }*/
     }
 
     IEnumerator visit()
