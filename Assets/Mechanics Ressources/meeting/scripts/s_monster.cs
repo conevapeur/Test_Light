@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class s_monster : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class s_monster : MonoBehaviour
 
     public int curFreq;
     public int playerFreq;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
