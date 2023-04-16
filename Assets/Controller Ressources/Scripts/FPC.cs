@@ -64,7 +64,14 @@ public class FPC : MonoBehaviour
 
     public GameObject carried;
 
-   
+
+    //sound design 
+    [SerializeField] private AudioSource walkSound;
+
+
+
+
+   //A VERIFIER QUE CA SERT ENCORE MAIS JE PENSE QUE NON 
     // lights
    // LightmapData[] _lightmapData;
     [SerializeField] private GameObject _redLigths;
@@ -77,6 +84,10 @@ public class FPC : MonoBehaviour
     [SerializeField] private Animator _escalade;
 
     [SerializeField] private float climbDelay;
+    ///////////////////////////////////
+
+
+
 
     private bool toMimic = false;
 
@@ -117,6 +128,8 @@ public class FPC : MonoBehaviour
 
                 transform.localEulerAngles = new Vector3(0, yRotation, 0);
                 joint.transform.localEulerAngles = new Vector3(xRotation, 0, 0);
+
+
             }
             
 
@@ -200,6 +213,17 @@ public class FPC : MonoBehaviour
             if(canSidewalk)
             {
                 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), targetVelocity.y, targetVelocity.z);
+
+                if (targetVelocity != Vector3.zero) // bruits de pas
+                {
+                    //Debug.Log(targetVelocity);
+                    walkSound.enabled = true;
+                }
+                else 
+                {
+                    walkSound.enabled= false;
+                }
+
             }
             
 
@@ -209,6 +233,9 @@ public class FPC : MonoBehaviour
             Vector3 velocityChange = targetVelocity - rb.velocity;
             velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
             velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+            
+            
+            
             velocityChange.y = 0;
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
