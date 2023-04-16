@@ -24,7 +24,7 @@ public class anmi : MonoBehaviour
             if (dist < 1.5)
             {
                 animator.SetBool("trigger", true);
-                Debug.Log("chien mou");
+                //Debug.Log("chien mou");
             }
             if (dist >= 1.5)
             {

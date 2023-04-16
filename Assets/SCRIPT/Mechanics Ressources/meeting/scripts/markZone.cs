@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,8 @@ public class markZone : MonoBehaviour
     public GameObject aSpot;
 
     public bool isTriggered;
+
+    [SerializeField] TMP_Text soustitres;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,8 +60,11 @@ public class markZone : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-        monster.transform.position = new Vector3(0, -100, 0);
         monster.GetComponent<s_monster>().isLooking = false;
+        monster.transform.position = new Vector3(0, -100, 0);
+        soustitres.SetText(" ");
+
+
         isTriggered = false;
         
         
