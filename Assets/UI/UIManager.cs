@@ -88,6 +88,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _language;
     [SerializeField] private GameObject frenchButton;
     [SerializeField] private GameObject englishButton;
+    [SerializeField] private bool eng;
+    [SerializeField] private bool fr;
 
     [Space(10)]
     [Header("Event")] 
@@ -271,13 +273,12 @@ public class UIManager : MonoBehaviour
     }
     public void French()
     {
-        //changer langue
+        fr = true; eng = false;
     }
 
     public void English()
     {
-        //changer langue
-
+        eng = true; fr = false;
     }
 
     public void Readable1()

@@ -26,6 +26,8 @@ public class triggerEmit : MonoBehaviour
         {
             OnEnter.Invoke();
         }
+
+        transform.position = new Vector3(0, 50000,0);
     }
 
     
