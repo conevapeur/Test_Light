@@ -7,6 +7,7 @@ public class interactGenerator : MonoBehaviour, IInteract
     LightmapData[] _lightmapData;
 
     [SerializeField] private Animator _stairs;
+    [SerializeField] private AudioSource generator;
     
 
     // Start is called before the first frame update
@@ -25,6 +26,8 @@ public class interactGenerator : MonoBehaviour, IInteract
         LightmapSettings.lightmaps = _lightmapData;
         
         _stairs.SetTrigger("trigger");
+
+        generator.Play();
 
     }
 }
