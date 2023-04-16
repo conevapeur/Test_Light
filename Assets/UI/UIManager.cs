@@ -94,12 +94,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
 
     private UI controls;
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
         controls = new UI();
         controls.Menu.escape.performed += ctx => Pause();
         controls.Menu.back.performed += ctx => Back();
+        
 
         pauseMenu.SetActive(false);
         infosMenu.SetActive(false);
@@ -122,6 +124,9 @@ public class UIManager : MonoBehaviour
 
     private void Pause()
     {
+
+        animator.SetTrigger("death");
+        /*
         if (Time.timeScale != 0f)
         {
             Time.timeScale = 0f;
@@ -131,6 +136,7 @@ public class UIManager : MonoBehaviour
             FPC.canMove = false;
             FPC.canSidewalk = false;
         }
+        */
     }
 
 
