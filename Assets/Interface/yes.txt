@@ -1,9 +1,0 @@
-bouton generateur 
-
-carte a ramasser
-
-lecteur de carte
-
-bouton d'alerte
-
-readables
