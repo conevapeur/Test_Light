@@ -105,7 +105,8 @@ public class FPC : MonoBehaviour
         vCamFrequency = 0.2f;
         vCamAmplitude = 1f;
 
-    
+
+        climbDelay = 0.3f;
 
         _redLigths.gameObject.SetActive(false);
     }
@@ -403,11 +404,13 @@ public class FPC : MonoBehaviour
             transform.Translate(dir * 2 * Time.deltaTime, Space.World);
             //Debug.Log(Vector3.Distance(target.position, transform.position));
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, 1f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, 3f * Time.deltaTime);
+
+            //Debug.Log("difference : " + Quaternion.Angle(target.rotation, transform.rotation));
 
             yield return null;
         }
-        while (Vector3.Distance(target.position, transform.position) > 0.5f);
+        while (Vector3.Distance(target.position, transform.position) > 0.2f || Quaternion.Angle(target.rotation, transform.rotation) > 1 );
         rb.useGravity = true;
         transform.position = target.position;
         transform.rotation = target.rotation;
