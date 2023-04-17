@@ -27,6 +27,8 @@ public class gameSystems : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cpt = 0;
+        arraySize = 8;
         coroutineName = "function" + cpt;
         //Debug.Log(coroutineName);
 
@@ -48,6 +50,8 @@ public class gameSystems : MonoBehaviour
         //Debug.Log("position du monstre : " + (cpt+1));
         //Debug.Log("dialogue n° " + (cpt +1) +" : "+ dialogues[cpt]);
         getExchange(cpt);
+
+        Debug.Log("echange numéro : " + (cpt + 1));
 
         cpt++;
         if (cpt >= arraySize)
