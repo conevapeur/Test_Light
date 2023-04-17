@@ -593,12 +593,14 @@ public class FPC : MonoBehaviour
                 canLook = false;
                 canMove = false;
                 rb.velocity = Vector3.zero;
+                talkie.canChange = false;
                 break;
 
             case "push":
                 canLook = false;
                 canMove = false;
                 rb.velocity = Vector3.zero;
+                talkie.canChange = false;
                 break;
 
             case "scared":
@@ -611,8 +613,8 @@ public class FPC : MonoBehaviour
                 }
                 
                 rb.velocity = Vector3.zero;
-                
-                
+                talkie.canChange = false;
+
                 break;
             case "listening":
                 canMove = false;
@@ -630,6 +632,7 @@ public class FPC : MonoBehaviour
         canSidewalk = true;
         rb.useGravity = true;
         fall = false;
+        talkie.canChange = true;
     }
 
     public void Die()

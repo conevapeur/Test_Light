@@ -22,6 +22,7 @@ public class pathcalculator : MonoBehaviour
     public bool canJoin;
 
     public GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,8 @@ public class pathcalculator : MonoBehaviour
             canJoin = false;
             agent.destination = target.transform.position;
         }
+
+        checkDistance();
     }
 
     public static bool GetPath(NavMeshPath _path, Vector3 fromPos, Vector3 toPos, int passableMask)
@@ -78,5 +81,17 @@ public class pathcalculator : MonoBehaviour
         }
 
         return lng;
+    }
+
+    private void checkDistance()
+    {
+        if(pathLength < 15)
+        {
+            monster.GetComponent<s_monster>().isLooking = true;
+        }
+        else
+        {
+            monster.GetComponent<s_monster>().isLooking = false;
+        }
     }
 }

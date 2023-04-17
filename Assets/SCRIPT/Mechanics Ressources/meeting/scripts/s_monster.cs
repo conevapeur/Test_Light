@@ -26,6 +26,8 @@ public class s_monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if(isLooking)
         {
             if(player.GetComponent<FPC>().isCrouching == false)
@@ -35,10 +37,9 @@ public class s_monster : MonoBehaviour
             }
             else
             {
-                //setFreq();
-                //Debug.Log(Mathf.Abs(playerFreq - curFreq));
+                
                 checkFreq();
-                //Debug.Log("TU ES EN SECURITE");
+                
             }
         }
         

@@ -32,7 +32,7 @@ public class talkie : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
-
+    public static bool canChange = true;
     
     // Start is called before the first frame update
     void Start()
@@ -63,27 +63,30 @@ public class talkie : MonoBehaviour
         freq = Mathf.Round(freq*100) /100;
         freqTMP.SetText(freq.ToString());
         */
-
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Joystick1Button4))
+        if(canChange)
         {
-            state -= 1;
-            if (state < 0)
-                state = 4;
-            
-            refreshFreq();
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Joystick1Button4))
+            {
+                state -= 1;
+                if (state < 0)
+                    state = 4;
 
-            _animator.SetTrigger("trigger");
+                refreshFreq();
+
+                _animator.SetTrigger("trigger");
+            }
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+            {
+                state += 1;
+                state = state % 5;
+
+                refreshFreq();
+
+                _animator.SetTrigger("trigger");
+
+            }
         }
-        if(Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
-        {
-            state += 1;
-            state = state % 5;
-
-            refreshFreq();
-
-            _animator.SetTrigger("trigger");
-
-        }
+        
 
         //Debug.Log(Vector3.Distance(target.transform.position, transform.position));
 
