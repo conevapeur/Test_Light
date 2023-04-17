@@ -9,34 +9,48 @@ public class pathcalculator : MonoBehaviour
     public GameObject monster;
 
     private NavMeshPath path ;
+    private NavMeshAgent agent ;
 
-    public bool ouais;
+    
     public bool canPath;
 
     private int mask;
 
     public float realLength;
     public float pathLength;
+
+    public bool canJoin;
+
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         path = new NavMeshPath();
-        ouais = true;
+        
         mask = 1;
+        canJoin = false;
+
+        agent = monster.GetComponent<NavMeshAgent>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(ouais)
-        {
-            ouais = false;
+        
+        
 
-            realLength = Vector3.Distance(monster.transform.position, target.transform.position);
-            GetPath(path, monster.transform.position, target.transform.position, NavMesh.AllAreas);
-            pathLength = GetPathLength(path);
-            //canPath = NavMesh.CalculatePath(target.transform.position, monster.transform.position, NavMesh.AllAreas, path);
+        realLength = Vector3.Distance(monster.transform.position, target.transform.position);
+        GetPath(path, monster.transform.position, player.transform.position, NavMesh.AllAreas);
+        pathLength = GetPathLength(path);
+
+        FPC.monster_pathDistance = pathLength;
+        //canPath = NavMesh.CalculatePath(target.transform.position, monster.transform.position, NavMesh.AllAreas, path);
+        
+        if(canJoin)
+        {
+            canJoin = false;
+            agent.destination = target.transform.position;
         }
     }
 

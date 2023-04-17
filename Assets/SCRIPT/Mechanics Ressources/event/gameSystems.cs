@@ -22,6 +22,7 @@ public class gameSystems : MonoBehaviour
     [SerializeField] AudioSource audioSource = null;
     [SerializeField] AudioClip audioClip;
     public GameObject monster;
+    [SerializeField] GameObject player;
 
     private string coroutineName;
     // Start is called before the first frame update
@@ -71,6 +72,8 @@ public class gameSystems : MonoBehaviour
 
     IEnumerator function0()
     {
+        talkie.GetComponent<talkie>().curFreq = talkie.GetComponent<talkie>().state;
+        player.GetComponent<FPC>().lockAbilities("listening");
         /*
         AudioClip.play
         soustitre.setText(tableau[ligne][langue]);
@@ -104,6 +107,10 @@ public class gameSystems : MonoBehaviour
         audioSource.Play();
 
         yield return new WaitForSeconds(4);
+
+        player.GetComponent<FPC>().recover();
+
+
         Debug.Log("ligne 6");
         soustitres.SetText("Ok, je connais cet endroit. Je travaillais là avant. Ne t'inquiètes pas. Si la porte est fermée devant toi, tu devrais apercevoir un conduit d’aération sur la droite. Passe-y.");
         audioSource.Play();
@@ -115,27 +122,54 @@ public class gameSystems : MonoBehaviour
 
     IEnumerator function1()
     {
+        talkie.GetComponent<talkie>().curFreq = 3;
+        player.GetComponent<FPC>().lockAbilities("listening");
+
         Debug.Log("ligne 7");
         soustitres.SetText("J’y suis papa, je fais quoi maintenant?");
         yield return new WaitForSeconds(1);
+
+        /*
         Debug.Log("ligne 8");
         soustitres.SetText("(voix grésillante) passe par la porte et suit le couloir.");
         yield return new WaitForSeconds(1);
+        */
+
         Debug.Log("ligne 9");
         soustitres.SetText("Je t'entends pas papa.");
         yield return new WaitForSeconds(1);
+
+
+        while(talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
+        {
+            Debug.Log("audio parasite");
+            yield return new WaitForSeconds(2);
+        }
+
+        player.GetComponent<FPC>().recover();
+
         Debug.Log("ligne 10");
         soustitres.SetText("Passe par la porte de la réserve, une fois sortie, tu vas te retrouver à l’accueil. Continue le couloir et tu devrais arriver au niveau inférieur");
         yield return new WaitForSeconds(1);
+
+
         soustitres.SetText(" ");
         yield return null;
     }
 
     IEnumerator function2()
     {
+        talkie.GetComponent<talkie>().curFreq = 1;
         Debug.Log("ligne 11");
         soustitres.SetText("Papa, la porte est fermée, je fais quoi?");
         yield return new WaitForSeconds(1);
+
+        while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
+        {
+            Debug.Log("audio parasite");
+            yield return new WaitForSeconds(2);
+        }
+
         Debug.Log("ligne 12");
         soustitres.SetText("l'électricité...  il faut que tu remettes l’électricité. Le générateur de secours devrait être dans une salle à gauche.Tu n'auras qu'à abaisser le levier et ça devrait marcher.");
         yield return new WaitForSeconds(1);
@@ -144,9 +178,17 @@ public class gameSystems : MonoBehaviour
     }
     IEnumerator function3()
     {
+        talkie.GetComponent<talkie>().curFreq = 4;
         Debug.Log("ligne 13");
         soustitres.SetText("Y a quelque chose qui bloque derrière la porte. J'peux pas l'ouvrir.");
         yield return new WaitForSeconds(1);
+
+        while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
+        {
+            Debug.Log("audio parasite");
+            yield return new WaitForSeconds(2);
+        }
+
         Debug.Log("ligne 14");
         soustitres.SetText("Trouve un moyen de passer au-dessus. Prends une chaise ou un objet pour escalader.");
         yield return new WaitForSeconds(1);

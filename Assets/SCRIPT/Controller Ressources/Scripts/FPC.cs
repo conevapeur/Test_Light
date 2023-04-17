@@ -59,6 +59,7 @@ public class FPC : MonoBehaviour
     public static bool canMove = true;
     public static bool canLook = true; // je l'ai passé en static pour l'appeler dans l'UI je sais pas faire autrement mdr
     public static bool canSidewalk = true;
+    public static bool fall = false;
 
     public GameObject target;
 
@@ -90,6 +91,8 @@ public class FPC : MonoBehaviour
 
 
     private bool toMimic = false;
+
+    public static float monster_pathDistance;
 
     public bool isScared;
     // Start is called before the first frame update
@@ -201,17 +204,17 @@ public class FPC : MonoBehaviour
         vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = vCamAmplitude;
         vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = vCamFrequency;
 
-
+        checkMonsterDistance();
     }
     void FixedUpdate()
     {
-        if(canMove)
+        if (canMove)
         {
             #region move
 
             Vector3 targetVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
 
-            if(canSidewalk)
+            if (canSidewalk)
             {
                 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), targetVelocity.y, targetVelocity.z);
 
@@ -220,13 +223,13 @@ public class FPC : MonoBehaviour
                     //Debug.Log(targetVelocity);
                     walkSound.enabled = true;
                 }
-                else 
+                else
                 {
-                    walkSound.enabled= false;
+                    walkSound.enabled = false;
                 }
 
             }
-            
+
 
             targetVelocity = transform.TransformDirection(targetVelocity) * moveSpeed;
 
@@ -234,12 +237,20 @@ public class FPC : MonoBehaviour
             Vector3 velocityChange = targetVelocity - rb.velocity;
             velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
             velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-            
-            
-            
+
+
+
             velocityChange.y = 0;
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
+
+
+            #endregion
+
+        }
+
+        if(!fall)
+        {
             RaycastHit hit;
 
             Vector3 rayDir = transform.TransformDirection(Vector3.down);
@@ -277,11 +288,10 @@ public class FPC : MonoBehaviour
                     contactBody.AddForceAtPosition(rayDir * -springForce, hit.point);
                 }
             }
-
-            #endregion
-
-            
         }
+           
+
+        
 
 
     }
@@ -555,6 +565,26 @@ public class FPC : MonoBehaviour
         //_security.SetTrigger("trigger");
     }
 
+    public void checkMonsterDistance()
+    {
+        if (!isScared && monster_pathDistance < 15)
+        {
+            Debug.Log("déclanchement mains devant les yeux");
+            isScared = true;
+            terrify();
+        }
+        if (isScared && monster_pathDistance > 25)
+        {
+            isScared = false;
+            Debug.Log("n'as plus peur");
+            recover();
+        }
+    }
+    public void terrify()
+    {
+        lockAbilities("scared");
+    }
+
     public void lockAbilities(string _situation)
     {
         switch(_situation)
@@ -562,17 +592,31 @@ public class FPC : MonoBehaviour
             case "climb":
                 canLook = false;
                 canMove = false;
+                rb.velocity = Vector3.zero;
                 break;
 
             case "push":
                 canLook = false;
                 canMove = false;
+                rb.velocity = Vector3.zero;
                 break;
 
             case "scared":
                 canMove = false;
                 canLook = false;
                 canSidewalk=false;
+                if(!isCrouching)
+                {
+                    fall = true;
+                }
+                
+                rb.velocity = Vector3.zero;
+                
+                
+                break;
+            case "listening":
+                canMove = false;
+                rb.velocity = Vector3.zero;
                 break;
 
 
@@ -585,6 +629,7 @@ public class FPC : MonoBehaviour
         canMove = true;
         canSidewalk = true;
         rb.useGravity = true;
+        fall = false;
     }
 
     public void Die()
