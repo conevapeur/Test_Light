@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1480718433584016298}
   - component: {fileID: 2531948799508276239}
   - component: {fileID: 344452036441018565}
+  - component: {fileID: 6991152178269152810}
   m_Layer: 0
   m_Name: BLD_hatchInt_3x3_01_v2
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2289870667611746576}
-  m_Mesh: {fileID: 8201846295753972692, guid: 2beb415ad234a104db9599c7059c90bd, type: 3}
+  m_Mesh: {fileID: -3322383697250815835, guid: b7e11000850d6e74d91af9d950490e86, type: 3}
 --- !u!23 &344452036441018565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6991152178269152810
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289870667611746576}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3322383697250815835, guid: b7e11000850d6e74d91af9d950490e86, type: 3}

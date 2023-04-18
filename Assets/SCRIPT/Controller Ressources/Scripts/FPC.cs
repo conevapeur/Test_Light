@@ -94,7 +94,7 @@ public class FPC : MonoBehaviour
 
     public static float monster_pathDistance;
 
-    public bool isScared;
+    public bool isScared = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -564,9 +564,10 @@ public class FPC : MonoBehaviour
     {
         //_security.SetTrigger("trigger");
     }
-
+    
     public void checkMonsterDistance()
     {
+        /*
         if (!isScared && monster_pathDistance < 15)
         {
             Debug.Log("déclanchement mains devant les yeux");
@@ -579,6 +580,7 @@ public class FPC : MonoBehaviour
             Debug.Log("n'as plus peur");
             recover();
         }
+        */
     }
     public void terrify()
     {

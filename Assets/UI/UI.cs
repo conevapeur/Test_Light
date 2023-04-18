@@ -71,17 +71,6 @@ public partial class @UI : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""551f3816-58b9-44cc-a1f4-dd26c0653170"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""escape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c779e5b0-f0fd-49ab-ba3c-a29f8736b406"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
