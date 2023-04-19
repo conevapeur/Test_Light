@@ -13,18 +13,18 @@ public class interactGenerator : MonoBehaviour, IInteract
     // Start is called before the first frame update
     void Start()
     {
-        //LightmapSettings.lightmaps = new LightmapData[] { };
         _lightmapData = LightmapSettings.lightmaps;
+        LightmapSettings.lightmaps = new LightmapData[] { };
         
     }
 
     // Update is called once per frame
     public void OnInteract()
     {
-        Debug.Log("chien");
+        Debug.Log("generateur allumé");
 
         LightmapSettings.lightmaps = _lightmapData;
-        
+
         _stairs.SetTrigger("trigger");
 
         generator.Play();
