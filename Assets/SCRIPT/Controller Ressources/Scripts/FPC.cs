@@ -420,7 +420,7 @@ public class FPC : MonoBehaviour
 
             yield return null;
         }
-        while (Vector3.Distance(target.position, transform.position) > 0.2f || Quaternion.Angle(target.rotation, transform.rotation) > 1 );
+        while (Vector3.Distance(target.position, transform.position) > 0.3f || Quaternion.Angle(target.rotation, transform.rotation) > 1 );
         rb.useGravity = true;
         transform.position = target.position;
         transform.rotation = target.rotation;
