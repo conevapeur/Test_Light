@@ -52,6 +52,5 @@ public class LocalizationSystem : MonoBehaviour
 
         return value;
 
-
     }
 }

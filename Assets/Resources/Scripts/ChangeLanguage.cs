@@ -45,5 +45,6 @@ public class ChangeLanguage : MonoBehaviour
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);//reload scene
 
+
     }
 }
