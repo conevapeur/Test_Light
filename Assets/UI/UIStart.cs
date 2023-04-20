@@ -9,12 +9,16 @@ public class UIStart : MonoBehaviour
 
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject playButton;
+    [SerializeField] private GameObject options;
+    [SerializeField] private GameObject start;
+        
 
 
     private void Awake()
     {
         _eventSystem.SetSelectedGameObject(playButton);
-
+        options.SetActive(false);
+        start.SetActive(false);
     }
 
     public void Play()
@@ -22,6 +26,10 @@ public class UIStart : MonoBehaviour
         StartCoroutine(ButtonCoroutine()); 
     }
 
+    public void Options()
+    {
+        options.SetActive(true);
+    }
     public void Quit()
     {
         Application.Quit();

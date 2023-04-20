@@ -267,15 +267,35 @@ public class UIManager : MonoBehaviour
     {
         _eventSystem.SetSelectedGameObject(frenchButton);
     }
-    public void French()
+    public void ButtonLanguage()//On Button Click
     {
-        fr = true; eng = false;
+        if (LocalizationSystem.instance.currentLanguage == 0)//if next lang available
+        {
+
+            LocalizationSystem.instance.currentLanguage = 1;
+            LocalizationSystem.instance.Init();
+        }
+        else//loop
+        {
+
+            LocalizationSystem.instance.currentLanguage = 0;
+            LocalizationSystem.instance.Init();
+
+        }
+        StartCoroutine("LoadingNewLanguage");//wait before reloading scene
     }
 
-    public void English()
+    private IEnumerator LoadingNewLanguage()
     {
-        eng = true; fr = false;
+        while (!LocalizationSystem.instance.isReady)
+        {
+            yield return null;//wait
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);//reload scene
+
+
     }
+
 
     public void Readable1()
     {
@@ -411,5 +431,6 @@ public class UIManager : MonoBehaviour
     }
 
 
+    
 
 }
