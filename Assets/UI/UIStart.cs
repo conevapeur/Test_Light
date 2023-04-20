@@ -13,7 +13,6 @@ public class UIStart : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject volumeButton;
-    [SerializeField] private GameObject sliderButton;
     [SerializeField] private GameObject controlsButton;
     [SerializeField] private GameObject languageButton;
     [SerializeField] private GameObject englishButton;
@@ -24,6 +23,7 @@ public class UIStart : MonoBehaviour
     [Header("Start")]
     [SerializeField] private GameObject start;
 
+
     [Header ("Settings")]
     [SerializeField] private GameObject options;
     [SerializeField] private GameObject volume;
@@ -33,7 +33,7 @@ public class UIStart : MonoBehaviour
 
 
 
-
+    [Header("CheckBox")]
     [SerializeField] private GameObject checkEnglish;
     [SerializeField] private GameObject checkFrench;
     [SerializeField] private GameObject checkSubtitles;
@@ -42,8 +42,17 @@ public class UIStart : MonoBehaviour
     [SerializeField] private GameObject boxSubtitles;
 
 
+    [Header("SoundMark")]
+    [SerializeField] private GameObject slider1;
+    [SerializeField] private Slider value1;
+    [SerializeField] private GameObject soundMark1;
+    [SerializeField] private GameObject soundMark2;
+    [SerializeField] private GameObject soundMark3;
+    [SerializeField] private GameObject soundMark4;
+    [SerializeField] private GameObject soundMark5;
 
 
+    RawImage soundMark1rend;
 
 
     private UI uicontrols;
@@ -58,6 +67,8 @@ public class UIStart : MonoBehaviour
         _eventSystem.SetSelectedGameObject(resumeButton);
         options.SetActive(false);
         start.SetActive(true);
+
+        soundMark1rend = soundMark1.GetComponent<RawImage>();
     }
 
     void Back()
@@ -74,6 +85,10 @@ public class UIStart : MonoBehaviour
     {
         StartCoroutine(ButtonCoroutine()); 
     }
+    public void Volume()
+    {
+        _eventSystem.SetSelectedGameObject(slider1);
+    }
 
     public void Options()
     {
@@ -82,6 +97,9 @@ public class UIStart : MonoBehaviour
         volume.SetActive(false);
         controls.SetActive(false);
         language.SetActive(false);
+
+        checkFrench.SetActive(false);
+        checkSubtitles.SetActive(false);
 
         _eventSystem.SetSelectedGameObject(volumeButton);
 
@@ -95,24 +113,20 @@ public class UIStart : MonoBehaviour
     public void English()
     {
         
-        
-        englishButton.GetComponent<Button>().interactable = false;
-        frenchButton.GetComponent<Button>().interactable = true;
-        checkEnglish.SetActive(true);
-        checkFrench.SetActive(false);
-        
-
+        if (checkEnglish.activeInHierarchy == false)
+        {
+            checkEnglish.SetActive(true);
+            checkFrench.SetActive(false);
+        }
     }
     public void French()
     {
+        if (checkFrench.activeInHierarchy == false)
+        {
+            checkFrench.SetActive(true);
+            checkEnglish.SetActive(false);
+        }
         
-        
-        frenchButton.GetComponent<Button>().interactable = false;
-        englishButton.GetComponent<Button>().interactable = true;
-        checkFrench.SetActive(true);
-        checkEnglish.SetActive(false);
-
-
     }
     public void Subtitles()
     {
@@ -161,5 +175,59 @@ public class UIStart : MonoBehaviour
             controls.SetActive(false);
             language.SetActive(true);
         }
+
+        //
+
+        if (value1.value < 20)
+        {
+            var tempColor = soundMark1rend.color;
+            tempColor.a = value1.value/20;
+            soundMark1rend.color = tempColor;
+            soundMark1.SetActive(true);
+
+            soundMark2.SetActive(false);
+            soundMark3.SetActive(false);
+            soundMark4.SetActive(false);
+            soundMark5.SetActive(false);
+        }
+        else if (value1.value < 40)
+        {
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(false);
+            soundMark4.SetActive(false);
+            soundMark5.SetActive(false);
+
+        }
+        else if (value1.value < 60)
+        {
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(true);
+            soundMark4.SetActive(false);
+            soundMark5.SetActive(false);
+
+        }
+        else if (value1.value < 80)
+        {
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(true);
+            soundMark4.SetActive(true);
+            soundMark5.SetActive(false);
+
+        }
+        else if (value1.value < 100)
+        {
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(true);
+            soundMark4.SetActive(true);
+            soundMark5.SetActive(true);
+
+        }
+
+
+
     }
 }
