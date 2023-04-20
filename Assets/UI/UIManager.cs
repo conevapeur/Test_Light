@@ -49,6 +49,9 @@ public class UIManager : MonoBehaviour
     [Header("Option")]
     [SerializeField] private GameObject languageButton;
     [SerializeField] private GameObject volumeButton;
+    [SerializeField] private GameObject controlsButton;
+    [SerializeField] private GameObject controlsImage;
+    [SerializeField] private GameObject controlsImage2;
     [SerializeField] private GameObject panelOption;
 
 
@@ -118,16 +121,12 @@ public class UIManager : MonoBehaviour
         _controls.SetActive(false);
         _language.SetActive(false);
         panelOption.SetActive(false);
-        
-        
 
+        controlsImage2.SetActive(false);
     }
 
     private void Pause()
-    {
-        
-        
-        
+    {    
         if (Time.timeScale != 0f)
         {
             Time.timeScale = 0f;
@@ -137,7 +136,6 @@ public class UIManager : MonoBehaviour
             FPC.canMove = false;
             FPC.canSidewalk = false;
         }
-        
     }
 
 
@@ -162,14 +160,12 @@ public class UIManager : MonoBehaviour
     public void Yes()
     {
         SceneManager.LoadScene(scene);
-
     }
     public void No()
     {
         quitPanel.SetActive(false);
         pauseMenu.SetActive(true);
         _eventSystem.SetSelectedGameObject(quitButton);
-
     }
     public void Infos()
     {
@@ -182,8 +178,8 @@ public class UIManager : MonoBehaviour
         optionsMenu.SetActive(true);
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(volumeButton);
+        _volume.SetActive(true);
     }
-
 
     public void Back()
     {
@@ -203,12 +199,16 @@ public class UIManager : MonoBehaviour
         else if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
         {
             _eventSystem.SetSelectedGameObject(volumeButton);
-            panelOption.gameObject.SetActive(false);
         }
         else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
         {
             _eventSystem.SetSelectedGameObject(languageButton);
-            panelOption.gameObject.SetActive(false);
+        }
+        else if (controlsImage2.activeInHierarchy)
+        {
+            controlsImage2.SetActive(false);
+            controlsImage.SetActive(true);
+            _eventSystem.SetSelectedGameObject(controlsButton);
         }
         else if (optionsMenu.activeInHierarchy)
         {
@@ -216,6 +216,7 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(optionButton);
         }
+
 
 
         else if (readable1.activeInHierarchy)
@@ -254,21 +255,17 @@ public class UIManager : MonoBehaviour
 
     public void Volume()
     {
-        _volume.SetActive(true);
-        _controls.SetActive(false);
-        _language.SetActive(false);
+        _eventSystem.SetSelectedGameObject(_slider1);
+       
     }
     public void Controls()
     {
-        _volume.SetActive(false);
-        _controls.SetActive(true);
-        _language.SetActive(false);
+        controlsImage.SetActive(false);
+        controlsImage2.SetActive(true);
     }
     public void Language()
     {
-        _volume.SetActive(false);
-        _controls.SetActive(false);
-        _language.SetActive(true);
+        _eventSystem.SetSelectedGameObject(frenchButton);
     }
     public void French()
     {
@@ -363,11 +360,36 @@ public class UIManager : MonoBehaviour
         {
             panelOption.gameObject.SetActive(true);
         }
-        if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
+        else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
         {
             panelOption.gameObject.SetActive(true);
         }
-        
+        else
+        {
+            panelOption.gameObject.SetActive(false);
+        }
+
+        if (_eventSystem.currentSelectedGameObject == volumeButton && !_volume.activeInHierarchy)
+        {
+            _volume.SetActive(true);
+            _controls.SetActive(false);
+            _language.SetActive(false);
+        }
+
+        if (_eventSystem.currentSelectedGameObject == controlsButton && !_controls.activeInHierarchy)
+        {
+            _volume.SetActive(false);
+            _controls.SetActive(true);
+            _language.SetActive(false);
+        }
+
+        if (_eventSystem.currentSelectedGameObject == languageButton && !_language.activeInHierarchy)
+        {
+            _volume.SetActive(false);
+            _controls.SetActive(false);
+            _language.SetActive(true);
+        }
+
         //sliders
         text1.text = ("volume principal ") + (slider1.value ).ToString();
         text2.text = ("volume musique ") + (slider2.value ).ToString();
