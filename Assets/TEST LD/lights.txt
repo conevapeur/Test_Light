@@ -1,0 +1,5 @@
+lights
+
+1 Naturelles on LED off Red off Escalier off Bureaux off
+2 Naturelles off LED on Red off Escalier on Bureaux on 
+3 Naturelles off LED off Red on Escalier off Bureaux off 
