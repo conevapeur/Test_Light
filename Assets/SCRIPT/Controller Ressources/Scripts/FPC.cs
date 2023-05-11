@@ -59,6 +59,7 @@ public class FPC : MonoBehaviour
     public static bool canMove = true;
     public static bool canLook = true; // je l'ai passé en static pour l'appeler dans l'UI je sais pas faire autrement mdr
     public static bool canSidewalk = true;
+    [SerializeField] public static bool canChange = true;
     public static bool fall = false;
 
     public GameObject target;
@@ -198,6 +199,36 @@ public class FPC : MonoBehaviour
 
         }
 
+        if (canChange)
+        {
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Joystick1Button4))
+            {
+                /*
+                state -= 1;
+                if (state < 0)
+                    state = 4;
+
+                refreshFreq();
+
+                _animator.SetTrigger("trigger");*/
+
+                GameManager.instance.DownFreq();
+            }
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+            {
+                /*
+                state += 1;
+                state = state % 5;
+
+                refreshFreq();*/
+
+                //_animator.SetTrigger("trigger");
+
+                GameManager.instance.UpFreq();
+
+            }
+        }
+
 
         setBob();
 
@@ -249,7 +280,9 @@ public class FPC : MonoBehaviour
 
         }
 
-        if(!fall)
+        
+
+        if (!fall)
         {
             RaycastHit hit;
 
@@ -365,12 +398,7 @@ public class FPC : MonoBehaviour
                     StartCoroutine(climb());
 
                     break;*/
-                case "lever":
-                    lever(target);
-                    break;
-                case "button":
-                    buttton(target);
-                    break;
+                
                 case "card":
                     card(target);
                     break;
@@ -539,26 +567,7 @@ public class FPC : MonoBehaviour
         moveSpeed = baseMoveSpeed * 0.7f;
     }
 
-    private void lever(GameObject _target)
-    {
-        // pick a random color
-        //Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-        // apply it on current object's material
-        //_target.GetComponent<MeshRenderer>().material.color = newColor;
-
-        //LightmapSettings.lightmaps = _lightmapData;
-       // _naturalLigths.gameObject.SetActive(false);
-       // _stairs.SetTrigger("trigger");
-
-    }
-
-    private void buttton(GameObject _target)
-    {
-       // _redLigths.gameObject.SetActive(true);
-       // LightmapSettings.lightmaps = new LightmapData[] { };
-       // _archives.SetTrigger("trigger");
-
-    }
+    
 
     private void card(GameObject _target)
     {
@@ -595,14 +604,14 @@ public class FPC : MonoBehaviour
                 canLook = false;
                 canMove = false;
                 rb.velocity = Vector3.zero;
-                talkie.canChange = false;
+                canChange = false;
                 break;
 
             case "push":
                 canLook = false;
                 canMove = false;
                 rb.velocity = Vector3.zero;
-                talkie.canChange = false;
+                canChange = false;
                 break;
 
             case "scared":
@@ -615,7 +624,7 @@ public class FPC : MonoBehaviour
                 }
                 
                 rb.velocity = Vector3.zero;
-                talkie.canChange = false;
+                canChange = false;
 
                 break;
             case "listening":
@@ -634,7 +643,7 @@ public class FPC : MonoBehaviour
         canSidewalk = true;
         rb.useGravity = true;
         fall = false;
-        talkie.canChange = true;
+        canChange = true;
     }
 
     public void Die()

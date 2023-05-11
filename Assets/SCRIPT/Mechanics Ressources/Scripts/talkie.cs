@@ -30,16 +30,19 @@ public class talkie : MonoBehaviour
     public float cap = 0;
 
 
-    [SerializeField] private Animator _animator;
+    [SerializeField] public Animator _animator;
 
-    public static bool canChange = true;
+    //public static bool canChange = true;
     
     // Start is called before the first frame update
     void Start()
     {
         
         //myAudioSource = GetComponent<AudioSource>();
-        StartCoroutine(changeCurFreq());
+        
+        
+        
+        //StartCoroutine(changeCurFreq());
     }
 
     // Update is called once per frame
@@ -63,10 +66,12 @@ public class talkie : MonoBehaviour
         freq = Mathf.Round(freq*100) /100;
         freqTMP.SetText(freq.ToString());
         */
+        /*
         if(canChange)
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
+                
                 state -= 1;
                 if (state < 0)
                     state = 4;
@@ -74,9 +79,12 @@ public class talkie : MonoBehaviour
                 refreshFreq();
 
                 _animator.SetTrigger("trigger");
+
+                GameManager.instance.DownFreq();
             }
             if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
             {
+                
                 state += 1;
                 state = state % 5;
 
@@ -84,8 +92,10 @@ public class talkie : MonoBehaviour
 
                 _animator.SetTrigger("trigger");
 
+                GameManager.instance.UpFreq();
+
             }
-        }
+        }*/
         
 
         //Debug.Log(Vector3.Distance(target.transform.position, transform.position));
@@ -93,9 +103,10 @@ public class talkie : MonoBehaviour
         setVolume();
     }
 
-    private void refreshFreq()
+    public void refreshFreq(int _freq)
     {
-        switch(state)
+        state = _freq;
+        switch(_freq)
         {
             case 0:
                 //Debug.Log(state + 1);
