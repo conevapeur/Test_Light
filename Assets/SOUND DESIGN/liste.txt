@@ -1,0 +1,4 @@
+SFX deja intégrés : 
+
+ambiance génerateur apres allumage
+readable quand ramassé
