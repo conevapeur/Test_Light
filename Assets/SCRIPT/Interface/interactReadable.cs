@@ -13,6 +13,8 @@ public class interactReadable : MonoBehaviour, IInteract
     public static bool card;
 
     [SerializeField] private int number;
+    [SerializeField] private AudioSource page;
+   
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,8 @@ public class interactReadable : MonoBehaviour, IInteract
     {
         Debug.Log("chien");
         Destroy(gameObject);
+        page.Play();
+        
 
         if (number == 1 )
         {
