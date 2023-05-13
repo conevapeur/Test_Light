@@ -33,6 +33,13 @@ public class anim : MonoBehaviour
         controls.actions.endtalk.performed += ctx => animator.SetTrigger("triggerEndTalk");  //    K    fin du talkie POUR PARLER
 
 
+        controls.actions.death.performed += ctx => animator.SetTrigger("triggerDeath");  //    SPACE    death
+
+
+        controls.actions.hand.performed += ctx => animator.SetTrigger("triggerHand");  //    B    mains devant les yeux
+        controls.actions.endhand.performed += ctx => animator.SetTrigger("triggerEndHand");  //    N    enlever
+        
+
 
         controls.actions.grab.performed += ctx => animator.SetTrigger("triggerGrab");  //    W    Debut du grab
         controls.actions.push.performed += ctx => animator.SetBool("boolPush", true);  //    X    bool "je pousse"
