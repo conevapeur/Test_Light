@@ -157,6 +157,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "death",
+                    "type": "Button",
+                    "id": "e720abd8-8556-43d8-9792-ea63c365efaf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "hand",
+                    "type": "Button",
+                    "id": "68169a9b-d207-4f47-9e82-765a00535ea3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "endhand",
+                    "type": "Button",
+                    "id": "7c685c1c-bc2c-4d0b-9a78-b1340d3c90c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -344,6 +371,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "endpush",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "067c03d1-f942-4e85-bffd-074d49e3290e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "death",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5411b98-89d9-42a9-864a-124dfa6dbc84",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "hand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c80bd12-a100-44b9-b309-1d8d1f2c2caf",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "endhand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

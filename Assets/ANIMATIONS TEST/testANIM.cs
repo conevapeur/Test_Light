@@ -179,6 +179,33 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""death"",
+                    ""type"": ""Button"",
+                    ""id"": ""e720abd8-8556-43d8-9792-ea63c365efaf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""hand"",
+                    ""type"": ""Button"",
+                    ""id"": ""68169a9b-d207-4f47-9e82-765a00535ea3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""endhand"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c685c1c-bc2c-4d0b-9a78-b1340d3c90c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -368,6 +395,39 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
                     ""action"": ""endpush"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""067c03d1-f942-4e85-bffd-074d49e3290e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""death"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5411b98-89d9-42a9-864a-124dfa6dbc84"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""hand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c80bd12-a100-44b9-b309-1d8d1f2c2caf"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""endhand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -393,6 +453,9 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
         m_actions_grab = m_actions.FindAction("grab", throwIfNotFound: true);
         m_actions_push = m_actions.FindAction("push", throwIfNotFound: true);
         m_actions_endpush = m_actions.FindAction("endpush", throwIfNotFound: true);
+        m_actions_death = m_actions.FindAction("death", throwIfNotFound: true);
+        m_actions_hand = m_actions.FindAction("hand", throwIfNotFound: true);
+        m_actions_endhand = m_actions.FindAction("endhand", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -469,6 +532,9 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
     private readonly InputAction m_actions_grab;
     private readonly InputAction m_actions_push;
     private readonly InputAction m_actions_endpush;
+    private readonly InputAction m_actions_death;
+    private readonly InputAction m_actions_hand;
+    private readonly InputAction m_actions_endhand;
     public struct ActionsActions
     {
         private @TestANIM m_Wrapper;
@@ -490,6 +556,9 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
         public InputAction @grab => m_Wrapper.m_actions_grab;
         public InputAction @push => m_Wrapper.m_actions_push;
         public InputAction @endpush => m_Wrapper.m_actions_endpush;
+        public InputAction @death => m_Wrapper.m_actions_death;
+        public InputAction @hand => m_Wrapper.m_actions_hand;
+        public InputAction @endhand => m_Wrapper.m_actions_endhand;
         public InputActionMap Get() { return m_Wrapper.m_actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -550,6 +619,15 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
                 @endpush.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEndpush;
                 @endpush.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEndpush;
                 @endpush.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEndpush;
+                @death.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDeath;
+                @death.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDeath;
+                @death.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDeath;
+                @hand.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnHand;
+                @hand.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnHand;
+                @hand.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnHand;
+                @endhand.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEndhand;
+                @endhand.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEndhand;
+                @endhand.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEndhand;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -605,6 +683,15 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
                 @endpush.started += instance.OnEndpush;
                 @endpush.performed += instance.OnEndpush;
                 @endpush.canceled += instance.OnEndpush;
+                @death.started += instance.OnDeath;
+                @death.performed += instance.OnDeath;
+                @death.canceled += instance.OnDeath;
+                @hand.started += instance.OnHand;
+                @hand.performed += instance.OnHand;
+                @hand.canceled += instance.OnHand;
+                @endhand.started += instance.OnEndhand;
+                @endhand.performed += instance.OnEndhand;
+                @endhand.canceled += instance.OnEndhand;
             }
         }
     }
@@ -628,5 +715,8 @@ public partial class @TestANIM : IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnPush(InputAction.CallbackContext context);
         void OnEndpush(InputAction.CallbackContext context);
+        void OnDeath(InputAction.CallbackContext context);
+        void OnHand(InputAction.CallbackContext context);
+        void OnEndhand(InputAction.CallbackContext context);
     }
 }
