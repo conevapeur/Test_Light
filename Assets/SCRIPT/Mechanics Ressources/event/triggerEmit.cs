@@ -25,9 +25,10 @@ public class triggerEmit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnEnter.Invoke();
+            transform.position = new Vector3(0, 50000, 0);
         }
 
-        transform.position = new Vector3(0, 50000,0);
+        
     }
 
     

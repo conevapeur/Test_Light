@@ -8,6 +8,7 @@ public class interactCard: MonoBehaviour, IInteract
 
     public void OnInteract()
     {
+        Debug.Log(interactReadable.card);
         if (interactReadable.card == true)
         {
             _security.SetTrigger("trigger");
