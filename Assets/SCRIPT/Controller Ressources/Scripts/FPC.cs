@@ -67,6 +67,13 @@ public class FPC : MonoBehaviour
     public GameObject carried;
 
 
+    public bool talkieDegaine;
+    public bool haveToDegaine;
+
+
+    public Animator animator;
+
+
     //sound design 
     [SerializeField] private AudioSource walkSound;
 
@@ -113,6 +120,8 @@ public class FPC : MonoBehaviour
         climbDelay = 0.3f;
 
         _redLigths.gameObject.SetActive(false);
+
+        talkieDegaine = false;
     }
 
     // Update is called once per frame
@@ -199,7 +208,25 @@ public class FPC : MonoBehaviour
 
         }
 
-        if (canChange)
+        if(Input.GetKeyDown(KeyCode.Tab) || haveToDegaine)
+        {
+           haveToDegaine = false;
+            //Trigger anim
+
+            if(!talkieDegaine)
+            {
+                animator.SetTrigger("triggerTalkie");
+                animator.ResetTrigger("triggerEndTalkie");
+            }
+            else
+            {
+                animator.SetTrigger("triggerEndTalkie");
+                animator.ResetTrigger("triggerTalkie");
+            }
+            talkieDegaine = !talkieDegaine;
+        }
+
+        if (canChange && talkieDegaine)
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
@@ -213,6 +240,9 @@ public class FPC : MonoBehaviour
                 _animator.SetTrigger("trigger");*/
 
                 GameManager.instance.DownFreq();
+
+                animator.SetTrigger("triggerTalkie-");
+
             }
             if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
             {
@@ -225,6 +255,8 @@ public class FPC : MonoBehaviour
                 //_animator.SetTrigger("trigger");
 
                 GameManager.instance.UpFreq();
+
+                animator.SetTrigger("triggerTalkie+");
 
             }
         }
@@ -252,11 +284,11 @@ public class FPC : MonoBehaviour
                 if (targetVelocity != Vector3.zero) // bruits de pas
                 {
                     //Debug.Log(targetVelocity);
-                    walkSound.enabled = true;
+                    //walkSound.enabled = true;
                 }
                 else
                 {
-                    walkSound.enabled = false;
+                    //walkSound.enabled = false;
                 }
 
             }
@@ -335,16 +367,24 @@ public class FPC : MonoBehaviour
         {
             vCamFrequency = 1.4f;
             vCamAmplitude = 1f;
+
+            walkSound.enabled = true;
+            walkSound.pitch = 2;
         }
         else if (rb.velocity.magnitude > 0.5)
         {
             vCamFrequency = .7f;
             vCamAmplitude = 1f;
+            walkSound.enabled = true;
+            walkSound.pitch = 1;
+
         }
         else
         {
             vCamFrequency = .2f;
             vCamAmplitude = 1f;
+
+            walkSound.enabled = false;
         }
 
     }
@@ -495,6 +535,8 @@ public class FPC : MonoBehaviour
         //_escalade.SetTrigger("trigger");
 
         yield return new WaitForSeconds(climbDelay);
+
+        animator.SetTrigger("triggerChair");
 
         do
         {
