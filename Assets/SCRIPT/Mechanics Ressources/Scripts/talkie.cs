@@ -11,7 +11,7 @@ public class talkie : MonoBehaviour
     public static float freq = 100f;
     private float x = 0.5f;
 
-    public GameObject freqSet;
+    //public GameObject freqSet;
 
 
 

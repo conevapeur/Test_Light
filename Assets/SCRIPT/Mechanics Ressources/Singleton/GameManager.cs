@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         Debug.Log("ligne 3");
-        soustitres.SetText("Y a une grande porte, toute veille avec des cailloux.");
+        soustitres.SetText("Y a une grande porte, toute vieille avec des cailloux.");
         //audioSource.Play();
 
         yield return new WaitForSeconds(4);
@@ -167,6 +167,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(7);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
 
@@ -204,12 +205,14 @@ public class GameManager : MonoBehaviour
 
 
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
 
     IEnumerator function2()
     {
         talkie.GetComponent<talkie>().curFreq = 1;
+        player.GetComponent<FPC>().lockAbilities("listening");
         Debug.Log("ligne 11");
         soustitres.SetText("Papa, la porte est fermée, je fais quoi?");
         yield return new WaitForSeconds(1);
@@ -219,16 +222,18 @@ public class GameManager : MonoBehaviour
             Debug.Log("audio parasite");
             yield return new WaitForSeconds(2);
         }
-
+        player.GetComponent<FPC>().recover();
         Debug.Log("ligne 12");
         soustitres.SetText("l'électricité...  il faut que tu remettes l’électricité. Le générateur de secours devrait être dans une salle à gauche.Tu n'auras qu'à abaisser le levier et ça devrait marcher.");
         yield return new WaitForSeconds(1);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
     IEnumerator function3()
     {
         talkie.GetComponent<talkie>().curFreq = 4;
+        player.GetComponent<FPC>().lockAbilities("listening");
         Debug.Log("ligne 13");
         soustitres.SetText("Y a quelque chose qui bloque derrière la porte. J'peux pas l'ouvrir.");
         yield return new WaitForSeconds(1);
@@ -238,11 +243,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("audio parasite");
             yield return new WaitForSeconds(2);
         }
-
+        player.GetComponent<FPC>().recover();
         Debug.Log("ligne 14");
         soustitres.SetText("Trouve un moyen de passer au-dessus. Prends une chaise ou un objet pour escalader.");
         yield return new WaitForSeconds(1);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
     IEnumerator function4()
@@ -254,6 +260,7 @@ public class GameManager : MonoBehaviour
         soustitres.SetText("Continue, le générateur est en bas de l’escalier. Pour l’actionner, tire le levier vers le bas.");
         yield return new WaitForSeconds(1);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
 
@@ -269,6 +276,7 @@ public class GameManager : MonoBehaviour
         soustitres.SetText("Ok, je descends alors");
         yield return new WaitForSeconds(1);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
     IEnumerator function6()
@@ -280,6 +288,7 @@ public class GameManager : MonoBehaviour
         soustitres.SetText("Tu dois avoir la salle de contrôle devant toi. Tu as besoin de la carte d'accès pour ouvrir cette pièce. Il doit y avoir mon ancienne carte dans mon bureau. Il y a une carte de secours derrière le tableau avec les oiseaux. Trouve la et reviens ici. ");
         yield return new WaitForSeconds(1);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
     IEnumerator function7()
@@ -291,6 +300,7 @@ public class GameManager : MonoBehaviour
         soustitres.SetText("Tu vois le bouton rouge? appuie dessus. ");
         yield return new WaitForSeconds(1);
         soustitres.SetText(" ");
+        player.GetComponent<FPC>().haveToDegaine = true;
         yield return null;
     }
 

@@ -171,7 +171,7 @@ public class FPC : MonoBehaviour
                     if (carried.TryGetComponent(out Rigidbody rb))
                     {
                         //Debug.Log("patate");
-                        rb.isKinematic = false;
+                        //rb.isKinematic = false;
                     }
                     //carried.TryGetComponent<Rigidbody>().isKinematic = false;
                     carried.gameObject.transform.SetParent(null);
@@ -534,9 +534,10 @@ public class FPC : MonoBehaviour
 
         //_escalade.SetTrigger("trigger");
 
+        animator.SetTrigger("triggerChair");
         yield return new WaitForSeconds(climbDelay);
 
-        animator.SetTrigger("triggerChair");
+        
 
         do
         {
@@ -610,7 +611,7 @@ public class FPC : MonoBehaviour
 
     private void carry()
     {
-        target.GetComponent<Rigidbody>().isKinematic = true;
+        //target.GetComponent<Rigidbody>().isKinematic = true;
         setchild(target);
         moveSpeed = baseMoveSpeed * 0.7f;
     }
@@ -696,7 +697,7 @@ public class FPC : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("you died");
+        Debug.Log("T mort");
     }
     
 }
