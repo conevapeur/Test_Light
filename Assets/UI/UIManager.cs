@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -50,37 +51,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject languageButton;
     [SerializeField] private GameObject volumeButton;
     [SerializeField] private GameObject controlsButton;
-    [SerializeField] private GameObject controlsImage;
-    [SerializeField] private GameObject controlsImage2;
-    [SerializeField] private GameObject panelOption;
 
 
     [Header("Volume")]
     [SerializeField] private GameObject _volume;
 
-    [Space(10)]
-
-    [SerializeField] private Slider slider1;
-    [SerializeField] private GameObject _slider1;
-    [SerializeField] private TMP_Text text1;
-
-    [Space(10)]
-
-    [SerializeField] private Slider slider2;
-    [SerializeField] private GameObject _slider2;
-    [SerializeField] private TMP_Text text2;
-
-    [Space(10)]
-
-    [SerializeField] private Slider slider3;
-    [SerializeField] private GameObject _slider3;
-    [SerializeField] private TMP_Text text3;
-
-    [Space(10)]
-
-    [SerializeField] private Slider slider4;
-    [SerializeField] private GameObject _slider4;
-    [SerializeField] private TMP_Text text4;
+    
 
     [Space(10)]
     [Header("Controls")]
@@ -99,6 +75,31 @@ public class UIManager : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
 
     private UI controls;
+
+    float score = 0;
+    int left = 0;
+    int right = 0;
+
+    RawImage soundMark1rend;
+    RawImage soundMark2rend;
+    RawImage soundMark3rend;
+    RawImage soundMark4rend;
+    RawImage soundMark5rend;
+
+    [SerializeField] private GameObject soundMark1;
+    [SerializeField] private GameObject soundMark2;
+    [SerializeField] private GameObject soundMark3;
+    [SerializeField] private GameObject soundMark4;
+    [SerializeField] private GameObject soundMark5;
+
+
+    [Header("CheckBox")]
+    [SerializeField] private GameObject checkEnglish;
+    [SerializeField] private GameObject checkFrench;
+    [SerializeField] private GameObject checkSubtitles;
+    [SerializeField] private GameObject boxEnglish;
+    [SerializeField] private GameObject boxFrench;
+    [SerializeField] private GameObject boxSubtitles;
 
     private void Awake()
     {
@@ -120,9 +121,47 @@ public class UIManager : MonoBehaviour
 
         _controls.SetActive(false);
         _language.SetActive(false);
-        panelOption.SetActive(false);
+        
 
-        controlsImage2.SetActive(false);
+        controls.Menu.left.performed += ctx => Left();
+        controls.Menu.left.canceled += ctx => StopLeft();
+
+        controls.Menu.right.performed += ctx => Right();
+        controls.Menu.right.canceled += ctx => StopRight();
+
+        soundMark1rend = soundMark1.GetComponent<RawImage>();
+        soundMark2rend = soundMark2.GetComponent<RawImage>();
+        soundMark3rend = soundMark3.GetComponent<RawImage>();
+        soundMark4rend = soundMark4.GetComponent<RawImage>();
+        soundMark5rend = soundMark5.GetComponent<RawImage>();
+    }
+
+    void StopLeft()
+    {
+        left = 0;
+    }
+
+    void StopRight()
+    {
+        right = 0;
+    }
+
+    void Left()
+    {
+        Debug.Log("1/2");
+
+        if (_eventSystem.currentSelectedGameObject == soundMark1)
+        {
+            left = 1;
+            Debug.Log("2/2");
+        }
+    }
+    void Right()
+    {
+        if (_eventSystem.currentSelectedGameObject == soundMark1)
+        {
+            right = 1;
+        }
     }
 
     private void Pause()
@@ -196,26 +235,23 @@ public class UIManager : MonoBehaviour
             _eventSystem.SetSelectedGameObject(quitButton);
         }
 
-        else if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
-        {
-            _eventSystem.SetSelectedGameObject(volumeButton);
-        }
+        
         else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
         {
             _eventSystem.SetSelectedGameObject(languageButton);
         }
-        else if (controlsImage2.activeInHierarchy)
+        else if (_eventSystem.currentSelectedGameObject == soundMark1)
         {
-            controlsImage2.SetActive(false);
-            controlsImage.SetActive(true);
-            _eventSystem.SetSelectedGameObject(controlsButton);
+            _eventSystem.SetSelectedGameObject(volumeButton);
         }
+
         else if (optionsMenu.activeInHierarchy)
         {
             optionsMenu.SetActive(false);
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(optionButton);
         }
+
 
 
 
@@ -255,18 +291,51 @@ public class UIManager : MonoBehaviour
 
     public void Volume()
     {
-        _eventSystem.SetSelectedGameObject(_slider1);
+        _eventSystem.SetSelectedGameObject(soundMark1);
        
     }
     public void Controls()
     {
-        controlsImage.SetActive(false);
-        controlsImage2.SetActive(true);
+
     }
     public void Language()
     {
-        _eventSystem.SetSelectedGameObject(frenchButton);
+        _eventSystem.SetSelectedGameObject(englishButton);
     }
+
+    public void English()
+    {
+
+        if (checkEnglish.activeInHierarchy == false)
+        {
+            checkEnglish.SetActive(true);
+            checkFrench.SetActive(false);
+        }
+    }
+    public void French()
+    {
+        if (checkFrench.activeInHierarchy == false)
+        {
+            checkFrench.SetActive(true);
+            checkEnglish.SetActive(false);
+        }
+
+    }
+    public void Subtitles()
+    {
+
+        if (checkSubtitles.activeInHierarchy)
+        {
+            checkSubtitles.SetActive(false);
+
+        }
+        else
+        {
+            checkSubtitles.SetActive(true);
+        }
+    }
+
+    /*
     public void ButtonLanguage()//On Button Click
     {
         if (LocalizationSystem.instance.currentLanguage == 0)//if next lang available
@@ -284,6 +353,7 @@ public class UIManager : MonoBehaviour
         }
         StartCoroutine("LoadingNewLanguage");//wait before reloading scene
     }
+    
 
     private IEnumerator LoadingNewLanguage()
     {
@@ -296,7 +366,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-
+    */
     public void Readable1()
     {
         readable1.gameObject.SetActive(true);
@@ -375,19 +445,7 @@ public class UIManager : MonoBehaviour
             readableButton5.gameObject.SetActive(true);
         }
 
-        // panel behind sliders and language buttons
-        if (_eventSystem.currentSelectedGameObject == _slider1 || _eventSystem.currentSelectedGameObject == _slider2 || _eventSystem.currentSelectedGameObject == _slider3 || _eventSystem.currentSelectedGameObject == _slider4)
-        {
-            panelOption.gameObject.SetActive(true);
-        }
-        else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
-        {
-            panelOption.gameObject.SetActive(true);
-        }
-        else
-        {
-            panelOption.gameObject.SetActive(false);
-        }
+        
 
         if (_eventSystem.currentSelectedGameObject == volumeButton && !_volume.activeInHierarchy)
         {
@@ -410,15 +468,84 @@ public class UIManager : MonoBehaviour
             _language.SetActive(true);
         }
 
-        //sliders
-        text1.text = ("volume principal ") + (slider1.value ).ToString();
-        text2.text = ("volume musique ") + (slider2.value ).ToString();
-        text3.text = ("volume effet sonore ") + (slider3.value ).ToString();
-        text4.text = ("volume dialogue ") + (slider4.value ).ToString();
-        
+        if (score < 20)
+        {
+            var tempColor1 = soundMark1rend.color;
+            tempColor1.a = score / 20;
+            soundMark1rend.color = tempColor1;
+            soundMark1.SetActive(true);
+
+            soundMark2.SetActive(false);
+            soundMark3.SetActive(false);
+            soundMark4.SetActive(false);
+            soundMark5.SetActive(false);
+        }
+        else if (score < 40)
+        {
+            var tempColor2 = soundMark2rend.color;
+            tempColor2.a = (score - 20) / 20;
+            soundMark2rend.color = tempColor2;
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(false);
+            soundMark4.SetActive(false);
+            soundMark5.SetActive(false);
+
+        }
+        else if (score < 60)
+        {
+            var tempColor3 = soundMark3rend.color;
+            tempColor3.a = (score - 40) / 20;
+            soundMark3rend.color = tempColor3;
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(true);
+            soundMark4.SetActive(false);
+            soundMark5.SetActive(false);
+
+        }
+        else if (score < 80)
+        {
+            var tempColor4 = soundMark4rend.color;
+            tempColor4.a = (score - 60) / 20;
+            soundMark4rend.color = tempColor4;
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(true);
+            soundMark4.SetActive(true);
+            soundMark5.SetActive(false);
+
+        }
+        else if (score < 100)
+        {
+            var tempColor5 = soundMark5rend.color;
+            tempColor5.a = (score - 80) / 20;
+            soundMark5rend.color = tempColor5;
+            soundMark1.SetActive(true);
+            soundMark2.SetActive(true);
+            soundMark3.SetActive(true);
+            soundMark4.SetActive(true);
+            soundMark5.SetActive(true);
+
+        }
+
+        if (right == 1 && score < 100)
+        {
+            score += 0.5f;
+        }
+        if (left == 1 && score > 0)
+        {
+            score -= 0.5f;
+
+        }
+        Debug.Log(score);
+
     }
 
-
+    private void FixedUpdate()
+    {
+        
+    }
 
 
     private void OnEnable()
