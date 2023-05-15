@@ -17,7 +17,7 @@ public class anim : MonoBehaviour
         controls.actions.read.performed += ctx => animator.SetTrigger("triggerRead");  //    Z    declenche le trigger des readables        oui         fait
         controls.actions.wakeup.performed += ctx => animator.SetTrigger("triggerWake");  //    E    se releve au respawn                    optionnel
         controls.actions.table.performed += ctx => animator.SetTrigger("triggerTable");  //    R    grimper table                           
-        controls.actions.chair.performed += ctx => animator.SetTrigger("triggerChair");  //    T    grimper chaise                          oui
+        controls.actions.chair.performed += ctx => animator.SetTrigger("triggerChair");  //    T    grimper chaise                          oui         en cours
         controls.actions.secu.performed += ctx => animator.SetTrigger("triggerSecu");  //    Y    anim secu room // a voir avec Levi        
         controls.actions.stairs.performed += ctx => animator.SetTrigger("triggerStairs");  //    U    tomber des escaliers                  
         controls.actions.airduct.performed += ctx => animator.SetTrigger("triggerAirduct");  //    I    tomber de la vent
