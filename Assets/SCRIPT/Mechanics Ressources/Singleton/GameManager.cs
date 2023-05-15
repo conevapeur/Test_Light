@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text soustitres;
 
+
+    [SerializeField] Transform firstRoomPop;
+    [SerializeField] Transform firstRoomDestination;
 
 
 
@@ -87,7 +91,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    #region dialogues
+    #region progression
     public void Progress()
     {
         monster.transform.position = locations[progression].transform.position;
@@ -107,6 +111,7 @@ public class GameManager : MonoBehaviour
     private void getDialogue(int _progression)
     {
         coroutineName = "function" + _progression;
+        player.GetComponent<FPC>().haveToDegaine = true;
         StartCoroutine(coroutineName);
     }
 
@@ -290,4 +295,25 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    public void lanceTest()
+    {
+        StartCoroutine(test());
+    }
+    public IEnumerator test()
+    {
+        monster.transform.position = firstRoomPop.position;
+        monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
+        yield return new WaitForSeconds(3);
+
+        monster.GetComponent<NavMeshAgent>().destination = firstRoomDestination.position;
+
+        yield return new WaitForSeconds(3);
+
+        monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
+
+
+
+        yield return null;
+    }
 }

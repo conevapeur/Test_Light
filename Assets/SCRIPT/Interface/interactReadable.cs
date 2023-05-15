@@ -39,7 +39,9 @@ public class interactReadable : MonoBehaviour, IInteract
         Debug.Log("chien");
         Destroy(gameObject);
         page.Play();
-        
+
+        GameManager.instance.player.GetComponent<FPC>().animator.SetTrigger("triggerRead");
+
 
         if (number == 1 )
         {

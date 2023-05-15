@@ -12,7 +12,7 @@ public class interactCard: MonoBehaviour, IInteract
         if (interactReadable.card == true)
         {
             _security.SetTrigger("trigger");
-
+            GameManager.instance.player.GetComponent<FPC>().animator.SetTrigger("triggerCard");
         }
 
     }
