@@ -94,7 +94,9 @@ public class GameManager : MonoBehaviour
     #region progression
     public void Progress()
     {
+        monster.GetComponent<NavMeshAgent>().enabled = false;
         monster.transform.position = locations[progression].transform.position;
+        monster.GetComponent<NavMeshAgent>().enabled = true;
         //Debug.Log("position du monstre : " + (cpt+1));
         //Debug.Log("dialogue n° " + (cpt +1) +" : "+ dialogues[cpt]);
         getDialogue(progression);
@@ -312,7 +314,9 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator test()
     {
+        monster.GetComponent<NavMeshAgent>().enabled = false;
         monster.transform.position = firstRoomPop.position;
+        monster.GetComponent<NavMeshAgent>().enabled = true;
         monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
         yield return new WaitForSeconds(3);
 
