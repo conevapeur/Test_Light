@@ -91,10 +91,12 @@ public class pathcalculator : MonoBehaviour
         if(pathLength < 6)
         {
             monster.GetComponent<s_monster>().isLooking = true;
+            //player.GetComponent<FPC>().animator.SetTrigger("");
         }
         else
         {
             monster.GetComponent<s_monster>().isLooking = false;
+
         }
     }
 }
