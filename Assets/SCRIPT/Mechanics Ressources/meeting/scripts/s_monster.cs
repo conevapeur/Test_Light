@@ -30,7 +30,8 @@ public class s_monster : MonoBehaviour
 
         if(isLooking)
         {
-            if(player.GetComponent<FPC>().isCrouching == false)
+            
+            if (player.GetComponent<FPC>().isCrouching == false)
             {
                 player.GetComponent<FPC>().Die();
                 soustitres.SetText("vous devriez etre mort");

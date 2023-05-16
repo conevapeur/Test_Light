@@ -73,6 +73,8 @@ public class FPC : MonoBehaviour
 
     public Animator animator;
 
+    
+
 
     //sound design 
     [SerializeField] private AudioSource walkSound;
@@ -754,20 +756,26 @@ public class FPC : MonoBehaviour
     
     public void checkMonsterDistance()
     {
-        /*
+        
         if (!isScared && monster_pathDistance < 15)
         {
             Debug.Log("déclanchement mains devant les yeux");
+
+            animator.SetTrigger("triggerHand");
+
             isScared = true;
             terrify();
         }
-        if (isScared && monster_pathDistance > 25)
+        if (isScared && monster_pathDistance > 15)
         {
             isScared = false;
             Debug.Log("n'as plus peur");
+
+            animator.SetTrigger("triggerEndHand");
+
             recover();
         }
-        */
+        
     }
     public void terrify()
     {
