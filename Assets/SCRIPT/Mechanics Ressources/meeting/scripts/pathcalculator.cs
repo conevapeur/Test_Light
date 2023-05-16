@@ -53,8 +53,11 @@ public class pathcalculator : MonoBehaviour
             canJoin = false;
             agent.destination = target.transform.position;
         }
-
-        checkDistance();
+        if(GameManager.instance.progression > 8)
+        {
+            checkDistance();
+        }
+        
     }
 
     public static bool GetPath(NavMeshPath _path, Vector3 fromPos, Vector3 toPos, int passableMask)

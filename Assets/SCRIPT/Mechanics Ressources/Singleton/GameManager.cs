@@ -310,6 +310,7 @@ public class GameManager : MonoBehaviour
 
     public void lanceTest()
     {
+        progression = 10;
         StartCoroutine(test());
     }
     public IEnumerator test()
