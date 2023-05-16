@@ -502,23 +502,124 @@ public class FPC : MonoBehaviour
         toMimic = true;
 
         yield return null;
+        //Debug.Log("fin du goto" +Time.time);
     }
     IEnumerator climb ()
     {
+        //float _cpt = 0;
+        ////canMove = false;
+        ////canLook = false;
+        //lockAbilities("climb");
+
+        //rb.velocity = new Vector3(0,0,0);
+
+        //Transform mimic = target.transform.GetChild(0);
+        //Vector3 targetPos = new Vector3(0,0,0);
+        //Vector3 dir;
+
+
+
+
+
+        //StartCoroutine(goTo(mimic));
+
+        //do
+        //{
+        //    yield return null;
+        //}
+        //while (toMimic == false);
+
+        //rb.useGravity = false;
+
+        //Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        //RaycastHit hit;
+        //if (Physics.Raycast(ray, out hit))
+        //{
+        //    targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1.3f, 0);
+        //}
+
+        ////_escalade.SetTrigger("trigger");
+
+
+        ////animator.SetTrigger("triggerTable");
+        //animator.SetTrigger("triggerChair");
+        ////yield return new WaitForSeconds(climbDelay);
+        ///*
+        //do
+        //{
+        //    _cpt += Time.deltaTime;
+        //    yield return null;
+        //}while(_cpt < climbDelay);
+        //*/
+        ///*
+        //float _timer = 0;
+
+        //while(_timer < climbDelay)
+        //{
+        //    _timer += Time.deltaTime;
+        //    Debug.Log("compteur : " + _timer + "Delai : " + climbDelay);
+        //    yield return null;
+        //}
+        //*/
+        //yield return null;
+
+
+
+
+        //do
+        //{
+        //    //_cpt += Time.deltaTime;
+        //    //
+
+
+        //    //Debug.Log("compteur : " + _cpt + "Delai : " + climbDelay);
+        //    //transform.Translate(Vector3.up * .1f * Time.deltaTime, Space.World);
+        //    transform.position += 1f * Time.deltaTime * Vector3.up;
+
+
+
+
+        //    //Debug.Log("first phase");
+        //    yield return null;
+        //}
+        //while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.3);
+
+        //do
+        //{
+        //    /*
+        //    dir = targetPos - transform.position;
+        //    dir = dir.normalized;
+        //    transform.Translate(dir * 1 * Time.deltaTime, Space.World);*/
+        //    //Debug.Log("first phase"+ Vector3.Distance(targetPos, transform.position));
+
+        //    transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime);
+
+        //    yield return null;
+        //}
+        //while (Vector3.Distance(targetPos, transform.position) > 0.1f);
+
+        //recover();
+        ////canMove = true;
+        ////canLook = true;
+        //rb.useGravity = true;
+        //yield return null;
+
+        //---------------------------------------------------------------Travaux-------------------------------------------------------
+
         float _cpt = 0;
         //canMove = false;
         //canLook = false;
         lockAbilities("climb");
 
-        rb.velocity = new Vector3(0,0,0);
-        
+        rb.velocity = new Vector3(0, 0, 0);
+
         Transform mimic = target.transform.GetChild(0);
-        Vector3 targetPos = new Vector3(0,0,0);
+        Vector3 targetPos = new Vector3(0, 0, 0);
         Vector3 dir;
 
 
 
-        
+
 
         StartCoroutine(goTo(mimic));
 
@@ -528,7 +629,7 @@ public class FPC : MonoBehaviour
         }
         while (toMimic == false);
 
-        rb.useGravity = false;
+        
 
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
@@ -542,41 +643,34 @@ public class FPC : MonoBehaviour
 
         //animator.SetTrigger("triggerTable");
         animator.SetTrigger("triggerChair");
-        //yield return new WaitForSeconds(climbDelay);
-        /*
-        do
-        {
-            _cpt += Time.deltaTime;
-            yield return null;
-        }while(_cpt < climbDelay);
-        */
-
-        float _timer = 0;
-
-        while(_timer < climbDelay)
-        {
-            _timer += Time.deltaTime;
-            Debug.Log("compteur : " + _timer + "Delai : " + climbDelay);
-            yield return null;
-        }
-
+        //Debug.Log("avant wait" +Time.time);
+        yield return new WaitForSeconds(climbDelay);
+        rb.useGravity = false;
         yield return null;
+        //Debug.Log("apres wait" + Time.time);
+        StartCoroutine(ClimbLaSuiteTasCapte(targetPos));
 
-        
+        //---------------------------------------------------------------Travaux-------------------------------------------------------
+    }
 
+    //---------------------------------------------------------------Travaux-------------------------------------------------------
 
+    public IEnumerator ClimbLaSuiteTasCapte(Vector3 targetPos)
+    {
+        //Debug.Log("debut tas capte" + Time.time);
         do
         {
             //_cpt += Time.deltaTime;
             //
-            
-            
-                //Debug.Log("compteur : " + _cpt + "Delai : " + climbDelay);
-                transform.Translate(Vector3.up * 1 * Time.deltaTime, Space.World);
-            
-            
-            
-            
+
+
+            //Debug.Log("compteur : " + _cpt + "Delai : " + climbDelay);
+            //transform.Translate(Vector3.up * .1f * Time.deltaTime, Space.World);
+            transform.position += 1f * Time.deltaTime * Vector3.up;
+
+
+
+
             //Debug.Log("first phase");
             yield return null;
         }
@@ -601,9 +695,9 @@ public class FPC : MonoBehaviour
         //canLook = true;
         rb.useGravity = true;
         yield return null;
-            
-        
     }
+
+    //---------------------------------------------------------------Travaux-------------------------------------------------------
 
     private void setchild(GameObject target)
     {
