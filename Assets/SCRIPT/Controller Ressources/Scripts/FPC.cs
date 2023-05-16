@@ -196,10 +196,14 @@ public class FPC : MonoBehaviour
                 {
                     target = null;
                     rayClimb();
-                    if(target.transform.tag == "climbable")
+                    if(target != null)
                     {
-                        StartCoroutine(climb());
+                        if (target.transform.tag == "climbable")
+                        {
+                            StartCoroutine(climb());
+                        }
                     }
+                    
                     
                 }
             }
