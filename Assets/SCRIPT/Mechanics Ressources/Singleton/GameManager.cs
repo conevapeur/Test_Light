@@ -268,12 +268,18 @@ public class GameManager : MonoBehaviour
 
     IEnumerator function5()
     {
+        player.GetComponent<FPC>().lockAbilities("listening");
+
         Debug.Log("ligne 17");
         soustitres.SetText("Papa, t’es sûr que c’est le bon chemin, les escaliers sont cassés, on ne pourra pas revenir par là.");
         yield return new WaitForSeconds(1);
         Debug.Log("ligne 18");
         soustitres.SetText("Oui, il y a une autre sortie de l'autre côté, on sortira par là.");
         yield return new WaitForSeconds(1);
+
+        
+        player.GetComponent<FPC>().recover();
+        
         Debug.Log("ligne 19");
         soustitres.SetText("Ok, je descends alors");
         yield return new WaitForSeconds(1);
@@ -327,6 +333,9 @@ public class GameManager : MonoBehaviour
 
         monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
 
+        yield return new WaitForSeconds(3);
+        monster.GetComponent<NavMeshAgent>().enabled = false;
+        monster.transform.position = new Vector3(-1000, 0, 0);
 
 
         yield return null;

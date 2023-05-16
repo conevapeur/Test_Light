@@ -88,7 +88,7 @@ public class pathcalculator : MonoBehaviour
 
     private void checkDistance()
     {
-        if(pathLength < 15)
+        if(pathLength < 6)
         {
             monster.GetComponent<s_monster>().isLooking = true;
         }

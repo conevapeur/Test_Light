@@ -117,7 +117,7 @@ public class FPC : MonoBehaviour
         vCamAmplitude = 1f;
 
 
-        climbDelay = 0.3f;
+        //climbDelay = 0.3f;
 
         _redLigths.gameObject.SetActive(false);
 
@@ -505,6 +505,7 @@ public class FPC : MonoBehaviour
     }
     IEnumerator climb ()
     {
+        float _cpt = 0;
         //canMove = false;
         //canLook = false;
         lockAbilities("climb");
@@ -538,18 +539,48 @@ public class FPC : MonoBehaviour
 
         //_escalade.SetTrigger("trigger");
 
+
+        //animator.SetTrigger("triggerTable");
         animator.SetTrigger("triggerChair");
-        yield return new WaitForSeconds(climbDelay);
+        //yield return new WaitForSeconds(climbDelay);
+        /*
+        do
+        {
+            _cpt += Time.deltaTime;
+            yield return null;
+        }while(_cpt < climbDelay);
+        */
+
+        float _timer = 0;
+
+        while(_timer < climbDelay)
+        {
+            _timer += Time.deltaTime;
+            Debug.Log("compteur : " + _timer + "Delai : " + climbDelay);
+            yield return null;
+        }
+
+        yield return null;
 
         
 
+
         do
         {
-            transform.Translate(Vector3.up * 1 * Time.deltaTime, Space.World);
+            //_cpt += Time.deltaTime;
+            //
+            
+            
+                //Debug.Log("compteur : " + _cpt + "Delai : " + climbDelay);
+                transform.Translate(Vector3.up * 1 * Time.deltaTime, Space.World);
+            
+            
+            
+            
             //Debug.Log("first phase");
             yield return null;
         }
-        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.5);
+        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.3);
 
         do
         {
