@@ -757,7 +757,7 @@ public class FPC : MonoBehaviour
     public void checkMonsterDistance()
     {
         
-        if (!isScared && monster_pathDistance < 15)
+        if (!isScared && monster_pathDistance < 15 && GameManager.instance.progression > 8)
         {
             Debug.Log("déclanchement mains devant les yeux");
 
@@ -766,7 +766,7 @@ public class FPC : MonoBehaviour
             isScared = true;
             terrify();
         }
-        if (isScared && monster_pathDistance > 15)
+        if (isScared && monster_pathDistance > 15 && GameManager.instance.progression > 8)
         {
             isScared = false;
             Debug.Log("n'as plus peur");
