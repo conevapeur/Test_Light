@@ -134,6 +134,8 @@ public class UIManager : MonoBehaviour
         soundMark3rend = soundMark3.GetComponent<RawImage>();
         soundMark4rend = soundMark4.GetComponent<RawImage>();
         soundMark5rend = soundMark5.GetComponent<RawImage>();
+
+        score = 50;
     }
 
     void StopLeft()
