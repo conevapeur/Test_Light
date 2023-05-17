@@ -644,7 +644,7 @@ public class FPC : MonoBehaviour
 
 
         //animator.SetTrigger("triggerTable");
-        animator.SetTrigger("triggerChair");
+        animator.SetTrigger("triggerTable");
         //Debug.Log("avant wait" +Time.time);
         yield return new WaitForSeconds(climbDelay);
         rb.useGravity = false;
@@ -668,9 +668,9 @@ public class FPC : MonoBehaviour
 
             //Debug.Log("compteur : " + _cpt + "Delai : " + climbDelay);
             //transform.Translate(Vector3.up * .1f * Time.deltaTime, Space.World);
-            transform.position += 1f * Time.deltaTime * Vector3.up;
-
-
+            transform.position += 0 * Time.deltaTime * Vector3.up;
+            Debug.Log("en train de monter");
+            //yield return new WaitForSeconds(0.1f);
 
 
             //Debug.Log("first phase");
@@ -839,8 +839,4 @@ public class FPC : MonoBehaviour
     
 }
 
-// boutons intéragir
-// pièce test
-// baisser, escalader
-// viualiser
-// exemple rencontre monstre
+//<3

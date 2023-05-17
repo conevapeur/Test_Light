@@ -540,7 +540,7 @@ public class UIManager : MonoBehaviour
             score -= 0.5f;
 
         }
-        Debug.Log(score);
+        //Debug.Log(score);
 
     }
 
