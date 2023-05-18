@@ -93,6 +93,7 @@ public class UIStart : MonoBehaviour
     [SerializeField] private AudioSource audioSelected;
     [SerializeField] private AudioSource audioSelecfion;
     [SerializeField] private AudioSource audioBack;
+    [SerializeField] private AudioSource audioPrincipale;
 
     
     private UI uicontrols;
@@ -102,6 +103,9 @@ public class UIStart : MonoBehaviour
     float score3 = 0;
     int left = 0;
     int right = 0;
+
+    private bool musicFadeOutEnabled = false;
+    [SerializeField] private Animator fadescreen;
 
     private void Awake()
     {
@@ -171,10 +175,7 @@ public class UIStart : MonoBehaviour
 
 
 
-
-
-
-
+  
 
 
 
@@ -314,14 +315,32 @@ public class UIStart : MonoBehaviour
 
     IEnumerator ButtonCoroutine()
     {
-        yield return new WaitForSeconds(0.2f);
-        SceneManager.LoadScene("");
+        musicFadeOutEnabled = true;
+        resumeButton.GetComponent<Button>().enabled = false;
+        fadescreen.SetTrigger("trigger");
+
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("CINEMATIQUES");
     }
 
 
 
     private void Update()
     {
+
+        if (musicFadeOutEnabled)
+        {
+            
+            float newVolume = audioPrincipale.volume - (0.2f * Time.deltaTime);  //change 0.01f to something else to adjust the rate of the volume dropping
+            if (newVolume < 0f)
+            {
+                newVolume = 0f;
+            }
+            audioPrincipale.volume = newVolume;
+        
+        }
+
+
         if (_eventSystem.currentSelectedGameObject == volumeButton && !volume.activeInHierarchy)
         {
             volume.SetActive(true);
