@@ -62,6 +62,24 @@ public partial class @UI : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""down"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd08100b-7c95-4b5d-bded-505a0631f301"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""type"": ""Button"",
+                    ""id"": ""97930188-f24d-44c0-8e4b-5ec1894b3146"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +192,72 @@ public partial class @UI : IInputActionCollection2, IDisposable
                     ""action"": ""left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dd3c83e-6a47-49ad-8a88-77fc2ac536cd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d29b52a4-ee47-4ce4-a641-22eb6f31d98d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4628d25b-7817-4b2d-9070-99f36e00752c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ec49657-4c95-4399-ba27-729847946c56"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""675bbf00-8f15-4871-b6aa-ff0faaf64301"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""220dc03c-4234-4b1c-951c-24bba2661014"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -214,6 +298,8 @@ public partial class @UI : IInputActionCollection2, IDisposable
         m_Menu_back = m_Menu.FindAction("back", throwIfNotFound: true);
         m_Menu_right = m_Menu.FindAction("right", throwIfNotFound: true);
         m_Menu_left = m_Menu.FindAction("left", throwIfNotFound: true);
+        m_Menu_down = m_Menu.FindAction("down", throwIfNotFound: true);
+        m_Menu_up = m_Menu.FindAction("up", throwIfNotFound: true);
         // ActionTest
         m_ActionTest = asset.FindActionMap("ActionTest", throwIfNotFound: true);
         m_ActionTest_interact = m_ActionTest.FindAction("interact", throwIfNotFound: true);
@@ -280,6 +366,8 @@ public partial class @UI : IInputActionCollection2, IDisposable
     private readonly InputAction m_Menu_back;
     private readonly InputAction m_Menu_right;
     private readonly InputAction m_Menu_left;
+    private readonly InputAction m_Menu_down;
+    private readonly InputAction m_Menu_up;
     public struct MenuActions
     {
         private @UI m_Wrapper;
@@ -288,6 +376,8 @@ public partial class @UI : IInputActionCollection2, IDisposable
         public InputAction @back => m_Wrapper.m_Menu_back;
         public InputAction @right => m_Wrapper.m_Menu_right;
         public InputAction @left => m_Wrapper.m_Menu_left;
+        public InputAction @down => m_Wrapper.m_Menu_down;
+        public InputAction @up => m_Wrapper.m_Menu_up;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -309,6 +399,12 @@ public partial class @UI : IInputActionCollection2, IDisposable
                 @left.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeft;
                 @left.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeft;
                 @left.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeft;
+                @down.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnDown;
+                @down.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnDown;
+                @down.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnDown;
+                @up.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnUp;
+                @up.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnUp;
+                @up.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnUp;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -325,6 +421,12 @@ public partial class @UI : IInputActionCollection2, IDisposable
                 @left.started += instance.OnLeft;
                 @left.performed += instance.OnLeft;
                 @left.canceled += instance.OnLeft;
+                @down.started += instance.OnDown;
+                @down.performed += instance.OnDown;
+                @down.canceled += instance.OnDown;
+                @up.started += instance.OnUp;
+                @up.performed += instance.OnUp;
+                @up.canceled += instance.OnUp;
             }
         }
     }
@@ -368,6 +470,8 @@ public partial class @UI : IInputActionCollection2, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
     }
     public interface IActionTestActions
     {

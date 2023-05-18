@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class UIStart : MonoBehaviour
@@ -13,6 +14,8 @@ public class UIStart : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject settingsButton;
+    [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject creditsButton;
     [SerializeField] private GameObject volumeButton;
     [SerializeField] private GameObject controlsButton;
     [SerializeField] private GameObject languageButton;
@@ -23,6 +26,7 @@ public class UIStart : MonoBehaviour
 
     [Header("Start")]
     [SerializeField] private GameObject start;
+    [SerializeField] private GameObject credits;
 
 
     [Header("Settings")]
@@ -86,6 +90,11 @@ public class UIStart : MonoBehaviour
     [SerializeField] private GameObject selector3;
 
 
+    [SerializeField] private AudioSource audioSelected;
+    [SerializeField] private AudioSource audioSelecfion;
+    [SerializeField] private AudioSource audioBack;
+
+    
     private UI uicontrols;
 
     float score1 = 0;
@@ -102,6 +111,7 @@ public class UIStart : MonoBehaviour
         _eventSystem.SetSelectedGameObject(resumeButton);
         options.SetActive(false);
         start.SetActive(true);
+        credits.SetActive(false);   
 
         soundMark1rend1 = soundMark11.GetComponent<RawImage>();
         soundMark2rend1 = soundMark21.GetComponent<RawImage>();
@@ -128,10 +138,46 @@ public class UIStart : MonoBehaviour
         uicontrols.Menu.right.performed += ctx => Right();
         uicontrols.Menu.right.canceled += ctx => StopRight();
 
+        uicontrols.Menu.up.performed += ctx => playHoverUp();
+        uicontrols.Menu.down.performed += ctx => playHoverDown();
+
         score1 = 50;
         score2 = 50;
         score3 = 50;
     }
+
+
+    void playHoverDown()
+    {
+        if (_eventSystem.currentSelectedGameObject == quitButton || _eventSystem.currentSelectedGameObject == languageButton || _eventSystem.currentSelectedGameObject == subtitlesButton || _eventSystem.currentSelectedGameObject == selector3) return;
+        {
+            audioSelecfion.Play();
+            
+        }
+    }
+
+    void playHoverUp()
+    {
+        if (_eventSystem.currentSelectedGameObject == resumeButton || _eventSystem.currentSelectedGameObject == volumeButton || _eventSystem.currentSelectedGameObject == englishButton || _eventSystem.currentSelectedGameObject == selector1) return;
+        {
+            audioSelecfion.Play();
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     void StopLeft()
     {
@@ -163,6 +209,13 @@ public class UIStart : MonoBehaviour
     void Back()
     {
 
+        if (credits.activeInHierarchy)
+        {
+            credits.SetActive(false);
+            start.SetActive(true);
+            _eventSystem.SetSelectedGameObject(creditsButton);
+        }
+        audioBack.Play();
         if (_eventSystem.currentSelectedGameObject == volumeButton || _eventSystem.currentSelectedGameObject == controlsButton || _eventSystem.currentSelectedGameObject == languageButton)
         {
             options.SetActive(false);
@@ -179,8 +232,13 @@ public class UIStart : MonoBehaviour
             _eventSystem.SetSelectedGameObject(languageButton);
 
         }
+        
 
 
+    }
+    public void playSong()
+    {
+        audioSelected.Play();
     }
 
     public void Play()
@@ -243,7 +301,12 @@ public class UIStart : MonoBehaviour
             checkSubtitles.SetActive(true);
         }
     }
-
+    public void Credits()
+    {
+        start.SetActive(false);
+        credits.SetActive(true);
+        
+    }
     public void Quit()
     {
         Application.Quit();
@@ -254,6 +317,8 @@ public class UIStart : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene("");
     }
+
+
 
     private void Update()
     {
@@ -278,7 +343,11 @@ public class UIStart : MonoBehaviour
             language.SetActive(true);
         }
 
-        //
+        // sound
+
+        
+        
+
 
         //
 
@@ -341,6 +410,8 @@ public class UIStart : MonoBehaviour
             soundMark51.SetActive(true);
 
         }
+
+
 
         if (score2 < 20)
         {
@@ -466,7 +537,9 @@ public class UIStart : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    
+
+    private void FixedUpdate()  
     {
         if (_eventSystem.currentSelectedGameObject == selector1)
         {
