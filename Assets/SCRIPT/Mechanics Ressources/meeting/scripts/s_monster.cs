@@ -38,9 +38,10 @@ public class s_monster : MonoBehaviour
             }
             else
             {
-                
-                checkFreq();
-                
+
+                //checkFreq();
+                soustitres.SetText("en sécurité");
+
             }
         }
         
