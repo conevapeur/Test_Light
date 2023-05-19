@@ -314,26 +314,31 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public void lanceTest()
+    public void lanceMeeting1()
     {
         progression = 10;
-        StartCoroutine(test());
+        StartCoroutine(Meeting1());
     }
-    public IEnumerator test()
+    public IEnumerator Meeting1()
     {
         monster.GetComponent<NavMeshAgent>().enabled = false;
         monster.transform.position = firstRoomPop.position;
         monster.GetComponent<NavMeshAgent>().enabled = true;
+
+
         monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
         yield return new WaitForSeconds(5);
+
 
         monster.GetComponent<NavMeshAgent>().destination = firstRoomDestination.position;
-
+        //monster.GetComponent<NavMeshAgent>().destination = player.transform.position;
         yield return new WaitForSeconds(5);
+
 
         monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
-
         yield return new WaitForSeconds(5);
+
+
         monster.GetComponent<NavMeshAgent>().enabled = false;
         monster.transform.position = locations[0].transform.position;
         monster.GetComponent<NavMeshAgent>().enabled = true;
