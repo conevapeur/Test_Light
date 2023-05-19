@@ -12,7 +12,7 @@ public class pathcalculator : MonoBehaviour
     private NavMeshAgent agent ;
 
     
-    public bool canPath;
+    //public bool canPath;
 
     private int mask;
 
@@ -38,36 +38,58 @@ public class pathcalculator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+        if(agent == null)
+            agent = monster.GetComponent<NavMeshAgent>();
+
 
         realLength = Vector3.Distance(monster.transform.position, target.transform.position);
+        
+        
         GetPath(path, monster.transform.position, player.transform.position, NavMesh.AllAreas);
         pathLength = GetPathLength(path);
 
         FPC.monster_pathDistance = pathLength;
         //canPath = NavMesh.CalculatePath(target.transform.position, monster.transform.position, NavMesh.AllAreas, path);
         
+
         if(canJoin)
         {
             canJoin = false;
             agent.destination = target.transform.position;
         }
+
+
         if(GameManager.instance.progression > 8)
         {
             checkDistance();
         }
-        
+
+        //Debug.Log(pathLength);
+
     }
 
     public static bool GetPath(NavMeshPath _path, Vector3 fromPos, Vector3 toPos, int passableMask)
     {
         if(_path != null)
+        {
             _path.ClearCorners();
+            //Debug.Log("path different de nul");
+        }
+
+
 
         if (NavMesh.CalculatePath(fromPos, toPos, passableMask, _path) == false)
+        {
+            Debug.Log("CalculatePath == false");
+            Debug.Log(fromPos);
+            Debug.Log(toPos);
+            Debug.Log(_path);
+            Debug.Log(passableMask);
+            Debug.Log("CalculatePath == false");
+
             return false;
 
+        }
         return true;
     }
 
@@ -77,6 +99,7 @@ public class pathcalculator : MonoBehaviour
 
         if ((_path.status != NavMeshPathStatus.PathInvalid) && (_path.corners.Length > 1))
         {
+            //Debug.Log("path status different de false");
             for (int i = 1; i < _path.corners.Length; ++i)
             {
                 lng += Vector3.Distance(_path.corners[i - 1], _path.corners[i]);
@@ -88,7 +111,7 @@ public class pathcalculator : MonoBehaviour
 
     private void checkDistance()
     {
-        if(pathLength < 6)
+        if(pathLength < 6 && pathLength > 0)
         {
             monster.GetComponent<s_monster>().isLooking = true;
             //player.GetComponent<FPC>().animator.SetTrigger("");
