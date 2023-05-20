@@ -12,6 +12,7 @@ public class CineManager : MonoBehaviour
     int score = 0;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator animatorSkip;
     [SerializeField] private GameObject skipButton;
 
     private void Awake()
@@ -20,7 +21,6 @@ public class CineManager : MonoBehaviour
 
         controls = new UI();
         controls.Menu.back.performed += ctx => Skip();
-        skipButton.SetActive(false);
     }
 
     public void ChangeScene()
@@ -35,8 +35,7 @@ public class CineManager : MonoBehaviour
         if (score == 0)
         {
             score += 1;
-            skipButton.SetActive(true);
-
+            animatorSkip.SetTrigger("trigger");
         }
         else
         {
