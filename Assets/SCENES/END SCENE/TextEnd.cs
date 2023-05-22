@@ -12,16 +12,23 @@ public class TextEnd : MonoBehaviour
     [SerializeField] TMP_Text credits;
     [SerializeField] TMP_Text skip;
 
-    public void English()
+    private void Awake()
     {
-        credits.SetText("credits en anglais");
-        credits.SetText("SKIP");
-    }
+        if (!UIStart.ENG && !UIStart.FR)
+        {
+            UIStart.ENG = true;
+        }
 
-    public void French()
-    {
-        credits.SetText("credits en francais");
-        credits.SetText("passer");
-
+        if (!UIStart.ENG)
+        {
+            credits.SetText("credits en anglais");
+            credits.SetText("SKIP");
+        }
+        else
+        {
+            credits.SetText("credits en francais");
+            credits.SetText("passer");
+        }
     }
+    
 }
