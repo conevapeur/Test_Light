@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text soustitres;
 
 
-    [SerializeField] Transform firstRoomPop;
-    [SerializeField] Transform firstRoomDestination;
+    [SerializeField] GameObject firstRoom;
+    [SerializeField] GameObject secondRoom;
 
 
 
@@ -326,20 +326,53 @@ public class GameManager : MonoBehaviour
     public IEnumerator Meeting1()
     {
         monster.GetComponent<NavMeshAgent>().enabled = false;
-        monster.transform.position = firstRoomPop.position;
+        monster.transform.position = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         monster.GetComponent<NavMeshAgent>().enabled = true;
 
 
-        monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
+        monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         yield return new WaitForSeconds(5);
 
 
-        monster.GetComponent<NavMeshAgent>().destination = firstRoomDestination.position;
+        monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().point.transform.position;
         //monster.GetComponent<NavMeshAgent>().destination = player.transform.position;
         yield return new WaitForSeconds(5);
 
 
-        monster.GetComponent<NavMeshAgent>().destination = firstRoomPop.position;
+        monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        yield return new WaitForSeconds(5);
+
+
+        monster.GetComponent<NavMeshAgent>().enabled = false;
+        monster.transform.position = locations[0].transform.position;
+        monster.GetComponent<NavMeshAgent>().enabled = true;
+
+        yield return null;
+    }
+
+
+    public void lanceMeeting2()
+    {
+        progression = 10;
+        StartCoroutine(Meeting2());
+    }
+    public IEnumerator Meeting2()
+    {
+        monster.GetComponent<NavMeshAgent>().enabled = false;
+        monster.transform.position = secondRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        monster.GetComponent<NavMeshAgent>().enabled = true;
+
+
+        monster.GetComponent<NavMeshAgent>().destination = secondRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        yield return new WaitForSeconds(5);
+
+
+        monster.GetComponent<NavMeshAgent>().destination = secondRoom.GetComponent<firstRoomTrigger>().point.transform.position;
+        //monster.GetComponent<NavMeshAgent>().destination = player.transform.position;
+        yield return new WaitForSeconds(5);
+
+
+        monster.GetComponent<NavMeshAgent>().destination = secondRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         yield return new WaitForSeconds(5);
 
 
