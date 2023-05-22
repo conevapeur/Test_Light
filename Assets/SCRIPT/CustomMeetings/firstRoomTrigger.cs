@@ -8,6 +8,9 @@ public class firstRoomTrigger : MonoBehaviour
 
     public UnityEvent OnEnter;
 
+    public GameObject start;
+    public GameObject point;
+
     // Start is called before the first frame update
     void Start()
     {

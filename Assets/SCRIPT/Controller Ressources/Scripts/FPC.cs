@@ -85,6 +85,8 @@ public class FPC : MonoBehaviour
    //A VERIFIER QUE CA SERT ENCORE MAIS JE PENSE QUE NON 
     // lights
    // LightmapData[] _lightmapData;
+    
+    /*
     [SerializeField] private GameObject _redLigths;
     [SerializeField] private GameObject _naturalLigths;
 
@@ -93,6 +95,7 @@ public class FPC : MonoBehaviour
     [SerializeField] private Animator _security;
     [SerializeField] private Animator _archives;
     [SerializeField] private Animator _escalade;
+    */
 
     [SerializeField] private float climbDelay;
     ///////////////////////////////////
@@ -121,7 +124,7 @@ public class FPC : MonoBehaviour
 
         //climbDelay = 0.3f;
 
-        _redLigths.gameObject.SetActive(false);
+        //_redLigths.gameObject.SetActive(false);
 
         talkieDegaine = false;
     }

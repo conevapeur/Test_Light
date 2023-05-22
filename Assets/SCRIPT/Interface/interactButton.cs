@@ -11,7 +11,7 @@ public class interactButton : MonoBehaviour, IInteract
 
     private void Start()
     {
-        
+        _redLigths.gameObject.SetActive(false);
     }
     public void OnInteract()
     {
