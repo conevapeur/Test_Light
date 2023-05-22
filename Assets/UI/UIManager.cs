@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 //using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     [Header("Quit")]
     [SerializeField] private GameObject quitPanel;
     [SerializeField] private GameObject noButton;
+    [SerializeField] private GameObject yesButton;
 
 
     [Space(10)]
@@ -143,6 +145,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject boxFrench;
     [SerializeField] private GameObject boxSubtitles;
 
+    [Space(10)]
+    [SerializeField] private AudioSource audioBack;
+    [SerializeField] private AudioSource audioSelected;
+    [SerializeField] private AudioSource audioSelecfion;
+
+    [SerializeField] private GameObject subtitlesButton;
+
+
+
+
+
     private void Awake()
     {
         controls = new UI();
@@ -189,12 +202,32 @@ public class UIManager : MonoBehaviour
         soundMark4rend3 = soundMark43.GetComponent<RawImage>();
         soundMark5rend3 = soundMark53.GetComponent<RawImage>();
 
+        controls.Menu.up.performed += ctx => playHoverUp();
+        controls.Menu.down.performed += ctx => playHoverDown();
+
         score1 = 50;
         score2 = 50;
         score3 = 50;
 
     }
 
+    void playHoverDown()
+    {
+        if (_eventSystem.currentSelectedGameObject == quitButton || _eventSystem.currentSelectedGameObject == languageButton || _eventSystem.currentSelectedGameObject == subtitlesButton || _eventSystem.currentSelectedGameObject == selector3 || _eventSystem.currentSelectedGameObject == noButton || _eventSystem.currentSelectedGameObject == readableButton5) return;
+        {
+            audioSelecfion.Play();
+
+        }
+    }
+
+    void playHoverUp()
+    {
+        if (_eventSystem.currentSelectedGameObject == resumeButton || _eventSystem.currentSelectedGameObject == volumeButton || _eventSystem.currentSelectedGameObject == englishButton || _eventSystem.currentSelectedGameObject == selector1|| _eventSystem.currentSelectedGameObject == yesButton || _eventSystem.currentSelectedGameObject == readableButton1) return;
+        {
+            audioSelecfion.Play();
+
+        }
+    }
     void StopLeft()
     {
         left = 0;
@@ -253,20 +286,27 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(noButton);
         //SceneManager.LoadScene(scene);
+        audioSelected.Play();
     }
 
     public void Yes()
     {
         SceneManager.LoadScene(scene);
+        audioSelected.Play();
+
     }
     public void No()
     {
         quitPanel.SetActive(false);
         pauseMenu.SetActive(true);
         _eventSystem.SetSelectedGameObject(quitButton);
+        audioSelected.Play();
+
     }
     public void Infos()
     {
+        audioSelected.Play();
+
         infosMenu.SetActive(true);
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(readableButton1);
@@ -298,6 +338,8 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(volumeButton);
         _volume.SetActive(true);
+        audioSelected.Play();
+
     }
 
     public void Back()
@@ -306,6 +348,8 @@ public class UIManager : MonoBehaviour
         if (pauseMenu.activeInHierarchy)
         {
             Resume();
+            audioBack.Play();
+
         }
 
         else if (quitPanel.activeInHierarchy)
@@ -313,22 +357,30 @@ public class UIManager : MonoBehaviour
             quitPanel.SetActive(false);
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(quitButton);
+            audioBack.Play();
+
         }
 
 
         else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton)
         {
             _eventSystem.SetSelectedGameObject(languageButton);
+            audioBack.Play();
+
         }
         else if (_eventSystem.currentSelectedGameObject == selector1 || _eventSystem.currentSelectedGameObject == selector2 || _eventSystem.currentSelectedGameObject == selector3)
         {
             _eventSystem.SetSelectedGameObject(volumeButton);
+            audioBack.Play();
+
         }
 
         else if (optionsMenu.activeInHierarchy)
         {
             optionsMenu.SetActive(false);
             pauseMenu.SetActive(true);
+            audioBack.Play();
+
             _eventSystem.SetSelectedGameObject(optionButton);
         }
 
@@ -337,31 +389,43 @@ public class UIManager : MonoBehaviour
 
         else if (readable1.activeInHierarchy)
         {
+            audioBack.Play();
+
             readable1.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton1);
         }
         else if (readable2.activeInHierarchy)
         {
+            audioBack.Play();
+
             readable2.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton2);
         }
         else if (readable3.activeInHierarchy)
         {
+            audioBack.Play();
+
             readable3.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton3);
         }
         else if (readable4.activeInHierarchy)
         {
+            audioBack.Play();
+
             readable4.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton4);
         }
         else if (readable5.activeInHierarchy)
         {
+            audioBack.Play();
+
             readable5.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton5);
         }
         else if (infosMenu.activeInHierarchy)
         {
+            audioBack.Play();
+
             infosMenu.SetActive(false);
             pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(infosButton);
@@ -372,6 +436,8 @@ public class UIManager : MonoBehaviour
     public void Volume()
     {
         _eventSystem.SetSelectedGameObject(selector1);
+        audioSelected.Play();
+
 
     }
     public void Controls()
@@ -381,10 +447,14 @@ public class UIManager : MonoBehaviour
     public void Language()
     {
         _eventSystem.SetSelectedGameObject(englishButton);
+        audioSelected.Play();
+
     }
 
     public void English()
     {
+        audioSelected.Play();
+
 
         if (checkEnglish.activeInHierarchy == false)
         {
@@ -394,6 +464,8 @@ public class UIManager : MonoBehaviour
     }
     public void French()
     {
+        audioSelected.Play();
+
         if (checkFrench.activeInHierarchy == false)
         {
             checkFrench.SetActive(true);
@@ -403,6 +475,7 @@ public class UIManager : MonoBehaviour
     }
     public void Subtitles()
     {
+        audioSelected.Play();
 
         if (checkSubtitles.activeInHierarchy)
         {
@@ -449,6 +522,8 @@ public class UIManager : MonoBehaviour
     */
     public void Readable1()
     {
+        audioSelected.Play();
+
         readable1.gameObject.SetActive(true);
         readable2.gameObject.SetActive(false);
         readable3.gameObject.SetActive(false);
@@ -459,6 +534,8 @@ public class UIManager : MonoBehaviour
 
     public void Readable2()
     {
+        audioSelected.Play();
+
         readable1.gameObject.SetActive(false);
         readable2.gameObject.SetActive(true);
         readable3.gameObject.SetActive(false);
@@ -469,6 +546,8 @@ public class UIManager : MonoBehaviour
 
     public void Readable3()
     {
+        audioSelected.Play();
+
         readable1.gameObject.SetActive(false);
         readable2.gameObject.SetActive(false);
         readable3.gameObject.SetActive(true);
@@ -479,6 +558,8 @@ public class UIManager : MonoBehaviour
 
     public void Readable4()
     {
+        audioSelected.Play();
+
         readable1.gameObject.SetActive(false);
         readable2.gameObject.SetActive(false);
         readable3.gameObject.SetActive(false);
@@ -489,6 +570,8 @@ public class UIManager : MonoBehaviour
 
     public void Readable5()
     {
+        audioSelected.Play();
+
         readable1.gameObject.SetActive(false);
         readable2.gameObject.SetActive(false);
         readable3.gameObject.SetActive(false);
