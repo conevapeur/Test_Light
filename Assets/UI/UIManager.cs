@@ -47,6 +47,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject readableButton5;
 
     [Space(10)]
+
+    [SerializeField] private GameObject readableImage1;
+    [SerializeField] private GameObject readableImage2;
+    [SerializeField] private GameObject readableImage3;
+    [SerializeField] private GameObject readableImage4;
+    [SerializeField] private GameObject readableImage5;
+
+  
+
+    [Space(10)]
     [Header("Option")]
     [SerializeField] private GameObject languageButton;
     [SerializeField] private GameObject volumeButton;
@@ -260,6 +270,27 @@ public class UIManager : MonoBehaviour
         infosMenu.SetActive(true);
         pauseMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(readableButton1);
+
+        if (interactReadable.readable1 == true)
+        {
+            readableButton1.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable2 == true)
+        {
+            readableButton2.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable3 == true)
+        {
+            readableButton3.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable4 == true)
+        {
+            readableButton4.gameObject.SetActive(true);
+        }
+        if (interactReadable.readable5 == true)
+        {
+            readableButton5.gameObject.SetActive(true);
+        }
     }
     public void Options()
     {
@@ -472,27 +503,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        //readable found ?
-        if (interactReadable.readable1 == true)
-        {
-            readableButton1.gameObject.SetActive(true);
-        }
-        if (interactReadable.readable2 == true)
-        {
-            readableButton2.gameObject.SetActive(true);
-        }
-        if (interactReadable.readable3 == true)
-        {
-            readableButton3.gameObject.SetActive(true);
-        }
-        if (interactReadable.readable4 == true)
-        {
-            readableButton4.gameObject.SetActive(true);
-        }
-        if (interactReadable.readable5 == true)
-        {
-            readableButton5.gameObject.SetActive(true);
-        }
+    
 
 
 
@@ -736,6 +747,48 @@ public class UIManager : MonoBehaviour
             }
         }
 
+
+        if (_eventSystem.currentSelectedGameObject == readableButton1)
+        {
+            readableImage1.SetActive(true);
+            readableImage2.SetActive(false);
+            readableImage3.SetActive(false);
+            readableImage4.SetActive(false);
+            readableImage5.SetActive(false);
+        }
+        if (_eventSystem.currentSelectedGameObject == readableButton2)
+        {
+            readableImage1.SetActive(false);
+            readableImage2.SetActive(true);
+            readableImage3.SetActive(false);
+            readableImage4.SetActive(false);
+            readableImage5.SetActive(false);
+
+        }
+        if (_eventSystem.currentSelectedGameObject == readableButton3)
+        {
+            readableImage1.SetActive(false);
+            readableImage2.SetActive(false);
+            readableImage3.SetActive(true);
+            readableImage4.SetActive(false);
+            readableImage5.SetActive(false);
+        }
+        if (_eventSystem.currentSelectedGameObject == readableButton4)
+        {
+            readableImage1.SetActive(false);
+            readableImage2.SetActive(false);
+            readableImage3.SetActive(false);
+            readableImage4.SetActive(true);
+            readableImage5.SetActive(false);
+        }
+        if (_eventSystem.currentSelectedGameObject == readableButton5)
+        {
+            readableImage1.SetActive(false);
+            readableImage2.SetActive(false);
+            readableImage3.SetActive(false);
+            readableImage4.SetActive(false);
+            readableImage5.SetActive(true);
+        }
 
     }
 
