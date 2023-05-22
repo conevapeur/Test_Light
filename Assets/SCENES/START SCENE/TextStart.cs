@@ -36,7 +36,15 @@ public class TextStart : MonoBehaviour
     [SerializeField] TMP_Text back1;
     //[SerializeField] TMP_Text back2;
     [SerializeField] TMP_Text back3;
+    private void Awake()
+    {
+        if (!UIStart.ENG && !UIStart.FR)
+        {
+            UIStart.ENG = true;
+        }
 
+        
+    }
     public void English()
     {
         startB.SetText("START");

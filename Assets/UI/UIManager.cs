@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 //using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -153,7 +154,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject subtitlesButton;
 
 
-
+    [SerializeField] private UnityEvent TextFR;
+    [SerializeField] private UnityEvent TextENG;
 
 
     private void Awake()
@@ -209,6 +211,15 @@ public class UIManager : MonoBehaviour
         score2 = 50;
         score3 = 50;
 
+        if (UIStart.ENG)
+        {
+            TextENG.Invoke();
+        }
+        else
+        {
+            TextFR.Invoke();
+
+        }
     }
 
     void playHoverDown()
@@ -460,6 +471,8 @@ public class UIManager : MonoBehaviour
         {
             checkEnglish.SetActive(true);
             checkFrench.SetActive(false);
+            UIStart.ENG = true; UIStart.FR = false;
+            TextENG.Invoke();
         }
     }
     public void French()
@@ -470,6 +483,8 @@ public class UIManager : MonoBehaviour
         {
             checkFrench.SetActive(true);
             checkEnglish.SetActive(false);
+            UIStart.ENG = false; UIStart.FR = true;
+            TextFR.Invoke();
         }
 
     }
