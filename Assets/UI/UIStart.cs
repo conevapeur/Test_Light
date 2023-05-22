@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -95,6 +96,9 @@ public class UIStart : MonoBehaviour
     [SerializeField] private AudioSource audioBack;
     [SerializeField] private AudioSource audioPrincipale;
 
+    [SerializeField] private UnityEvent TextFR;
+    [SerializeField] private UnityEvent TextENG;
+
     
     private UI uicontrols;
 
@@ -106,6 +110,12 @@ public class UIStart : MonoBehaviour
 
     private bool musicFadeOutEnabled = false;
     [SerializeField] private Animator fadescreen;
+
+    static public bool ENG = true;
+    static public bool FR = false;
+
+
+    
 
     private void Awake()
     {
@@ -148,6 +158,16 @@ public class UIStart : MonoBehaviour
         score1 = 50;
         score2 = 50;
         score3 = 50;
+
+        if (ENG)
+        {
+            TextENG.Invoke();
+        }
+        else
+        {
+            TextFR.Invoke();
+
+        }
     }
 
 
@@ -170,12 +190,6 @@ public class UIStart : MonoBehaviour
     }
 
 
-
-
-
-
-
-  
 
 
 
@@ -215,25 +229,33 @@ public class UIStart : MonoBehaviour
             credits.SetActive(false);
             start.SetActive(true);
             _eventSystem.SetSelectedGameObject(creditsButton);
+
+            audioBack.Play();
+
         }
-        audioBack.Play();
         if (_eventSystem.currentSelectedGameObject == volumeButton || _eventSystem.currentSelectedGameObject == controlsButton || _eventSystem.currentSelectedGameObject == languageButton)
         {
             options.SetActive(false);
             start.SetActive(true);
             _eventSystem.SetSelectedGameObject(settingsButton);
+            audioBack.Play();
+
 
         }
         else if (_eventSystem.currentSelectedGameObject == selector1 || _eventSystem.currentSelectedGameObject == selector2 || _eventSystem.currentSelectedGameObject == selector3)
         {
             _eventSystem.SetSelectedGameObject(volumeButton);
+            audioBack.Play();
+
         }
         else if (_eventSystem.currentSelectedGameObject == frenchButton || _eventSystem.currentSelectedGameObject == englishButton || _eventSystem.currentSelectedGameObject == subtitlesButton)
         {
             _eventSystem.SetSelectedGameObject(languageButton);
+            audioBack.Play();
+
 
         }
-        
+
 
 
     }
@@ -278,6 +300,8 @@ public class UIStart : MonoBehaviour
         {
             checkEnglish.SetActive(true);
             checkFrench.SetActive(false);
+            ENG = true; FR= false;
+            TextENG.Invoke();
         }
     }
     public void French()
@@ -286,6 +310,9 @@ public class UIStart : MonoBehaviour
         {
             checkFrench.SetActive(true);
             checkEnglish.SetActive(false);
+            ENG = false; FR = true;
+            TextFR.Invoke();
+
         }
 
     }

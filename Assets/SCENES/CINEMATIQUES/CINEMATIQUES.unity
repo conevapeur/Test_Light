@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 261.8028, g: 324.33075, b: 429.2505, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -474,7 +474,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 518592972}
   animatorSkip: {fileID: 2034735502}
-  skipButton: {fileID: 2034735498}
+  audioPrincipale: {fileID: 0}
+  TextFR:
+    m_PersistentCalls:
+      m_Calls: []
+  TextENG:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &518592972
 Animator:
   serializedVersion: 4
@@ -709,8 +715,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

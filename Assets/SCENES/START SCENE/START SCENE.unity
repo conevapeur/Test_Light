@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1263,7 +1263,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 461392979}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 632840554}
+        m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
+        m_MethodName: playSong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &461392979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,6 +1811,36 @@ MonoBehaviour:
   audioSelecfion: {fileID: 547786775}
   audioBack: {fileID: 1122360433}
   audioPrincipale: {fileID: 934654263}
+  TextFR:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1483012367}
+        m_TargetAssemblyTypeName: TextStart, Assembly-CSharp
+        m_MethodName: French
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TextENG:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1483012367}
+        m_TargetAssemblyTypeName: TextStart, Assembly-CSharp
+        m_MethodName: English
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   fadescreen: {fileID: 1305977999}
 --- !u!1 &660118954
 GameObject:
@@ -2037,7 +2079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 291, y: -189}
+  m_AnchoredPosition: {x: 236, y: -189}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696255106
@@ -2460,7 +2502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Merci   Lequipe
+  m_text: X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7d87f128dd8ee24697de87fae886b9a, type: 2}
   m_sharedMaterial: {fileID: 8743380818532098993, guid: d7d87f128dd8ee24697de87fae886b9a,
@@ -2754,7 +2796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1056285881
 Transform:
   m_ObjectHideFlags: 0
@@ -4163,6 +4205,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 632840554}
+        m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
+        m_MethodName: playSong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1376475090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4297,7 +4351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 291.00003, y: -189}
+  m_AnchoredPosition: {x: 236.00003, y: -189}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393070738
@@ -4617,7 +4671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1483012366}
-  - component: {fileID: 1483012365}
+  - component: {fileID: 1483012367}
   m_Layer: 0
   m_Name: Trad Manager
   m_TagString: Untagged
@@ -4625,22 +4679,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1483012365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483012364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1446cdf242e1848a523219aa3b9d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLanguage: 0
-  currentLanguageCode: 
-  languagesHeaders: []
-  isReady: 0
 --- !u!4 &1483012366
 Transform:
   m_ObjectHideFlags: 0
@@ -4656,6 +4694,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483012367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483012364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dcf03cce8b792408acb574c152c5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startB: {fileID: 1187745444}
+  creditsB: {fileID: 134567576}
+  settingsB: {fileID: 1427795632}
+  quitB: {fileID: 1090977238}
+  credits: {fileID: 924029163}
+  settings: {fileID: 29539349}
+  controls: {fileID: 461392979}
+  volume: {fileID: 1625993154}
+  masterV: {fileID: 1644865785}
+  SFXV: {fileID: 911336885}
+  DialoguesV: {fileID: 1487195506}
+  language: {fileID: 1540135062}
+  english: {fileID: 1782105936}
+  french: {fileID: 1726770637}
+  subtitles: {fileID: 1376475090}
+  back1: {fileID: 1702117138}
+  back3: {fileID: 1153886229}
 --- !u!1 &1487195503
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,6 +5065,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 632840554}
         m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
+        m_MethodName: playSong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 632840554}
+        m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
         m_MethodName: Language
         m_Mode: 1
         m_Arguments:
@@ -5265,6 +5344,18 @@ MonoBehaviour:
       - m_Target: {fileID: 632840554}
         m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
         m_MethodName: Volume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 632840554}
+        m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
+        m_MethodName: playSong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5784,6 +5875,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 632840554}
+        m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
+        m_MethodName: playSong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1726770637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6050,6 +6153,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 632840554}
+        m_TargetAssemblyTypeName: UIStart, Assembly-CSharp
+        m_MethodName: playSong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1782105936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6163,7 +6278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1819232446
 Transform:
   m_ObjectHideFlags: 0

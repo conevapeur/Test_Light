@@ -1,55 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class CineManager : MonoBehaviour
+public class endManager : MonoBehaviour
 {
 
     private UI controls;
     int score = 0;
 
+
     [SerializeField] private Animator animator;
+
     [SerializeField] private Animator animatorSkip;
 
     private bool musicFadeOutEnabled = false;
+
     [SerializeField] private AudioSource audioPrincipale;
-    [SerializeField] private UnityEvent TextFR;
-    [SerializeField] private UnityEvent TextENG;
 
     private void Awake()
     {
-        animator.SetTrigger("triggercine");
-
         controls = new UI();
         controls.Menu.back.performed += ctx => Skip();
-
-        if (UIStart.ENG)
-        {
-            TextENG.Invoke();
-        }
-        else
-        {
-            TextFR.Invoke();
-
-        }
-
     }
 
     public void ChangeScene()
     {
 
-        SceneManager.LoadScene("END");
+        SceneManager.LoadScene("START SCENE");
     }
+
 
     public void EndAnim()
     {
         StartCoroutine(NextScene());
     }
-
 
     void Skip()
     {
@@ -97,6 +84,5 @@ public class CineManager : MonoBehaviour
     private void OnDisable()
     {
         controls.Menu.Disable();
-    } 
-
+    }
 }
