@@ -17,8 +17,7 @@ public class CineManager : MonoBehaviour
 
     private bool musicFadeOutEnabled = false;
     [SerializeField] private AudioSource audioPrincipale;
-    [SerializeField] private UnityEvent TextFR;
-    [SerializeField] private UnityEvent TextENG;
+    
 
     private void Awake()
     {
@@ -27,15 +26,7 @@ public class CineManager : MonoBehaviour
         controls = new UI();
         controls.Menu.back.performed += ctx => Skip();
 
-        if (UIStart.ENG)
-        {
-            TextENG.Invoke();
-        }
-        else
-        {
-            TextFR.Invoke();
-
-        }
+        
 
     }
 
@@ -98,5 +89,13 @@ public class CineManager : MonoBehaviour
     {
         controls.Menu.Disable();
     } 
+
+
+
+
+    
+
+
+    // play sound for animation
 
 }
