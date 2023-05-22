@@ -645,7 +645,15 @@ public class FPC : MonoBehaviour
             targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1f, 0);
         }
 
+        
         targetPos = new Vector3(target.GetComponent<Collider>().bounds.center.x, target.GetComponent<Collider>().bounds.max.y + 1.1f, target.GetComponent<Collider>().bounds.center.z);
+        
+        float offX = target.GetComponent<Collider>().bounds.center.x - transform.position.x;
+        
+        float offZ = target.GetComponent<Collider>().bounds.center.z - transform.position.z;
+
+        targetPos += new Vector3(offX, 0, offZ).normalized * .3f;
+
         //_escalade.SetTrigger("trigger");
 
 
