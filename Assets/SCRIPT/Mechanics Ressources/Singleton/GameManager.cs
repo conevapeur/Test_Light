@@ -113,7 +113,8 @@ public class GameManager : MonoBehaviour
     private void getDialogue(int _progression)
     {
         coroutineName = "function" + _progression;
-        player.GetComponent<FPC>().haveToDegaine = true;
+        if(progression > 0)
+            player.GetComponent<FPC>().haveToDegaine = true;
         StartCoroutine(coroutineName);
     }
 
@@ -126,6 +127,8 @@ public class GameManager : MonoBehaviour
     {
         talkie.GetComponent<talkie>().curFreq = talkie.GetComponent<talkie>().state;
         player.GetComponent<FPC>().lockAbilities("listening");
+        player.GetComponent<FPC>().animator.SetTrigger("triggerTalk");
+            
         /*
         AudioClip.play
         soustitre.setText(tableau[ligne][langue]);
@@ -169,7 +172,8 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(7);
         soustitres.SetText(" ");
-        player.GetComponent<FPC>().haveToDegaine = true;
+        //player.GetComponent<FPC>().haveToDegaine = true;
+        player.GetComponent<FPC>().animator.SetTrigger("triggerEndTalk");
         yield return null;
     }
 
