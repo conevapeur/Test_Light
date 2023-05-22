@@ -482,6 +482,7 @@ public class FPC : MonoBehaviour
 
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
+        rb.isKinematic = true;
         toMimic = false;
         do
         {
@@ -501,6 +502,7 @@ public class FPC : MonoBehaviour
         }
         while (Vector3.Distance(target.position, transform.position) > 0.3f || Quaternion.Angle(target.rotation, transform.rotation) > 1 );
         rb.useGravity = true;
+        rb.isKinematic = false;
         transform.position = target.position;
         transform.rotation = target.rotation;
 
@@ -640,8 +642,17 @@ public class FPC : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1.3f, 0);
+            targetPos = new Vector3(hit.point.x, target.GetComponent<Collider>().bounds.max.y, hit.point.z) + new Vector3(0, 1f, 0);
         }
+
+        
+        targetPos = new Vector3(target.GetComponent<Collider>().bounds.center.x, target.GetComponent<Collider>().bounds.max.y + 1.1f, target.GetComponent<Collider>().bounds.center.z);
+        
+        float offX = target.GetComponent<Collider>().bounds.center.x - transform.position.x;
+        
+        float offZ = target.GetComponent<Collider>().bounds.center.z - transform.position.z;
+
+        targetPos += new Vector3(offX, 0, offZ).normalized * .3f;
 
         //_escalade.SetTrigger("trigger");
 
@@ -651,6 +662,7 @@ public class FPC : MonoBehaviour
         //Debug.Log("avant wait" +Time.time);
         yield return new WaitForSeconds(climbDelay);
         rb.useGravity = false;
+        rb.isKinematic = true;
         yield return null;
         //Debug.Log("apres wait" + Time.time);
         StartCoroutine(ClimbLaSuiteTasCapte(targetPos));
@@ -671,7 +683,7 @@ public class FPC : MonoBehaviour
 
             //Debug.Log("compteur : " + _cpt + "Delai : " + climbDelay);
             //transform.Translate(Vector3.up * .1f * Time.deltaTime, Space.World);
-            transform.position += 0 * Time.deltaTime * Vector3.up;
+            transform.position += 1.5f * Time.deltaTime * Vector3.up;
             Debug.Log("en train de monter");
             //yield return new WaitForSeconds(0.1f);
 
@@ -679,7 +691,7 @@ public class FPC : MonoBehaviour
             //Debug.Log("first phase");
             yield return null;
         }
-        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 0.3);
+        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 1.3);
 
         do
         {
@@ -699,6 +711,7 @@ public class FPC : MonoBehaviour
         //canMove = true;
         //canLook = true;
         rb.useGravity = true;
+        rb.isKinematic = false ;
         yield return null;
     }
 
