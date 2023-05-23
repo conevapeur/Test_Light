@@ -30,10 +30,10 @@ public class debrisVerre : MonoBehaviour
     {
         if(activated && GameManager.instance.progression > 8)
         {
-            Debug.Log(activated);
-            if (playerCollider.CompareTag("Player") && GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f)
+            //Debug.Log(activated);
+            if (playerCollider.CompareTag("Player") /*&& GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f*/)
             {
-                Debug.Log("entrée dans if");
+                //Debug.Log("entrée dans if");
                 activated = false;
                 GameManager.instance.Caller = gameObject;
                 OnEnter.Invoke();
