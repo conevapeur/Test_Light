@@ -26,10 +26,19 @@ public class CineManager : MonoBehaviour
     [SerializeField] private AudioSource talkie;
     [SerializeField] private AudioSource cereal;
     [SerializeField] private AudioSource page;
+
     [SerializeField] private AudioSource forest;
+
+    [SerializeField] private AudioSource dialfr;
+    [SerializeField] private AudioSource dialeng;
 
     [SerializeField] private AudioSource newsfr;
     [SerializeField] private AudioSource newseng;
+
+
+    [SerializeField] private Texture notefr;
+    [SerializeField] private Texture noteeng;
+    [SerializeField] private GameObject note;
     
 
     private void Awake()
@@ -39,6 +48,20 @@ public class CineManager : MonoBehaviour
         controls = new UI();
         controls.Menu.back.performed += ctx => Skip();
 
+
+        if (UIStart.ENG)
+        {
+
+            var image = note.GetComponent<RawImage>().texture;
+            image = noteeng;
+            note.GetComponent<RawImage>().texture = image;
+        }
+        else
+        {
+            var image = note.GetComponent<RawImage>().texture;
+            image = notefr;
+            note.GetComponent<RawImage>().texture = image;
+        }
         
 
     }
@@ -162,6 +185,18 @@ public class CineManager : MonoBehaviour
         else
         {
             newsfr.Play();
+        }
+    }
+
+    public void Sound10()
+    {
+        if (UIStart.ENG)
+        {
+            dialeng.Play();
+        }
+        else
+        {
+            dialfr.Play();
         }
     }
 
