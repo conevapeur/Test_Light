@@ -8,7 +8,7 @@ public class s_monster : MonoBehaviour
 {
     public bool isLooking;
     public GameObject player;
-    public GameObject _talkie;
+    public GameObject talkie;
 
     public int curFreq;
     public int playerFreq;
@@ -18,9 +18,14 @@ public class s_monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        curFreq = _talkie.GetComponent<talkie>().curFreq;
+        player = GameManager.instance.player;
+        talkie = GameManager.instance.talkie;
 
-        playerFreq = _talkie.GetComponent<talkie>().state;
+        curFreq = talkie.GetComponent<talkie>().curFreq;
+
+        playerFreq = talkie.GetComponent<talkie>().state;
+
+        
     }
 
     // Update is called once per frame
@@ -84,9 +89,9 @@ public class s_monster : MonoBehaviour
 
     private void setFreq()
     {
-        curFreq = _talkie.GetComponent<talkie>().curFreq;
+        curFreq = talkie.GetComponent<talkie>().curFreq;
 
-        playerFreq = _talkie.GetComponent<talkie>().state;
+        playerFreq = talkie.GetComponent<talkie>().state;
     }
 
     

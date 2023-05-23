@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject firstRoom;
     [SerializeField] GameObject secondRoom;
+    [SerializeField] GameObject couloirRoom;
 
 
 
@@ -318,6 +319,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region meetings
     public void lanceMeeting1()
     {
         progression = 10;
@@ -382,4 +384,38 @@ public class GameManager : MonoBehaviour
 
         yield return null;
     }
+
+    public void lanceMeeting3()
+    {
+        progression = 10;
+        StartCoroutine(Meeting3());
+    }
+    public IEnumerator Meeting3()
+    {
+        monster.GetComponent<NavMeshAgent>().enabled = false;
+        monster.transform.position = couloirRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        monster.GetComponent<NavMeshAgent>().enabled = true;
+
+
+        monster.GetComponent<NavMeshAgent>().destination = couloirRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        yield return new WaitForSeconds(5);
+
+
+        monster.GetComponent<NavMeshAgent>().destination = couloirRoom.GetComponent<firstRoomTrigger>().point.transform.position;
+        //monster.GetComponent<NavMeshAgent>().destination = player.transform.position;
+        yield return new WaitForSeconds(5);
+
+
+        monster.GetComponent<NavMeshAgent>().destination = couloirRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        yield return new WaitForSeconds(5);
+
+
+        monster.GetComponent<NavMeshAgent>().enabled = false;
+        monster.transform.position = locations[0].transform.position;
+        monster.GetComponent<NavMeshAgent>().enabled = true;
+
+        yield return null;
+    }
+
+    #endregion
 }

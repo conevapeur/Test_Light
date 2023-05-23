@@ -12,6 +12,10 @@ public class anmi : MonoBehaviour
     [SerializeField] private Animator animator;
 
 
+    void Start()
+    {
+        target = GameManager.instance.player.transform;
+    }
 
     // Update is called once per frame
     void Update()
