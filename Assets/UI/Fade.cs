@@ -16,6 +16,10 @@ public class Fade : MonoBehaviour
 
     [SerializeField] bool disappear;
 
+    void Start()
+    {
+        target = GameManager.instance.player.transform;
+    }
 
     // Update is called once per frame
     void Update()

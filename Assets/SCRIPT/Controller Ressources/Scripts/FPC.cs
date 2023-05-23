@@ -383,7 +383,7 @@ public class FPC : MonoBehaviour
         else if (rb.velocity.magnitude > 0.5)
         {
             vCamFrequency = .7f;
-            vCamAmplitude = 1f;
+            vCamAmplitude = 1.5f;
             walkSound.enabled = true;
             walkSound.pitch = 1;
 

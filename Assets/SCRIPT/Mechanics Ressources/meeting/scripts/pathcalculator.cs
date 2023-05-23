@@ -80,13 +80,13 @@ public class pathcalculator : MonoBehaviour
 
         if (NavMesh.CalculatePath(fromPos, toPos, passableMask, _path) == false)
         {
-            Debug.Log("CalculatePath == false");
+            /*Debug.Log("CalculatePath == false");
             Debug.Log(fromPos);
             Debug.Log(toPos);
             Debug.Log(_path);
             Debug.Log(passableMask);
             Debug.Log("CalculatePath == false");
-
+            */
             return false;
 
         }
