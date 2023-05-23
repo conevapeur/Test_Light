@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,7 +17,19 @@ public class CineManager : MonoBehaviour
     [SerializeField] private Animator animatorSkip;
 
     private bool musicFadeOutEnabled = false;
-    [SerializeField] private AudioSource audioPrincipale;
+    //[SerializeField] private AudioSource audioPrincipale;
+
+    [SerializeField] private AudioSource yawn;
+    [SerializeField] private AudioSource tv;
+    [SerializeField] private AudioSource huh;
+    [SerializeField] private AudioSource door;
+    [SerializeField] private AudioSource talkie;
+    [SerializeField] private AudioSource cereal;
+    [SerializeField] private AudioSource page;
+    [SerializeField] private AudioSource forest;
+
+    [SerializeField] private AudioSource newsfr;
+    [SerializeField] private AudioSource newseng;
     
 
     private void Awake()
@@ -68,6 +81,7 @@ public class CineManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (musicFadeOutEnabled)
         {
 
@@ -79,6 +93,7 @@ public class CineManager : MonoBehaviour
             audioPrincipale.volume = newVolume;
 
         }
+        */
     }
 
     private void OnEnable()
@@ -97,5 +112,57 @@ public class CineManager : MonoBehaviour
 
 
     // play sound for animation
+
+    public void Sound1()
+    {
+        yawn.Play();
+    }
+
+    public void Sound2()
+    {
+        tv.Play();
+    }
+
+    public void Sound3()
+    {
+        huh.Play();
+    }
+
+    public void Sound4()
+    {
+        cereal.Play();
+    }
+
+    public void Sound5()
+    {
+        talkie.Play();
+    }
+
+    public void Sound6()
+    {
+        door.Play();
+    }
+
+    public void Sound7()
+    {
+        page.Play();
+    }
+
+    public void Sound8()
+    {
+        forest.Play();
+    }
+
+    public void Sound9()
+    {
+        if (UIStart.ENG)
+        {
+            newseng.Play();
+        }
+        else
+        {
+            newsfr.Play();
+        }
+    }
 
 }
