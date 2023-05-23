@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject secondRoom;
     [SerializeField] GameObject couloirRoom;
 
-
+    public GameObject Caller;
 
     private void Awake()
     {
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        progression = 0;
+        //progression = 0;
         coroutineName = "function" + progression;
     }
 
@@ -320,28 +320,47 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region meetings
-    public void lanceMeeting1()
+    public void LanceMeeting2Points()
     {
         progression = 10;
-        StartCoroutine(Meeting1());
+        StartCoroutine(Meeting2Points());
     }
-    public IEnumerator Meeting1()
+    public IEnumerator Meeting2Points()
     {
+        Transform start = null;
+        Transform point = null;
+
+        if(Caller.TryGetComponent<firstRoomTrigger>(out firstRoomTrigger script))
+        {
+            start = script.start.transform;
+            point = script.point.transform;
+        }
+
+        else if (Caller.TryGetComponent<debrisVerre>(out debrisVerre _script))
+        {
+            start = _script.start.transform;
+            point = _script.point.transform;
+        }
+
         monster.GetComponent<NavMeshAgent>().enabled = false;
-        monster.transform.position = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        //monster.transform.position = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        monster.transform.position = start.position;
         monster.GetComponent<NavMeshAgent>().enabled = true;
 
 
-        monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        monster.GetComponent<NavMeshAgent>().destination = start.position;
         yield return new WaitForSeconds(5);
 
 
-        monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().point.transform.position;
+        //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().point.transform.position;
         //monster.GetComponent<NavMeshAgent>().destination = player.transform.position;
+        monster.GetComponent<NavMeshAgent>().destination = point.position;
         yield return new WaitForSeconds(5);
 
 
-        monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
+        monster.GetComponent<NavMeshAgent>().destination = start.position;
         yield return new WaitForSeconds(5);
 
 
