@@ -72,6 +72,7 @@ public class FPC : MonoBehaviour
 
 
     public Animator animator;
+    public Animator animatorUI;
 
     
 
@@ -779,6 +780,7 @@ public class FPC : MonoBehaviour
                 Debug.Log("déclanchement mains devant les yeux");
 
                 animator.SetTrigger("triggerHand");
+                animatorUI.SetTrigger("triggerFade");
 
                 isScared = true;
                 terrify();
@@ -789,6 +791,7 @@ public class FPC : MonoBehaviour
                 Debug.Log("n'as plus peur");
 
                 animator.SetTrigger("triggerEndHand");
+                animatorUI.SetTrigger("triggerUnfade");
 
                 recover();
             }
