@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLooking: 0
   player: {fileID: 1589865473}
-  _talkie: {fileID: 77570166}
+  talkie: {fileID: 0}
   curFreq: 0
   playerFreq: 0
   soustitres: {fileID: 684187364}
@@ -895,11 +895,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqTMP: {fileID: 61390401}
-  freqSet: {fileID: 822950655}
   myAudioSource: {fileID: 77570169}
   noise: {fileID: 77570168}
   target: {fileID: 1197695328}
   maxDist: 20
+  minDist: 10
   state: 0
   curFreq: 0
   cap: 0
@@ -6288,7 +6288,6 @@ GameObject:
   - component: {fileID: 468252151}
   - component: {fileID: 468252150}
   - component: {fileID: 468252149}
-  - component: {fileID: 468252153}
   m_Layer: 0
   m_Name: testRoom_Pushable
   m_TagString: pushable
@@ -6375,22 +6374,6 @@ Transform:
   m_Father: {fileID: 819294225}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &468252153
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468252148}
-  serializedVersion: 2
-  m_Mass: 50
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &482625084
 GameObject:
   m_ObjectHideFlags: 0
@@ -6950,6 +6933,21 @@ MonoBehaviour:
   talkie: {fileID: 77570166}
   frequenceP: 0
   frequenceM: 0
+  dialogues:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   monster: {fileID: 3843433}
   locations:
   - {fileID: 1803282547}
@@ -6963,6 +6961,10 @@ MonoBehaviour:
   distancePM: 0
   navDistancePM: 0
   soustitres: {fileID: 684187364}
+  firstRoom: {fileID: 0}
+  secondRoom: {fileID: 0}
+  couloirRoom: {fileID: 0}
+  Caller: {fileID: 0}
 --- !u!4 &542800385
 Transform:
   m_ObjectHideFlags: 0
@@ -14718,7 +14720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLooking: 0
   player: {fileID: 1589865473}
-  _talkie: {fileID: 77570166}
+  talkie: {fileID: 0}
   curFreq: 0
   playerFreq: 0
   soustitres: {fileID: 0}
@@ -17162,7 +17164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1350001809}
   monster: {fileID: 3843433}
-  canPath: 0
   realLength: 0
   pathLength: 0
   canJoin: 0
@@ -18666,13 +18667,11 @@ MonoBehaviour:
   floatSpringDamper: 10
   target: {fileID: 0}
   carried: {fileID: 0}
+  talkieDegaine: 0
+  haveToDegaine: 0
+  animator: {fileID: 0}
+  animatorUI: {fileID: 0}
   walkSound: {fileID: 1589865474}
-  _redLigths: {fileID: 0}
-  _naturalLigths: {fileID: 0}
-  _stairs: {fileID: 0}
-  _security: {fileID: 0}
-  _archives: {fileID: 0}
-  _escalade: {fileID: 1941448165}
   climbDelay: 0.67
   isScared: 0
 --- !u!136 &1589865476
