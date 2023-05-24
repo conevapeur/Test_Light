@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
+
 using UnityEngine;
-using static Unity.VisualScripting.Icons;
+
 using UnityEngine.Rendering;
 
 public class TextEnd : MonoBehaviour
@@ -22,12 +22,12 @@ public class TextEnd : MonoBehaviour
         if (!UIStart.ENG)
         {
             credits.SetText("credits en anglais");
-            credits.SetText("SKIP");
+            skip.SetText("SKIP");
         }
         else
         {
             credits.SetText("credits en francais");
-            credits.SetText("passer");
+            skip.SetText("PASSER");
         }
     }
     

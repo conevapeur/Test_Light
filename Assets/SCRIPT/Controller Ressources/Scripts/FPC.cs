@@ -177,7 +177,7 @@ public class FPC : MonoBehaviour
                     if (carried.TryGetComponent(out Rigidbody rb))
                     {
                         //Debug.Log("patate");
-                        //rb.isKinematic = false;
+                        rb.isKinematic = false;
                     }
                     //carried.TryGetComponent<Rigidbody>().isKinematic = false;
                     carried.gameObject.transform.SetParent(null);

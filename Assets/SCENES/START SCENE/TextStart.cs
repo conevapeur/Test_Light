@@ -43,6 +43,14 @@ public class TextStart : MonoBehaviour
             UIStart.ENG = true;
         }
 
+        if(UIStart.ENG)
+        {
+            English();
+        }
+        else
+        {
+            French();
+        }
         
     }
     public void English()
@@ -85,7 +93,7 @@ public class TextStart : MonoBehaviour
         DialoguesV.SetText("VOLUME DIALOGUES");
         english.SetText("ENGLISH");
         french.SetText("FRANCAIS");
-        subtitles.SetText("SOUS-TITRES");
+        subtitles.SetText("SOUS TITRES");
         settings.SetText("REGLAGES");
     }
 }
