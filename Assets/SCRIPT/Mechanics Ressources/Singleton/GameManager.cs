@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public int frequenceP = 0;
     public int frequenceM;
 
-    public AudioClip[] dialogues = new AudioClip[14];
+    public AudioClip[] dialoguesENG = new AudioClip[14];
 
     ////////////////////////// Monster
     public GameObject monster;
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().lockAbilities("listening");
             player.GetComponent<FPC>().animator.SetTrigger("triggerTalk");
 
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialogues[0];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[0];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             /*
