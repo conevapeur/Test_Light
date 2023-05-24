@@ -55,12 +55,18 @@ public class CineManager : MonoBehaviour
             var image = note.GetComponent<RawImage>().texture;
             image = noteeng;
             note.GetComponent<RawImage>().texture = image;
+            var alpha = note.GetComponent<RawImage>().color;
+            alpha.a = 0;
+            note.GetComponent<RawImage>().color = alpha;
         }
         else
         {
             var image = note.GetComponent<RawImage>().texture;
             image = notefr;
             note.GetComponent<RawImage>().texture = image;
+            var alpha = note.GetComponent<RawImage>().color;
+            alpha.a = 0;
+            note.GetComponent<RawImage>().color = alpha;
         }
         
 

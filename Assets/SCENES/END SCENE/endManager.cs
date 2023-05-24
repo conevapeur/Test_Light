@@ -21,6 +21,7 @@ public class endManager : MonoBehaviour
     [SerializeField] private AudioSource audioPrincipale;
     [SerializeField] private AudioSource dialfr;
     [SerializeField] private AudioSource dialeng;
+    [SerializeField] private AudioSource cri;
 
     private void Awake()
     {
@@ -103,6 +104,11 @@ public class endManager : MonoBehaviour
     public void Music()
     {
         audioPrincipale.Play();
+    }
+
+    public void Cri()
+    {
+        cri.Play();
     }
 }
 
