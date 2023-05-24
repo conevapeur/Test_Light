@@ -19,6 +19,8 @@ public class endManager : MonoBehaviour
     private bool musicFadeOutEnabled = false;
 
     [SerializeField] private AudioSource audioPrincipale;
+    [SerializeField] private AudioSource dialfr;
+    [SerializeField] private AudioSource dialeng;
 
     private void Awake()
     {
@@ -85,4 +87,22 @@ public class endManager : MonoBehaviour
     {
         controls.Menu.Disable();
     }
+
+    public void Sound()
+    {
+        if (UIStart.ENG)
+        {
+            dialeng.Play();
+        }
+        else
+        {
+            dialfr.Play();
+        }
+    }
+
+    public void Music()
+    {
+        audioPrincipale.Play();
+    }
 }
+
