@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public int frequenceM;
 
     public AudioClip[] dialoguesENG = new AudioClip[14];
+    public AudioClip[] dialoguesFR = new AudioClip[14];
 
     ////////////////////////// Monster
     public GameObject monster;
@@ -249,6 +250,9 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[1];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             talkie.GetComponent<talkie>().curFreq = 3;
             player.GetComponent<FPC>().lockAbilities("listening");
 
@@ -274,6 +278,9 @@ public class GameManager : MonoBehaviour
             }
 
             player.GetComponent<FPC>().recover();
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[2];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 10");
             soustitres.SetText("Go through the cabinet door, it will lead you to the reception. Go to the end of the corridor, the door to the lower level should be there.");
@@ -331,6 +338,9 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             talkie.GetComponent<talkie>().curFreq = 1;
             player.GetComponent<FPC>().lockAbilities("listening");
             Debug.Log("ligne 11");
@@ -343,6 +353,10 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(2);
             }
             player.GetComponent<FPC>().recover();
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[4];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             Debug.Log("ligne 12");
             soustitres.SetText("Hmmm Electricity... you need to put the power back on. Emergency generator should be in a room on your left. You'd just have to lower the lever and it should do the trick..");
             yield return new WaitForSeconds(1);
@@ -380,6 +394,9 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[5];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             talkie.GetComponent<talkie>().curFreq = 4;
             player.GetComponent<FPC>().lockAbilities("listening");
             Debug.Log("ligne 13");
@@ -392,6 +409,10 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(2);
             }
             player.GetComponent<FPC>().recover();
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[6];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             Debug.Log("ligne 14");
             soustitres.SetText("You have to find a way to go through it. Help yourself with a chair or something to climb.");
             yield return new WaitForSeconds(1);
@@ -429,6 +450,9 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[7];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             Debug.Log("ligne 15");
             soustitres.SetText("I went through dad.");
             yield return new WaitForSeconds(1);
@@ -461,6 +485,9 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[8];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 17");
@@ -510,6 +537,9 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[9];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             Debug.Log("ligne 20");
             soustitres.SetText("I'm in a corridor, which way I go now?");
             yield return new WaitForSeconds(1);
@@ -539,6 +569,9 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator function7()
     {
+        talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[10];
+        talkie.GetComponent<talkie>().myAudioSource.Play();
+
         if (UIStart.ENG)
         {
             Debug.Log("ligne 22");
