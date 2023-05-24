@@ -25,10 +25,13 @@ public class GameManager : MonoBehaviour
     public int frequenceP = 0;
     public int frequenceM;
 
+    public AudioClip[] dialogues = new AudioClip[14];
+
     ////////////////////////// Monster
     public GameObject monster;
 
     public GameObject[] locations = new GameObject[8];
+
     public float distancePM;
     public float navDistancePM;
 
@@ -132,6 +135,9 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().curFreq = talkie.GetComponent<talkie>().state;
             player.GetComponent<FPC>().lockAbilities("listening");
             player.GetComponent<FPC>().animator.SetTrigger("triggerTalk");
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialogues[0];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
 
             /*
             AudioClip.play

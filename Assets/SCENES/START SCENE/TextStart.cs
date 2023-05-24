@@ -85,7 +85,7 @@ public class TextStart : MonoBehaviour
         DialoguesV.SetText("VOLUME DIALOGUES");
         english.SetText("ENGLISH");
         french.SetText("FRANCAIS");
-        subtitles.SetText("SOUS-TITRES");
+        subtitles.SetText("SOUS TITRES");
         settings.SetText("REGLAGES");
     }
 }
