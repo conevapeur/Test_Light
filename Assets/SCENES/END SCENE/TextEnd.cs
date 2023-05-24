@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
+
 using UnityEngine;
-using static Unity.VisualScripting.Icons;
+
 using UnityEngine.Rendering;
 
 public class TextEnd : MonoBehaviour

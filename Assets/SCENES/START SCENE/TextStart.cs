@@ -43,6 +43,14 @@ public class TextStart : MonoBehaviour
             UIStart.ENG = true;
         }
 
+        if(UIStart.ENG)
+        {
+            English();
+        }
+        else
+        {
+            French();
+        }
         
     }
     public void English()
