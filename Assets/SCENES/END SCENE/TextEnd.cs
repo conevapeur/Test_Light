@@ -11,15 +11,13 @@ public class TextEnd : MonoBehaviour
 {
     [SerializeField] TMP_Text credits;
     [SerializeField] TMP_Text skip;
+    
 
     private void Awake()
     {
-        if (!UIStart.ENG && !UIStart.FR)
-        {
-            UIStart.ENG = true;
-        }
+        
 
-        if (!UIStart.ENG)
+        if (UIStart.ENG)
         {
             credits.SetText("credits en anglais");
             skip.SetText("SKIP");

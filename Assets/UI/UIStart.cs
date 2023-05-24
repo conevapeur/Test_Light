@@ -95,9 +95,10 @@ public class UIStart : MonoBehaviour
     [SerializeField] private AudioSource audioSelecfion;
     [SerializeField] private AudioSource audioBack;
     [SerializeField] private AudioSource audioPrincipale;
+    [SerializeField] private AudioSource boom;
 
-    [SerializeField] private UnityEvent TextFR;
-    [SerializeField] private UnityEvent TextENG;
+    [SerializeField] private UnityEvent TextFR ;
+    [SerializeField] private UnityEvent TextENG; 
 
     
     private UI uicontrols;
@@ -111,8 +112,8 @@ public class UIStart : MonoBehaviour
     private bool musicFadeOutEnabled = false;
     [SerializeField] private Animator fadescreen;
 
-    static public bool ENG = true;
-    static public bool FR = false;
+    static public bool ENG = false;
+    static public bool FR = true;
 
 
     
@@ -162,10 +163,16 @@ public class UIStart : MonoBehaviour
         if (ENG)
         {
             TextENG.Invoke();
+            checkFrench.SetActive(false);
+            checkEnglish.SetActive(true);
+
         }
         else
         {
             TextFR.Invoke();
+            checkEnglish.SetActive(false);
+            checkFrench.SetActive(true);
+
 
         }
     }
@@ -263,6 +270,10 @@ public class UIStart : MonoBehaviour
     {
         audioSelected.Play();
     }
+    public void playSong2()
+    {
+        boom.Play();
+    }
 
     public void Play()
     {
@@ -281,8 +292,7 @@ public class UIStart : MonoBehaviour
         controls.SetActive(false);
         language.SetActive(false);
 
-        checkFrench.SetActive(false);
-        checkSubtitles.SetActive(false);
+        
 
         _eventSystem.SetSelectedGameObject(volumeButton);
 
