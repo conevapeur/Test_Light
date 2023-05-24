@@ -21,7 +21,7 @@ public class talkie : MonoBehaviour
     public AudioSource noise;
     public GameObject target;
     public int maxDist = 50;
-    private int minDist = 10;
+    public int minDist = 10;
 
     public int state = 0;
 
@@ -31,6 +31,9 @@ public class talkie : MonoBehaviour
 
 
     [SerializeField] public Animator _animator;
+
+
+
 
     //public static bool canChange = true;
     
