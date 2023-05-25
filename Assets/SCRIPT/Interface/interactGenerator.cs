@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class interactGenerator : MonoBehaviour, IInteract
@@ -8,6 +9,7 @@ public class interactGenerator : MonoBehaviour, IInteract
 
     [SerializeField] private Animator _stairs;
     [SerializeField] private AudioSource generator;
+    public LightingDataAsset yes;
     
 
     // Start is called before the first frame update
