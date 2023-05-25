@@ -781,7 +781,8 @@ public class FPC : MonoBehaviour
     
     public void checkMonsterDistance()
     {
-        if(GameManager.instance.progression > 8)
+        
+        if(GameManager.instance.progression > 8 && !GameManager.instance.dying)
         {
             if (!isScared && monster_pathDistance < 10 && monster_pathDistance > 0)
             {
