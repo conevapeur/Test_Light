@@ -9,8 +9,11 @@ public class debrisVerre : MonoBehaviour
 
     public UnityEvent OnEnter;
 
+    public GameObject origin;
+
     public GameObject start;
     public GameObject point;
+
 
     private bool activated;
 

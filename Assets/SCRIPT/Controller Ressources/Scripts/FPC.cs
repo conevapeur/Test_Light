@@ -700,7 +700,7 @@ public class FPC : MonoBehaviour
             //Debug.Log("first phase");
             yield return null;
         }
-        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 1.3);
+        while (transform.position.y < target.GetComponent<Collider>().bounds.max.y + 1);
 
         do
         {
@@ -862,10 +862,7 @@ public class FPC : MonoBehaviour
         canChange = true;
     }
 
-    public void Die()
-    {
-        Debug.Log("T mort");
-    }
+    
     
 }
 
