@@ -69,6 +69,7 @@ public class FPC : MonoBehaviour
 
     public bool talkieDegaine;
     public bool haveToDegaine;
+    public bool canDegaine;
 
 
     public Animator animator;
@@ -133,15 +134,21 @@ public class FPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetAxis("Fire2") < .5f && !canDegaine )
+        {
+            canDegaine = true;
+        }
+
         //Debug.Log(rb.velocity.magnitude);
         if(canLook)
         {
             #region move
             if(canSidewalk)
             {
-                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity  /*+ Input.GetAxis("Gamepad X") * mouseSensivity*/;
+                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity  + Input.GetAxis("Gamepad X") * mouseSensivity;
                 //yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
-                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity /*- Input.GetAxis("Gamepad Y") * mouseSensivity*/;
+                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity - Input.GetAxis("Gamepad Y") * mouseSensivity;
                 //xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
 
                 xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
@@ -218,9 +225,10 @@ public class FPC : MonoBehaviour
 
         }
 
-        if(Input.GetKeyDown(KeyCode.Tab) || haveToDegaine)
+        if (Input.GetKeyDown(KeyCode.Tab) || haveToDegaine || (Input.GetAxis("Fire2") > .5f && canDegaine)) 
         {
-           haveToDegaine = false;
+            haveToDegaine = false;
+            canDegaine = false;
             //Trigger anim
 
             if(!talkieDegaine)
