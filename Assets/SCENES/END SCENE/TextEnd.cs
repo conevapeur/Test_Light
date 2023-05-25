@@ -19,12 +19,12 @@ public class TextEnd : MonoBehaviour
 
         if (UIStart.ENG)
         {
-            credits.SetText("credits en anglais");
+            credits.SetText("Remerciements (mais en anglais)");
             skip.SetText("SKIP");
         }
         else
         {
-            credits.SetText("credits en francais");
+            credits.SetText("Remerciements");
             skip.SetText("PASSER");
         }
     }
