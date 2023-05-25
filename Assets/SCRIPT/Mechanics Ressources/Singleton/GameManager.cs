@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.AI;
+using System.Drawing;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject couloirRoom;
 
     public GameObject Caller;
+
+    public Animator animatorUI;
 
     private void Awake()
     {
@@ -722,4 +726,42 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    public GameObject[] triggers = new GameObject[10];
+    public void Die()
+    {
+        StartCoroutine(CoroutineDie());
+        
+    }
+
+    IEnumerator CoroutineDie ()
+    {
+        player.GetComponent<FPC>().lockAbilities("scared");
+        player.GetComponent<FPC>().animator.SetTrigger("die");
+
+        yield return new WaitForSeconds(2);
+
+        animatorUI.SetTrigger("triggerFade");
+
+        yield return new WaitForSeconds(2);
+
+        player.transform.position = Vector2.zero;
+        animatorUI.SetTrigger("triggerUnfade");
+
+        
+        yield return new WaitForSeconds(.5f);
+
+
+        for (int i = 0; i < triggers.Length; i++)
+        {
+            triggers[i].transform.position = triggers[i].GetComponent<debrisVerre>().origin.transform.position;
+        }
+
+        player.GetComponent<FPC>().recover();
+
+
+        
+
+        yield return null;
+    }
 }

@@ -38,14 +38,15 @@ public class s_monster : MonoBehaviour
             
             if (player.GetComponent<FPC>().isCrouching == false)
             {
-                player.GetComponent<FPC>().Die();
-                soustitres.SetText("vous devriez etre mort");
+                GameManager.instance.Die();
+
+                //soustitres.SetText("vous devriez etre mort");
             }
             else
             {
 
                 //checkFreq();
-                soustitres.SetText("en sécurité");
+                Debug.Log("en sécurité");
 
             }
         }
@@ -62,7 +63,7 @@ public class s_monster : MonoBehaviour
 
     }
 
-    private void checkFreq()
+    /*private void checkFreq()
     {
         setFreq();
         if(curFreq == 0 && (playerFreq == 1 || playerFreq == 4))
@@ -85,7 +86,7 @@ public class s_monster : MonoBehaviour
             Debug.Log("vous survivez");
             soustitres.SetText("en sécurité");
         }
-    }
+    }*/
 
     private void setFreq()
     {
