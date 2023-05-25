@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     /////////////////////// Game
     public int progression;
-    public Vector3 lastCheckpoint;
+    //public Vector3 lastCheckpoint;
 
     public string coroutineName;
 
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
     public GameObject Caller;
 
     public Animator animatorUI;
+
+
+
+    public bool dying = false;
+    public Vector3 lastCheckpoint;
 
     private void Awake()
     {
@@ -616,40 +621,38 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator Meeting2Points()
     {
-        Transform start = null;
-        Transform point = null;
+        Vector3 start = Vector3.zero;
+        
+        Vector3 point = Vector3.zero;
+        
 
-        if(Caller.TryGetComponent<firstRoomTrigger>(out firstRoomTrigger script))
+        if (Caller.TryGetComponent<debrisVerre>(out debrisVerre script))
         {
-            start = script.start.transform;
-            point = script.point.transform;
-        }
-
-        else if (Caller.TryGetComponent<debrisVerre>(out debrisVerre _script))
-        {
-            start = _script.start.transform;
-            point = _script.point.transform;
+            start = script.start.transform.position;
+            point = script.point.transform.position;
+            //Debug.Log(start);
+            //Debug.Log(point);
         }
 
         monster.GetComponent<NavMeshAgent>().enabled = false;
         //monster.transform.position = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
-        monster.transform.position = start.position;
+        monster.transform.position = start;
         monster.GetComponent<NavMeshAgent>().enabled = true;
 
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
-        monster.GetComponent<NavMeshAgent>().destination = start.position;
+        monster.GetComponent<NavMeshAgent>().destination = start;
         yield return new WaitForSeconds(5);
 
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().point.transform.position;
         //monster.GetComponent<NavMeshAgent>().destination = player.transform.position;
-        monster.GetComponent<NavMeshAgent>().destination = point.position;
+        monster.GetComponent<NavMeshAgent>().destination = point;
         yield return new WaitForSeconds(5);
 
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
-        monster.GetComponent<NavMeshAgent>().destination = start.position;
+        monster.GetComponent<NavMeshAgent>().destination = start;
         yield return new WaitForSeconds(5);
 
 
@@ -730,7 +733,11 @@ public class GameManager : MonoBehaviour
     public GameObject[] triggers = new GameObject[10];
     public void Die()
     {
-        StartCoroutine(CoroutineDie());
+        if(dying == false)
+        {
+            StartCoroutine(CoroutineDie());
+            dying = true;
+        }
         
     }
 
@@ -745,22 +752,33 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        player.transform.position = Vector2.zero;
+        if(lastCheckpoint != Vector3.zero)
+        {
+            player.transform.position = lastCheckpoint;
+        }
+        
+        
         animatorUI.SetTrigger("triggerUnfade");
 
         
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2.5f);
 
 
         for (int i = 0; i < triggers.Length; i++)
         {
-            triggers[i].transform.position = triggers[i].GetComponent<debrisVerre>().origin.transform.position;
+            triggers[i].transform.position = triggers[i].GetComponent<debrisVerre>().origin;
         }
 
+
+        //for (int i = 0; i < checkpoints.length; i++)
+        //{
+        //    checkpoints[i].transform.position = triggers[i].getcomponent<checkpoint>().origin;
+        //}
+
         player.GetComponent<FPC>().recover();
-
-
         
+
+        dying = false;
 
         yield return null;
     }

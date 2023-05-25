@@ -9,7 +9,7 @@ public class debrisVerre : MonoBehaviour
 
     public UnityEvent OnEnter;
 
-    public GameObject origin;
+    public Vector3 origin;
 
     public GameObject start;
     public GameObject point;
@@ -24,7 +24,7 @@ public class debrisVerre : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        origin = Vector3.Lerp(origin, transform.position, 1);
     }
 
     // Update is called once per frame
@@ -49,14 +49,20 @@ public class debrisVerre : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        activated = true;
-        playerCollider = other;
-
+        if (other.CompareTag("Player") /*&& GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f*/)
+        {
+            activated = true;
+            playerCollider = other;
+        }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        activated = false;
+        if (other.CompareTag("Player") /*&& GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f*/)
+        {
+            activated = false;
+
+        }
     }
 }
