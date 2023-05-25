@@ -41,11 +41,11 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text soustitres;
 
-
+    /*
     [SerializeField] GameObject firstRoom;
     [SerializeField] GameObject secondRoom;
     [SerializeField] GameObject couloirRoom;
-
+    */
     public GameObject Caller;
 
     public Animator animatorUI;
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public bool dying = false;
     public Vector3 lastCheckpoint;
+    public GameObject[] checkpoints = new GameObject[8];
 
     private void Awake()
     {
@@ -118,10 +119,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("echange numéro : " + (progression + 1));
 
         progression++;
-        if (progression >= locations.Length)
+        /*if (progression >= locations.Length)
         {
             progression = 0;
-        }
+        }*/
     }
 
     private void getDialogue(int _progression)
@@ -277,6 +278,8 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 9");
             soustitres.SetText("Dad, I can't hear you.");
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
             yield return new WaitForSeconds(1);
 
 
@@ -288,7 +291,7 @@ public class GameManager : MonoBehaviour
 
             player.GetComponent<FPC>().recover();
 
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[2];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[4];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 10");
@@ -320,6 +323,8 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 9");
             soustitres.SetText("Je t'entends pas papa.");
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
             yield return new WaitForSeconds(1);
 
 
@@ -347,7 +352,7 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[5];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             talkie.GetComponent<talkie>().curFreq = 1;
@@ -363,7 +368,7 @@ public class GameManager : MonoBehaviour
             }
             player.GetComponent<FPC>().recover();
 
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[4];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[6];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 12");
@@ -403,7 +408,7 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[5];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[7];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             talkie.GetComponent<talkie>().curFreq = 4;
@@ -419,7 +424,7 @@ public class GameManager : MonoBehaviour
             }
             player.GetComponent<FPC>().recover();
 
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[6];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[8];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 14");
@@ -459,13 +464,15 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[7];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[9];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 15");
             soustitres.SetText("I went through dad.");
             yield return new WaitForSeconds(1);
             Debug.Log("ligne 16");
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[10];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
             soustitres.SetText("Go on, generator should be down the stairs. Pull the lever down to activate it..");
             yield return new WaitForSeconds(1);
             soustitres.SetText(" ");
@@ -494,7 +501,7 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[8];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[11];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             player.GetComponent<FPC>().lockAbilities("listening");
@@ -546,7 +553,7 @@ public class GameManager : MonoBehaviour
     {
         if (UIStart.ENG)
         {
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[9];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[12];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 20");
@@ -578,7 +585,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator function7()
     {
-        talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[10];
+        talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[13];
         talkie.GetComponent<talkie>().myAudioSource.Play();
 
         if (UIStart.ENG)
@@ -663,7 +670,7 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-
+    /*
     public void lanceMeeting2()
     {
         progression = 10;
@@ -727,7 +734,7 @@ public class GameManager : MonoBehaviour
 
         yield return null;
     }
-
+    */
     #endregion
 
     public GameObject[] triggers = new GameObject[10];

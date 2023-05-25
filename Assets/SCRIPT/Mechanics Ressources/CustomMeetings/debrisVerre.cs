@@ -30,7 +30,7 @@ public class debrisVerre : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(activated && GameManager.instance.progression > 8)
+        if(activated && GameManager.instance.progression > 7)
         {
             //Debug.Log(activated);
             if (playerCollider.CompareTag("Player") /*&& GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f*/)

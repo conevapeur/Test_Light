@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class pathcalculator : MonoBehaviour
 {
-    public GameObject target;
+    //public GameObject target;
     public GameObject monster;
 
     private NavMeshPath path ;
@@ -42,7 +42,7 @@ public class pathcalculator : MonoBehaviour
             agent = monster.GetComponent<NavMeshAgent>();
 
 
-        realLength = Vector3.Distance(monster.transform.position, target.transform.position);
+        realLength = Vector3.Distance(monster.transform.position, player.transform.position);
         
         
         GetPath(path, monster.transform.position, player.transform.position, NavMesh.AllAreas);
@@ -55,7 +55,7 @@ public class pathcalculator : MonoBehaviour
         if(canJoin)
         {
             canJoin = false;
-            agent.destination = target.transform.position;
+            //agent.destination = target.transform.position;
         }
 
 
