@@ -21,6 +21,8 @@ public class debrisVerre : MonoBehaviour
 
     public float vitesseMonstre;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {

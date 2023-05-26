@@ -59,8 +59,15 @@ public class GameManager : MonoBehaviour
     public Vector3 lastCheckpoint;
     public GameObject[] checkpoints = new GameObject[8];
 
+
+    public AudioSource myAudioSource;
+    public AudioClip criMonstre;
+    public AudioClip deathSound;
+
     private void Awake()
     {
+        myAudioSource = GetComponent<AudioSource>();
+
         if (instance != null && instance != this)
             Destroy(gameObject);    // Suppression d'une instance précédente
 
@@ -669,6 +676,8 @@ public class GameManager : MonoBehaviour
         monster.transform.position = start;
         monster.GetComponent<NavMeshAgent>().enabled = true;
 
+        myAudioSource.clip = criMonstre;
+        myAudioSource.Play();
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         monster.GetComponent<NavMeshAgent>().destination = start;

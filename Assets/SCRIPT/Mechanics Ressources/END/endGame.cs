@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class endGame : MonoBehaviour
 {
+    public AudioClip cri;
+
+    public AudioClip deathSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +33,22 @@ public class endGame : MonoBehaviour
 
     private IEnumerator TheEnd()
     {
-        GameManager.instance.player.GetComponent<FPC>().animator.SetTrigger("triggerDeath");
+        GameManager.instance.myAudioSource.clip = cri;
+        GameManager.instance.myAudioSource.Play();
+
+        GameManager.instance.player.GetComponent<FPC>().lockAbilities("scared");
+
         yield return new WaitForSeconds(3);
 
-        GameManager.instance.player.GetComponent<FPC>().animator.SetTrigger("triggerFade");
+        GameManager.instance.player.GetComponent<FPC>().animator.SetTrigger("triggerDeath");
+        
+
+        GameManager.instance.player.GetComponent<FPC>().animatorUI.SetTrigger("triggerFade");
+        yield return new WaitForSeconds(3);
+
+        GameManager.instance.myAudioSource.clip = deathSound;
+        GameManager.instance.myAudioSource.Play();
+
         yield return new WaitForSeconds(3);
 
 
