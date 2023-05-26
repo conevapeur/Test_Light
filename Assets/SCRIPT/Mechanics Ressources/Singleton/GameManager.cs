@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text soustitres;
     [SerializeField] private GameObject gotext; // pour desactiver les sous titres si decocher dans ui
 
+    public GameObject bumperTuto;
+
     /*
     [SerializeField] GameObject firstRoom;
     [SerializeField] GameObject secondRoom;
@@ -75,6 +77,8 @@ public class GameManager : MonoBehaviour
         {
             gotext.SetActive(false);
         }
+
+        bumperTuto.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -289,6 +293,9 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 9");
             soustitres.SetText("Dad, I can't hear you.");
+
+            bumperTuto.SetActive(true);
+
             talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
             talkie.GetComponent<talkie>().myAudioSource.Play();
             yield return new WaitForSeconds(2);
@@ -297,10 +304,11 @@ public class GameManager : MonoBehaviour
             while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
             {
                 Debug.Log("audio parasite");
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(.5f);
             }
 
             player.GetComponent<FPC>().recover();
+            bumperTuto.SetActive(false);
 
             talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[4];
             talkie.GetComponent<talkie>().myAudioSource.Play();
@@ -334,6 +342,9 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 9");
             soustitres.SetText("Je t'entends pas papa.");
+
+            bumperTuto.SetActive(true);
+
             talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
             talkie.GetComponent<talkie>().myAudioSource.Play();
             yield return new WaitForSeconds(2);
@@ -342,11 +353,12 @@ public class GameManager : MonoBehaviour
             while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
             {
                 Debug.Log("audio parasite");
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(.5f);
             }
 
             player.GetComponent<FPC>().recover();
 
+            bumperTuto.SetActive(false);
             Debug.Log("ligne 10");
             soustitres.SetText("Passe par la porte de la réserve, une fois sortie, tu vas te retrouver à l’accueil. Continue le couloir et tu devrais arriver au niveau inférieur");
             yield return new WaitForSeconds(5);

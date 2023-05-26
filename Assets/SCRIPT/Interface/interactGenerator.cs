@@ -7,9 +7,10 @@ public class interactGenerator : MonoBehaviour, IInteract
 {
     LightmapData[] _lightmapData;
 
-    [SerializeField] private Animator _stairs;
     [SerializeField] private AudioSource generator;
-    public LightingDataAsset yes;
+
+    [SerializeField] private GameObject objet1;
+    [SerializeField] private GameObject objet2;
 
     [SerializeField] private Animator levier;
 
@@ -18,7 +19,7 @@ public class interactGenerator : MonoBehaviour, IInteract
     {
         _lightmapData = LightmapSettings.lightmaps;
         LightmapSettings.lightmaps = new LightmapData[] { };
-        
+        objet2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,6 +34,12 @@ public class interactGenerator : MonoBehaviour, IInteract
         levier.SetTrigger("trigger");
 
         generator.Play();
+
+        objet2.SetActive(true);
+        objet1.SetActive(false);
+
+
+
 
 
 
