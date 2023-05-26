@@ -18,7 +18,7 @@ public class interactButton : MonoBehaviour, IInteract
         _redLigths.gameObject.SetActive(true);
         LightmapSettings.lightmaps = new LightmapData[] { };
         _archives.SetTrigger("trigger");
-        _open.SetTrigger("trigger");
+        //_open.SetTrigger("trigger");
         _bureau2.SetTrigger("trigger");        
     }
 }
