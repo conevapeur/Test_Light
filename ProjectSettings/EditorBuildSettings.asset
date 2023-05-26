@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/SCENES/CINEMATIQUES/CINEMATIQUES.unity
     guid: baa83aaf490e6224e9fea207127c812a
   - enabled: 1
+    path: Assets/level art.unity
+    guid: e2ba46e950abb3440ac7e9f275178076
+  - enabled: 1
     path: Assets/SCENES/END SCENE/END.unity
     guid: 8664f973041180a42843a5fb197b6d19
   m_configObjects:
