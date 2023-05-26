@@ -780,6 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 692477828}
+  gotext: {fileID: 692477826}
 --- !u!1 &525575707
 GameObject:
   m_ObjectHideFlags: 0

@@ -213,10 +213,14 @@ public class UIManager : MonoBehaviour
         if (UIStart.ENG)
         {
             TextENG.Invoke();
+            checkFrench.SetActive(false);
+            checkEnglish.SetActive(true);
         }
         else
         {
             TextFR.Invoke();
+            checkEnglish.SetActive(false);
+            checkFrench.SetActive(true);
 
         }
     }

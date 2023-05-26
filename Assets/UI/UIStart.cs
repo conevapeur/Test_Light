@@ -114,6 +114,7 @@ public class UIStart : MonoBehaviour
 
     static public bool ENG = false;
     static public bool FR = true;
+    static public bool SUB = true;
 
 
     
@@ -173,6 +174,15 @@ public class UIStart : MonoBehaviour
             checkEnglish.SetActive(false);
             checkFrench.SetActive(true);
 
+
+        }
+        if (SUB)
+        {
+            checkSubtitles.SetActive(true);
+        }
+        else
+        {
+            checkSubtitles.SetActive(false);
 
         }
     }
@@ -332,11 +342,14 @@ public class UIStart : MonoBehaviour
         if (checkSubtitles.activeInHierarchy)
         {
             checkSubtitles.SetActive(false);
+            SUB = false;
 
         }
         else
         {
             checkSubtitles.SetActive(true);
+            SUB = true;
+
         }
     }
     public void Credits()

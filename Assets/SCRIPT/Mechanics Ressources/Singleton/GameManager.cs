@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
 
     public TMP_Text soustitres;
+    [SerializeField] private GameObject gotext; // pour desactiver les sous titres si decocher dans ui
 
     /*
     [SerializeField] GameObject firstRoom;
@@ -64,6 +65,16 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(this.gameObject);
+
+
+
+        if (UIStart.SUB) // sous titres
+        {
+            gotext.SetActive(true);
+        }else
+        {
+            gotext.SetActive(false);
+        }
     }
 
     // Start is called before the first frame update

@@ -19,11 +19,7 @@ public class interactReadable : MonoBehaviour, IInteract
     // Start is called before the first frame update
     void Start()
     {
-        readable1 = true;
-        readable2 = true;
-        readable3 = true;
-        readable4 = true;
-        readable5 = true;
+        
         card = false;
 
     }

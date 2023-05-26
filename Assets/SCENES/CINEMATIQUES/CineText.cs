@@ -6,6 +6,7 @@ using UnityEngine;
 public class CineText : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
+    [SerializeField] GameObject gotext;
 
     private void Awake()
     {
@@ -13,7 +14,21 @@ public class CineText : MonoBehaviour
         {
             UIStart.ENG = true;
         }
+
+        if (UIStart.SUB)
+        {
+            gotext.SetActive(true);
+        }
+        else
+        {
+            gotext.SetActive(false);
+
+        }
     }
+
+
+
+
     public void Text1()
     {
         if (UIStart.ENG)
