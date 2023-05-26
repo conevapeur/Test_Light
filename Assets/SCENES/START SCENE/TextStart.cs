@@ -59,7 +59,6 @@ public class TextStart : MonoBehaviour
         creditsB.SetText("CREDITS");
         settingsB.SetText("SETTINGS");
         quitB.SetText("QUIT");
-        credits.SetText("LES CREDITS ICI EN ANGLAIS");
         back1.SetText("BACK");
         //back2.SetText("BACK");
         back3.SetText("BACK");
@@ -81,7 +80,6 @@ public class TextStart : MonoBehaviour
         creditsB.SetText("CREDITS");
         settingsB.SetText("REGLAGES");
         quitB.SetText("QUITTER");
-        credits.SetText("LES CREDITS ICI");
         back1.SetText("RETOUR");
         //back2.SetText("RETOUR");
         back3.SetText("RETOUR");

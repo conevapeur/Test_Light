@@ -116,7 +116,8 @@ public class UIStart : MonoBehaviour
     static public bool FR = true;
     static public bool SUB = true;
 
-
+    [SerializeField] private GameObject creditseng;
+    [SerializeField] private GameObject creditsfr;
     
 
     private void Awake()
@@ -356,6 +357,18 @@ public class UIStart : MonoBehaviour
     {
         start.SetActive(false);
         credits.SetActive(true);
+
+        if (ENG)
+        {
+            creditseng.SetActive(true);
+            creditsfr.SetActive(false);
+
+        }
+        else
+        {
+            creditsfr.SetActive(true);
+            creditseng.SetActive(false);
+        }
         
     }
     public void Quit()
