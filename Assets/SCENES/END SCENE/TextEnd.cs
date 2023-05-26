@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -32,16 +33,41 @@ public class TextEnd : MonoBehaviour
         {
             credits.SetText("Remerciements (mais en anglais)");
             skip.SetText("SKIP");
-            text.SetText("");
+            
         }
         else
         {
             credits.SetText("Remerciements");
             skip.SetText("PASSER");
-            text.SetText("");
         }
 
         
+    }
+
+
+    public void Text1()
+    {
+        if (UIStart.ENG)
+        {
+            text.SetText("Dad! Help, come help me please!!");
+
+        }
+        else
+        {
+            text.SetText("Papa! à l'aide, viens m'aider!!");
+        }
+    }
+
+    public void Text2()
+    {
+        if (UIStart.ENG)
+        {
+            text.SetText("I'm coming Amy");
+        }
+        else
+        {
+            text.SetText("J'arrive Amy!");
+        }
     }
     
 }

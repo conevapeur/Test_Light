@@ -34,11 +34,16 @@ public class UIManager : MonoBehaviour
 
     [Space(10)]
     [Header("Readables")]
-    [SerializeField] private GameObject readable1;
-    [SerializeField] private GameObject readable2;
-    [SerializeField] private GameObject readable3;
-    [SerializeField] private GameObject readable4;
-    [SerializeField] private GameObject readable5;
+    [SerializeField] private GameObject readable1fr;
+    [SerializeField] private GameObject readable2fr;
+    [SerializeField] private GameObject readable3fr;
+    [SerializeField] private GameObject readable4fr;
+    [SerializeField] private GameObject readable5fr;
+    [SerializeField] private GameObject readable1eng;
+    [SerializeField] private GameObject readable2eng;
+    [SerializeField] private GameObject readable3eng;
+    [SerializeField] private GameObject readable4eng;
+    [SerializeField] private GameObject readable5eng;
 
     [Space(10)]
 
@@ -169,11 +174,17 @@ public class UIManager : MonoBehaviour
         optionsMenu.SetActive(false);
         quitPanel.SetActive(false);
 
-        readable1.SetActive(false);
-        readable2.SetActive(false);
-        readable3.SetActive(false);
-        readable4.SetActive(false);
-        readable5.SetActive(false);
+        readable1fr.SetActive(false);
+        readable2fr.SetActive(false);
+        readable3fr.SetActive(false);
+        readable4fr.SetActive(false);
+        readable5fr.SetActive(false);
+
+        readable1eng.SetActive(false);
+        readable2eng.SetActive(false);
+        readable3eng.SetActive(false);
+        readable4eng.SetActive(false);
+        readable5eng.SetActive(false);
 
         _controls.SetActive(false);
         _language.SetActive(false);
@@ -401,39 +412,39 @@ public class UIManager : MonoBehaviour
 
 
 
-        else if (readable1.activeInHierarchy)
+        else if (readable1fr.activeInHierarchy || readable1eng.activeInHierarchy)
         {
             audioBack.Play();
 
-            readable1.SetActive(false);
+            readable1fr.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton1);
         }
-        else if (readable2.activeInHierarchy)
+        else if (readable2fr.activeInHierarchy || readable2eng.activeInHierarchy)
         {
             audioBack.Play();
 
-            readable2.SetActive(false);
+            readable2fr.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton2);
         }
-        else if (readable3.activeInHierarchy)
+        else if (readable3fr.activeInHierarchy || readable3eng.activeInHierarchy)
         {
             audioBack.Play();
 
-            readable3.SetActive(false);
+            readable3fr.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton3);
         }
-        else if (readable4.activeInHierarchy)
+        else if (readable4fr.activeInHierarchy || readable4eng.activeInHierarchy)
         {
             audioBack.Play();
 
-            readable4.SetActive(false);
+            readable4fr.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton4);
         }
-        else if (readable5.activeInHierarchy)
+        else if (readable5fr.activeInHierarchy || readable5eng.activeInHierarchy)
         {
             audioBack.Play();
 
-            readable5.SetActive(false);
+            readable5fr.SetActive(false);
             _eventSystem.SetSelectedGameObject(readableButton5);
         }
         else if (infosMenu.activeInHierarchy)
@@ -541,12 +552,23 @@ public class UIManager : MonoBehaviour
     public void Readable1()
     {
         audioSelected.Play();
-
-        readable1.gameObject.SetActive(true);
-        readable2.gameObject.SetActive(false);
-        readable3.gameObject.SetActive(false);
-        readable4.gameObject.SetActive(false);
-        readable5.gameObject.SetActive(false);
+        if (UIStart.ENG)
+        {
+            readable1eng.gameObject.SetActive(true);
+            readable2eng.gameObject.SetActive(false);
+            readable3eng.gameObject.SetActive(false);
+            readable4eng.gameObject.SetActive(false);
+            readable5eng.gameObject.SetActive(false);
+        }
+        else
+        {
+            readable1fr.gameObject.SetActive(true);
+            readable2fr.gameObject.SetActive(false);
+            readable3fr.gameObject.SetActive(false);
+            readable4fr.gameObject.SetActive(false);
+            readable5fr.gameObject.SetActive(false);
+        }
+        
         _eventSystem.SetSelectedGameObject(null);
     }
 
@@ -554,11 +576,22 @@ public class UIManager : MonoBehaviour
     {
         audioSelected.Play();
 
-        readable1.gameObject.SetActive(false);
-        readable2.gameObject.SetActive(true);
-        readable3.gameObject.SetActive(false);
-        readable4.gameObject.SetActive(false);
-        readable5.gameObject.SetActive(false);
+        if (UIStart.ENG)
+        {
+            readable1eng.gameObject.SetActive(false);
+            readable2eng.gameObject.SetActive(true);
+            readable3eng.gameObject.SetActive(false);
+            readable4eng.gameObject.SetActive(false);
+            readable5eng.gameObject.SetActive(false);
+        }
+        else
+        {
+            readable1fr.gameObject.SetActive(false);
+            readable2fr.gameObject.SetActive(true);
+            readable3fr.gameObject.SetActive(false);
+            readable4fr.gameObject.SetActive(false);
+            readable5fr.gameObject.SetActive(false);
+        }
         _eventSystem.SetSelectedGameObject(null);
     }
 
@@ -566,11 +599,22 @@ public class UIManager : MonoBehaviour
     {
         audioSelected.Play();
 
-        readable1.gameObject.SetActive(false);
-        readable2.gameObject.SetActive(false);
-        readable3.gameObject.SetActive(true);
-        readable4.gameObject.SetActive(false);
-        readable5.gameObject.SetActive(false);
+        if (UIStart.ENG)
+        {
+            readable1eng.gameObject.SetActive(false);
+            readable2eng.gameObject.SetActive(false);
+            readable3eng.gameObject.SetActive(true);
+            readable4eng.gameObject.SetActive(false);
+            readable5eng.gameObject.SetActive(false);
+        }
+        else
+        {
+            readable1fr.gameObject.SetActive(false);
+            readable2fr.gameObject.SetActive(false);
+            readable3fr.gameObject.SetActive(true);
+            readable4fr.gameObject.SetActive(false);
+            readable5fr.gameObject.SetActive(false);
+        }
         _eventSystem.SetSelectedGameObject(null);
     }
 
@@ -578,11 +622,22 @@ public class UIManager : MonoBehaviour
     {
         audioSelected.Play();
 
-        readable1.gameObject.SetActive(false);
-        readable2.gameObject.SetActive(false);
-        readable3.gameObject.SetActive(false);
-        readable4.gameObject.SetActive(true);
-        readable5.gameObject.SetActive(false);
+        if (UIStart.ENG)
+        {
+            readable1eng.gameObject.SetActive(false);
+            readable2eng.gameObject.SetActive(false);
+            readable3eng.gameObject.SetActive(false);
+            readable4eng.gameObject.SetActive(true);
+            readable5eng.gameObject.SetActive(false);
+        }
+        else
+        {
+            readable1fr.gameObject.SetActive(false);
+            readable2fr.gameObject.SetActive(false);
+            readable3fr.gameObject.SetActive(false);
+            readable4fr.gameObject.SetActive(true);
+            readable5fr.gameObject.SetActive(false);
+        }
         _eventSystem.SetSelectedGameObject(null);
     }
 
@@ -590,24 +645,29 @@ public class UIManager : MonoBehaviour
     {
         audioSelected.Play();
 
-        readable1.gameObject.SetActive(false);
-        readable2.gameObject.SetActive(false);
-        readable3.gameObject.SetActive(false);
-        readable4.gameObject.SetActive(false);
-        readable5.gameObject.SetActive(true);
+        if (UIStart.ENG)
+        {
+            readable1eng.gameObject.SetActive(false);
+            readable2eng.gameObject.SetActive(false);
+            readable3eng.gameObject.SetActive(false);
+            readable4eng.gameObject.SetActive(false);
+            readable5eng.gameObject.SetActive(true);
+        }
+        else
+        {
+            readable1fr.gameObject.SetActive(false);
+            readable2fr.gameObject.SetActive(false);
+            readable3fr.gameObject.SetActive(false);
+            readable4fr.gameObject.SetActive(false);
+            readable5fr.gameObject.SetActive(true);
+        }
         _eventSystem.SetSelectedGameObject(null);
     }
-
-
-
 
 
     private void Update()
     {
     
-
-
-
         if (_eventSystem.currentSelectedGameObject == volumeButton && !_volume.activeInHierarchy)
         {
             _volume.SetActive(true);
