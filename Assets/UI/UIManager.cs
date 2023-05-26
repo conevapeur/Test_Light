@@ -198,7 +198,7 @@ public class UIManager : MonoBehaviour
 
         soundMark1rend1 = soundMark11.GetComponent<RawImage>();
         soundMark2rend1 = soundMark21.GetComponent<RawImage>();
-        soundMark3rend1 = soundMark31.GetComponent<RawImage>();
+        soundMark3rend1 = soundMark31.GetComponent<RawImage>(); 
         soundMark4rend1 = soundMark41.GetComponent<RawImage>();
         soundMark5rend1 = soundMark51.GetComponent<RawImage>();
 

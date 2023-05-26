@@ -146,9 +146,9 @@ public class FPC : MonoBehaviour
             #region move
             if(canSidewalk)
             {
-                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity  /*+ Input.GetAxis("Gamepad X") * mouseSensivity*/;
+                yRotation = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity  + Input.GetAxis("Gamepad X") * mouseSensivity;
                 //yRotation = transform.localEulerAngles.y + Input.GetAxis("Gamepad X") * mouseSensivity;
-                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity /*- Input.GetAxis("Gamepad Y") * mouseSensivity*/;
+                xRotation = xRotation - Input.GetAxis("Mouse Y") * mouseSensivity - Input.GetAxis("Gamepad Y") * mouseSensivity;
                 //xRotation = xRotation - Input.GetAxis("Gamepad Y") * mouseSensivity;
 
                 xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
