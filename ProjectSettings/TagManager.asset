@@ -12,6 +12,7 @@ TagManager:
   - CinemachineTarget
   - card
   - interactable
+  - zonechnageUI
   layers:
   - Default
   - TransparentFX

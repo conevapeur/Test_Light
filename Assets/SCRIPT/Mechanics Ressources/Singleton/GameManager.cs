@@ -64,6 +64,10 @@ public class GameManager : MonoBehaviour
     public AudioClip criMonstre;
     public AudioClip deathSound;
 
+
+    public GameObject[] _decals = new GameObject[0]; 
+
+
     private void Awake()
     {
         myAudioSource = GetComponent<AudioSource>();
@@ -661,15 +665,19 @@ public class GameManager : MonoBehaviour
         Vector3 start = Vector3.zero;
         
         Vector3 point = Vector3.zero;
-        
+
+        //GameObject[] _decals;
 
         if (Caller.TryGetComponent<debrisVerre>(out debrisVerre script))
         {
             start = script.start.transform.position;
             point = script.point.transform.position;
+            _decals = script.decals;
             //Debug.Log(start);
             //Debug.Log(point);
         }
+
+
 
         monster.GetComponent<NavMeshAgent>().enabled = false;
         //monster.transform.position = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
@@ -689,6 +697,14 @@ public class GameManager : MonoBehaviour
         monster.GetComponent<NavMeshAgent>().destination = point;
         yield return new WaitForSeconds(5);
 
+
+        if(_decals.Length >=0)
+        {
+            for (int i = 0; i<_decals.Length ; i++)
+            {
+                _decals[i].SetActive(true);
+            }
+        }
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         monster.GetComponent<NavMeshAgent>().destination = start;
