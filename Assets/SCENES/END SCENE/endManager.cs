@@ -23,10 +23,22 @@ public class endManager : MonoBehaviour
     [SerializeField] private AudioSource dialeng;
     [SerializeField] private AudioSource cri;
 
+    [SerializeField] private GameObject engcred;
+
+
     private void Awake()
     {
         controls = new UI();
         controls.Menu.back.performed += ctx => Skip();
+
+        if (UIStart.ENG)
+        {
+            engcred.SetActive(true);
+        }
+        else
+        {
+            engcred.SetActive(false);
+        }
     }
 
     public void ChangeScene()
