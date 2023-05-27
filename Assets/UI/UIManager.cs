@@ -234,24 +234,58 @@ public class UIManager : MonoBehaviour
             checkFrench.SetActive(true);
 
         }
+
+        readableButton1.SetActive(false);
+        readableButton2.SetActive(false);
+        readableButton3.SetActive(false);
+        readableButton4.SetActive(false);
+        readableButton5.SetActive(false);
     }
 
     void playHoverDown()
     {
-        if (_eventSystem.currentSelectedGameObject == quitButton || _eventSystem.currentSelectedGameObject == languageButton || _eventSystem.currentSelectedGameObject == subtitlesButton || _eventSystem.currentSelectedGameObject == selector3 || _eventSystem.currentSelectedGameObject == noButton || _eventSystem.currentSelectedGameObject == readableButton5) return;
+        if ( _eventSystem.currentSelectedGameObject == quitButton || _eventSystem.currentSelectedGameObject == languageButton || _eventSystem.currentSelectedGameObject == subtitlesButton || _eventSystem.currentSelectedGameObject == selector3 || _eventSystem.currentSelectedGameObject == noButton || _eventSystem.currentSelectedGameObject == readableButton5 || _eventSystem.currentSelectedGameObject == null) return;
         {
-            audioSelecfion.Play();
+            if (_eventSystem.currentSelectedGameObject == readableButton4 && readableButton5.activeInHierarchy == false) return;
+            {
+                if (_eventSystem.currentSelectedGameObject == readableButton3 && readableButton5.activeInHierarchy == false && readableButton4.activeInHierarchy == false) return;
+                {
+                    if (_eventSystem.currentSelectedGameObject == readableButton2 && readableButton5.activeInHierarchy == false && readableButton4.activeInHierarchy == false && readableButton3.activeInHierarchy == false) return;
+                    {
+                        if (_eventSystem.currentSelectedGameObject == readableButton1 && readableButton5.activeInHierarchy == false && readableButton4.activeInHierarchy == false && readableButton3.activeInHierarchy == false && readableButton2.activeInHierarchy == false) return;
+                        {
+                            audioSelecfion.Play();
+
+                        }
+                    }
+                }
+            }
 
         }
     }
 
     void playHoverUp()
     {
-        if (_eventSystem.currentSelectedGameObject == resumeButton || _eventSystem.currentSelectedGameObject == volumeButton || _eventSystem.currentSelectedGameObject == englishButton || _eventSystem.currentSelectedGameObject == selector1|| _eventSystem.currentSelectedGameObject == yesButton || _eventSystem.currentSelectedGameObject == readableButton1) return;
+        if (_eventSystem.currentSelectedGameObject == resumeButton || _eventSystem.currentSelectedGameObject == volumeButton || _eventSystem.currentSelectedGameObject == englishButton || _eventSystem.currentSelectedGameObject == selector1|| _eventSystem.currentSelectedGameObject == yesButton || _eventSystem.currentSelectedGameObject == readableButton1 || _eventSystem.currentSelectedGameObject == null) return;
         {
-            audioSelecfion.Play();
+            if (_eventSystem.currentSelectedGameObject == readableButton2 && readableButton1.activeInHierarchy == false ) return;
+            {
+                if (_eventSystem.currentSelectedGameObject == readableButton3 && readableButton2.activeInHierarchy == false && readableButton1.activeInHierarchy == false) return;
+                {
+                    if (_eventSystem.currentSelectedGameObject == readableButton4 && readableButton3.activeInHierarchy == false && readableButton2.activeInHierarchy == false && readableButton1.activeInHierarchy == false) return;
+                    {
+                        if (_eventSystem.currentSelectedGameObject == readableButton5 && readableButton4.activeInHierarchy == false && readableButton3.activeInHierarchy == false && readableButton2.activeInHierarchy == false && readableButton1.activeInHierarchy == false) return;
+                        {
+                            audioSelecfion.Play();
 
+                        }
+                    }
+                }
+            }
+            
         }
+        
+        
     }
     void StopLeft()
     {
@@ -334,7 +368,7 @@ public class UIManager : MonoBehaviour
 
         infosMenu.SetActive(true);
         pauseMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(readableButton1);
+        
 
         if (interactReadable.readable1 == true)
         {
@@ -355,6 +389,36 @@ public class UIManager : MonoBehaviour
         if (interactReadable.readable5 == true)
         {
             readableButton5.gameObject.SetActive(true);
+        }
+
+        if (interactReadable.readable1 == true)
+        {
+            _eventSystem.SetSelectedGameObject(readableButton1);
+        }
+        else if(interactReadable.readable1 == false && interactReadable.readable2 == true) 
+        {
+            _eventSystem.SetSelectedGameObject(readableButton2);
+
+        }
+        else if (interactReadable.readable1 == false && interactReadable.readable2 == false && interactReadable.readable3 == true)
+        {
+            _eventSystem.SetSelectedGameObject(readableButton3);
+
+        }
+        else if (interactReadable.readable1 == false && interactReadable.readable2 == false && interactReadable.readable3 == false && interactReadable.readable4 == true)
+        {
+            _eventSystem.SetSelectedGameObject(readableButton4);
+
+        }
+        else if (interactReadable.readable1 == false && interactReadable.readable2 == false && interactReadable.readable3 == false && interactReadable.readable4 == false && interactReadable.readable5 == true)
+        {
+            _eventSystem.SetSelectedGameObject(readableButton5);
+
+        }
+        else
+        {
+            _eventSystem.SetSelectedGameObject(null);
+
         }
     }
     public void Options()

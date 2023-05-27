@@ -6,9 +6,9 @@ using UnityEngine;
 public class interactReadable : MonoBehaviour, IInteract 
 {
     public static bool readable1;
-    public static bool readable2;
+    public static bool readable2 = true;
     public static bool readable3;
-    public static bool readable4;
+    public static bool readable4 = true;
     public static bool readable5;
     public static bool card;
 

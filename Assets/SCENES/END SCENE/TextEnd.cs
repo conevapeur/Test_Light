@@ -10,7 +10,7 @@ using UnityEngine.Rendering;
 
 public class TextEnd : MonoBehaviour
 {
-    [SerializeField] TMP_Text credits;
+    //[SerializeField] TMP_Text credits;
     [SerializeField] TMP_Text text;
     [SerializeField] GameObject gotext;
 
@@ -31,13 +31,13 @@ public class TextEnd : MonoBehaviour
 
         if (UIStart.ENG)
         {
-            credits.SetText("Remerciements (mais en anglais)");
+            //credits.SetText("Remerciements (mais en anglais)");
             skip.SetText("SKIP");
             
         }
         else
         {
-            credits.SetText("Remerciements");
+            //credits.SetText("Remerciements");
             skip.SetText("PASSER");
         }
 
