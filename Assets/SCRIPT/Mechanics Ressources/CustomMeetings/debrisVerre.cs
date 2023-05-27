@@ -14,6 +14,7 @@ public class debrisVerre : MonoBehaviour
     public GameObject start;
     public GameObject point;
 
+    public GameObject[] decals;
 
     private bool activated;
 
