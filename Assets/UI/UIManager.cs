@@ -161,6 +161,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UnityEvent TextFR;
     [SerializeField] private UnityEvent TextENG;
 
+    [SerializeField] private GameObject logoCard;
+
 
     private void Awake()
     {
@@ -1013,6 +1015,16 @@ public class UIManager : MonoBehaviour
             readableImage3.SetActive(false);
             readableImage4.SetActive(false);
             readableImage5.SetActive(true);
+        }
+
+
+        if (interactReadable.card == true)
+        {
+            logoCard.SetActive(true);
+        }
+        else
+        {
+            logoCard.SetActive(false);
         }
 
     }

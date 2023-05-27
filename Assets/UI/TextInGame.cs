@@ -75,7 +75,7 @@ public class TextInGame : MonoBehaviour
         language.SetText("LANGAGE");
         english.SetText("ENGLISH");
         french.SetText("FRANCAIS");
-        subtitles.SetText("SOUS-TITRES");
+        subtitles.SetText("SOUS TITRES");
     }
 
 }

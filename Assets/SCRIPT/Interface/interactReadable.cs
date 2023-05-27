@@ -57,7 +57,11 @@ public class interactReadable : MonoBehaviour, IInteract
         }
         if (number == 5)
         {
-            card = true;
+            readable5 = true;
+        }
+        if (number == 6)
+        {
+            card= true;
         }
 
     }
