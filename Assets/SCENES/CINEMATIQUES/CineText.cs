@@ -69,7 +69,7 @@ public class CineText : MonoBehaviour
     {
         if (UIStart.ENG)
         {
-            text.SetText("Nothing's happening, don't worry. I just need you to see that");
+            text.SetText("Nothing's happening, don't worry. You have to see that");
         }
         else
         {
