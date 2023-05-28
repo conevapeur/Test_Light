@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text soustitres;
     [SerializeField] private GameObject gotext; // pour desactiver les sous titres si decocher dans ui
+    [SerializeField] private GameObject fondNoir;
 
     public GameObject bumperTuto;
 
@@ -68,8 +69,11 @@ public class GameManager : MonoBehaviour
     public GameObject[] _decals = new GameObject[0]; 
 
 
+
+
     private void Awake()
     {
+        fondNoir.SetActive(false);
         myAudioSource = GetComponent<AudioSource>();
 
         if (instance != null && instance != this)
@@ -184,6 +188,8 @@ public class GameManager : MonoBehaviour
             */
 
             Debug.Log("ligne 1");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Dad, I fell in a hole, I can't get out.");
             //audioSource.clip = audioClip;
             //audioSource.Play();
@@ -219,6 +225,8 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(7);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             //player.GetComponent<FPC>().haveToDegaine = true;
             player.GetComponent<FPC>().animator.SetTrigger("triggerEndTalk");
             yield return null;
@@ -240,6 +248,8 @@ public class GameManager : MonoBehaviour
             */
 
             Debug.Log("ligne 1");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Papa je suis tombée dans un trou, je peux pas sortir.");
             //audioSource.clip = audioClip;
             //audioSource.Play();
@@ -274,6 +284,8 @@ public class GameManager : MonoBehaviour
             //audioSource.Play();
 
             yield return new WaitForSeconds(7);
+            fondNoir.SetActive(false);
+
             soustitres.SetText(" ");
             //player.GetComponent<FPC>().haveToDegaine = true;
             player.GetComponent<FPC>().animator.SetTrigger("triggerEndTalk");
@@ -293,6 +305,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 7");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("I'm here Dad, what do I do now?");
             yield return new WaitForSeconds(1);
 
@@ -330,6 +344,8 @@ public class GameManager : MonoBehaviour
 
 
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -342,6 +358,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 7");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("J’y suis papa, je fais quoi maintenant?");
             yield return new WaitForSeconds(3);
 
@@ -376,6 +394,8 @@ public class GameManager : MonoBehaviour
 
 
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -392,6 +412,8 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().curFreq = 1;
             player.GetComponent<FPC>().lockAbilities("listening");
             Debug.Log("ligne 11");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Dad, the door is shut, where do I go now??");
             yield return new WaitForSeconds(3);
 
@@ -409,6 +431,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("Hmmm Electricity... you need to put the power back on. Emergency generator should be in a room on your left. You'd just have to lower the lever and it should do the trick..");
             yield return new WaitForSeconds(5);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -420,6 +444,8 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().curFreq = 1;
             player.GetComponent<FPC>().lockAbilities("listening");
             Debug.Log("ligne 11");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Papa, la porte est fermée, je fais quoi?");
             yield return new WaitForSeconds(3);
 
@@ -433,6 +459,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("l'électricité...  il faut que tu remettes l’électricité. Le générateur de secours devrait être dans une salle à gauche.Tu n'auras qu'à abaisser le levier et ça devrait marcher.");
             yield return new WaitForSeconds(5);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -448,6 +476,8 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().curFreq = 4;
             player.GetComponent<FPC>().lockAbilities("listening");
             Debug.Log("ligne 13");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("There's something behind the door. I can't open it.");
             yield return new WaitForSeconds(4);
 
@@ -465,6 +495,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("You have to find a way to go through it. Help yourself with a chair or something to climb.");
             yield return new WaitForSeconds(4);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -476,6 +508,8 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().curFreq = 4;
             player.GetComponent<FPC>().lockAbilities("listening");
             Debug.Log("ligne 13");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Y a quelque chose qui bloque derrière la porte. J'peux pas l'ouvrir.");
             yield return new WaitForSeconds(3);
 
@@ -489,6 +523,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("Trouve un moyen de passer au-dessus. Prends une chaise ou un objet pour escalader.");
             yield return new WaitForSeconds(4);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -502,6 +538,8 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 15");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("I went through dad.");
             yield return new WaitForSeconds(2);
             Debug.Log("ligne 16");
@@ -510,6 +548,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("Go on, generator should be down the stairs. Pull the lever down to activate it..");
             yield return new WaitForSeconds(4);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -519,12 +559,16 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("ligne 15");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Je suis passée papa");
             yield return new WaitForSeconds(1);
             Debug.Log("ligne 16");
             soustitres.SetText("Continue, le générateur est en bas de l’escalier. Pour l’actionner, tire le levier vers le bas.");
             yield return new WaitForSeconds(4);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -541,6 +585,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 17");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Dad, You're sure it is the right way? The stairs are broken, we won't be able to come back this way.");
             yield return new WaitForSeconds(5);
             Debug.Log("ligne 18");
@@ -554,6 +600,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("OK, I'm coming down then");
             yield return new WaitForSeconds(2);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -565,6 +613,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 17");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Papa, t’es sûr que c’est le bon chemin, les escaliers sont cassés, on ne pourra pas revenir par là.");
             yield return new WaitForSeconds(1);
             Debug.Log("ligne 18");
@@ -578,6 +628,8 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("Ok, je descends alors");
             yield return new WaitForSeconds(1);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -591,12 +643,16 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
             Debug.Log("ligne 20");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("I'm in a corridor, which way I go now?");
             yield return new WaitForSeconds(3);
             Debug.Log("ligne 21");
             soustitres.SetText("You need to go in the control room in front of you. You need the spare card to enter this room. My old one is in my office, behind the picture with the birds. Find it and come back here.");
             yield return new WaitForSeconds(6);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -606,12 +662,15 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("ligne 20");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Je suis arrivée dans un couloir je vais où maintenant?");
             yield return new WaitForSeconds(4);
             Debug.Log("ligne 21");
             soustitres.SetText("Tu dois avoir la salle de contrôle devant toi. Tu as besoin de la carte d'accès pour ouvrir cette pièce. Il doit y avoir mon ancienne carte dans mon bureau. Il y a une carte de secours derrière le tableau avec les oiseaux. Trouve la et reviens ici. ");
             yield return new WaitForSeconds(6);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false) ;
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -625,12 +684,16 @@ public class GameManager : MonoBehaviour
         if (UIStart.ENG)
         {
             Debug.Log("ligne 22");
+            fondNoir.SetActive(true);
+
             soustitres.SetText(" I'm going in the room Dad.");
             yield return new WaitForSeconds(3);
             Debug.Log("ligne 23");
             soustitres.SetText("You see the red button in the middle? Push it.");
             yield return new WaitForSeconds(7);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
@@ -640,12 +703,16 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("ligne 22");
+            fondNoir.SetActive(true);
+
             soustitres.SetText("Je rentre dans la salle papa.");
             yield return new WaitForSeconds(1);
             Debug.Log("ligne 23");
             soustitres.SetText("Tu vois le bouton rouge? appuie dessus. ");
             yield return new WaitForSeconds(1);
             soustitres.SetText(" ");
+            fondNoir.SetActive(false);
+
             player.GetComponent<FPC>().haveToDegaine = true;
             yield return null;
         }
