@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     public AudioSource myAudioSource;
     public AudioClip criMonstre;
     public AudioClip deathSound;
+    public AudioClip breakingGlass;
 
 
     //public GameObject[] _decals = new GameObject[0]; 
@@ -755,6 +756,11 @@ public class GameManager : MonoBehaviour
         monster.transform.position = start;
         monster.GetComponent<NavMeshAgent>().enabled = true;
 
+        //myAudioSource.clip = breakingGlass;
+        //myAudioSource.Play();
+
+        yield return new WaitForSeconds(.5f);
+
         myAudioSource.clip = criMonstre;
         myAudioSource.Play();
 
@@ -911,4 +917,8 @@ public class GameManager : MonoBehaviour
 
         yield return null;
     }
+
+    
+
+
 }
