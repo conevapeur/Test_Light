@@ -739,7 +739,11 @@ public class GameManager : MonoBehaviour
         {
             start = script.start.transform.position;
             point = script.point.transform.position;
-            _decals = script.decals;
+            if(script.decals != null)
+            {
+                _decals = script.decals;
+            }
+            
             //Debug.Log(start);
             //Debug.Log(point);
         }
@@ -773,8 +777,8 @@ public class GameManager : MonoBehaviour
             }
         }
         */
-
-        _decals.SetActive(true);
+        if (_decals != null)
+            _decals.SetActive(true);
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         monster.GetComponent<NavMeshAgent>().destination = start;
