@@ -16,6 +16,8 @@ public class interactGenerator : MonoBehaviour, IInteract
 
     [SerializeField] private GameObject chaise;
 
+    [SerializeField] private GameObject depart;
+
     
 
     // Start is called before the first frame update
@@ -45,6 +47,8 @@ public class interactGenerator : MonoBehaviour, IInteract
         GameManager.instance.player.transform.position += new Vector3(50, 0, 0);
 
         chaise.transform.position += new Vector3(50, 0, 0);
+
+        depart.SetActive(false);
 
 
 
