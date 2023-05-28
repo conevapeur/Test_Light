@@ -12,7 +12,7 @@ public class caisse : MonoBehaviour
         if (other.CompareTag("Player") && interactReadable.card)
         {
             animator.SetTrigger("trigger");
-            //audioSource.Play();
+            audioSource.Play();
             Destroy(this);
         }
     }

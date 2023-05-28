@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class interactGenerator : MonoBehaviour, IInteract
 {
-    LightmapData[] _lightmapData;
+    //LightmapData[] _lightmapData;
 
     [SerializeField] private AudioSource generator;
 
@@ -23,8 +23,8 @@ public class interactGenerator : MonoBehaviour, IInteract
     // Start is called before the first frame update
     void Start()
     {
-        _lightmapData = LightmapSettings.lightmaps;
-        LightmapSettings.lightmaps = new LightmapData[] { };
+        //_lightmapData = LightmapSettings.lightmaps;
+        //LightmapSettings.lightmaps = new LightmapData[] { };
         objet2.SetActive(false);
     }
 
@@ -33,7 +33,7 @@ public class interactGenerator : MonoBehaviour, IInteract
     {
         Debug.Log("generateur allumé");
 
-        LightmapSettings.lightmaps = _lightmapData;
+        //LightmapSettings.lightmaps = _lightmapData;
 
         //_stairs.SetTrigger("trigger"); --------------------------------------------------------------
 
