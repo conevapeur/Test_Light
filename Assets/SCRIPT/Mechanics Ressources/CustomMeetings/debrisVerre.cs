@@ -14,7 +14,8 @@ public class debrisVerre : MonoBehaviour
     public GameObject start;
     public GameObject point;
 
-    public GameObject[] decals;
+    //public GameObject[] decals;
+    public GameObject decals;
 
     private bool activated;
 
@@ -28,6 +29,7 @@ public class debrisVerre : MonoBehaviour
     void Start()
     {
         origin = Vector3.Lerp(origin, transform.position, 1);
+        decals.SetActive(false);
     }
 
     // Update is called once per frame

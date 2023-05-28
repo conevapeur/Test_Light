@@ -66,9 +66,9 @@ public class GameManager : MonoBehaviour
     public AudioClip deathSound;
 
 
-    public GameObject[] _decals = new GameObject[0]; 
+    //public GameObject[] _decals = new GameObject[0]; 
 
-
+    public GameObject _decals;
 
 
     private void Awake()
@@ -739,7 +739,11 @@ public class GameManager : MonoBehaviour
         {
             start = script.start.transform.position;
             point = script.point.transform.position;
-            _decals = script.decals;
+            if(script.decals != null)
+            {
+                _decals = script.decals;
+            }
+            
             //Debug.Log(start);
             //Debug.Log(point);
         }
@@ -764,7 +768,7 @@ public class GameManager : MonoBehaviour
         monster.GetComponent<NavMeshAgent>().destination = point;
         yield return new WaitForSeconds(5);
 
-
+        /*
         if(_decals.Length >=0)
         {
             for (int i = 0; i<_decals.Length ; i++)
@@ -772,6 +776,9 @@ public class GameManager : MonoBehaviour
                 _decals[i].SetActive(true);
             }
         }
+        */
+        if (_decals != null)
+            _decals.SetActive(true);
 
         //monster.GetComponent<NavMeshAgent>().destination = firstRoom.GetComponent<firstRoomTrigger>().start.transform.position;
         monster.GetComponent<NavMeshAgent>().destination = start;
