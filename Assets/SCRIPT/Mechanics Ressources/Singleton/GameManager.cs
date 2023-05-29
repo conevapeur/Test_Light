@@ -72,6 +72,18 @@ public class GameManager : MonoBehaviour
     public GameObject _decals;
 
 
+    [SerializeField] GameObject deathZone;
+    [SerializeField] GameObject position1;
+    [SerializeField] GameObject position2;
+    [SerializeField] GameObject position3;
+    [SerializeField] GameObject position4;
+
+    [SerializeField] GameObject soundPlayer1;
+    [SerializeField] GameObject soundPlayer2;
+    [SerializeField] GameObject soundPlayer3;
+    [SerializeField] GameObject soundPlayer4;
+    [SerializeField] GameObject soundPlayer5;
+
     private void Awake()
     {
         fondNoir.SetActive(false);
@@ -918,7 +930,18 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    
 
+    #region finalRoom
+
+    public void trigger1()
+    {
+
+    }
+
+
+
+
+
+    #endregion
 
 }
