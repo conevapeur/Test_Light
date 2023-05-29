@@ -75,7 +75,7 @@ public class CineManager : MonoBehaviour
     public void ChangeScene()
     {
 
-        SceneManager.LoadScene("level art");
+        SceneManager.LoadScene("temp level art");
     }
 
     public void EndAnim()

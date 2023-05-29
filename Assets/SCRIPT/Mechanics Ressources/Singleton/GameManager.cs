@@ -309,7 +309,7 @@ public class GameManager : MonoBehaviour
             talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[1];
             talkie.GetComponent<talkie>().myAudioSource.Play();
 
-            talkie.GetComponent<talkie>().curFreq = 3;
+            
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 7");
@@ -323,7 +323,7 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("(voix grésillante) passe par la porte et suit le couloir.");
             yield return new WaitForSeconds(1);
             */
-
+            talkie.GetComponent<talkie>().curFreq = 3;
             Debug.Log("ligne 9");
             soustitres.SetText("Dad, I can't hear you.");
 
@@ -362,7 +362,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            talkie.GetComponent<talkie>().curFreq = 3;
+            
             player.GetComponent<FPC>().lockAbilities("listening");
 
             Debug.Log("ligne 7");
@@ -382,7 +382,7 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 9");
             soustitres.SetText("Je t'entends pas papa.");
-
+            talkie.GetComponent<talkie>().curFreq = 3;
             bumperTuto.SetActive(true);
 
             talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[3];
