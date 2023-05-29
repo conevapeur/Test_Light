@@ -368,6 +368,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("ligne 7");
             fondNoir.SetActive(true);
 
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[1];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             soustitres.SetText("J’y suis papa, je fais quoi maintenant?");
             yield return new WaitForSeconds(3);
 
@@ -382,7 +385,7 @@ public class GameManager : MonoBehaviour
 
             bumperTuto.SetActive(true);
 
-            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[3];
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[3];
             talkie.GetComponent<talkie>().myAudioSource.Play();
             yield return new WaitForSeconds(2);
 
@@ -398,7 +401,11 @@ public class GameManager : MonoBehaviour
             bumperTuto.SetActive(false);
             Debug.Log("ligne 10");
             soustitres.SetText("Passe par la porte de la réserve, une fois sortie, tu vas te retrouver à l’accueil. Continue le couloir et tu devrais arriver au niveau inférieur");
-            yield return new WaitForSeconds(5);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[4];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(8);
 
 
             soustitres.SetText(" ");
@@ -437,7 +444,7 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 12");
             soustitres.SetText("Hmmm Electricity... you need to put the power back on. Emergency generator should be in a room on your left. You'd just have to lower the lever and it should do the trick..");
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(13);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -455,7 +462,11 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("Papa, la porte est fermée, je fais quoi?");
-            yield return new WaitForSeconds(3);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[5];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(4);
 
             while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
             {
@@ -465,7 +476,11 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().recover();
             Debug.Log("ligne 12");
             soustitres.SetText("l'électricité...  il faut que tu remettes l’électricité. Le générateur de secours devrait être dans une salle à gauche.Tu n'auras qu'à abaisser le levier et ça devrait marcher.");
-            yield return new WaitForSeconds(5);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[6];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(12);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -487,7 +502,7 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("There's something behind the door. I can't open it.");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(3);
 
             while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
             {
@@ -501,7 +516,7 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 14");
             soustitres.SetText("You have to find a way to go through it. Help yourself with a chair or something to climb.");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(8);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -519,7 +534,11 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("Y a quelque chose qui bloque derrière la porte. J'peux pas l'ouvrir.");
-            yield return new WaitForSeconds(3);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[7];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(4);
 
             while (talkie.GetComponent<talkie>().curFreq != talkie.GetComponent<talkie>().state)
             {
@@ -529,7 +548,11 @@ public class GameManager : MonoBehaviour
             player.GetComponent<FPC>().recover();
             Debug.Log("ligne 14");
             soustitres.SetText("Trouve un moyen de passer au-dessus. Prends une chaise ou un objet pour escalader.");
-            yield return new WaitForSeconds(4);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[8];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(5);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -549,12 +572,12 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("I went through dad.");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1.5f);
             Debug.Log("ligne 16");
             talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesENG[10];
             talkie.GetComponent<talkie>().myAudioSource.Play();
             soustitres.SetText("Go on, generator should be down the stairs. Pull the lever down to activate it..");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(6);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -570,10 +593,18 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("Je suis passée papa");
-            yield return new WaitForSeconds(1);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[9];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(1.5f);
             Debug.Log("ligne 16");
             soustitres.SetText("Continue, le générateur est en bas de l’escalier. Pour l’actionner, tire le levier vers le bas.");
-            yield return new WaitForSeconds(4);
+
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[10];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+            yield return new WaitForSeconds(6f);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -596,10 +627,10 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("Dad, You're sure it is the right way? The stairs are broken, we won't be able to come back this way.");
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(4.5f);
             Debug.Log("ligne 18");
             soustitres.SetText("Yes, there is another exit on the other side, we will go out this way.");
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5.5f);
 
 
             player.GetComponent<FPC>().recover();
@@ -623,18 +654,22 @@ public class GameManager : MonoBehaviour
             Debug.Log("ligne 17");
             fondNoir.SetActive(true);
 
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[11];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
+
             soustitres.SetText("Papa, t’es sûr que c’est le bon chemin, les escaliers sont cassés, on ne pourra pas revenir par là.");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(6.5f);
             Debug.Log("ligne 18");
             soustitres.SetText("Oui, il y a une autre sortie de l'autre côté, on sortira par là.");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(4);
 
 
             player.GetComponent<FPC>().recover();
 
             Debug.Log("ligne 19");
             soustitres.SetText("Ok, je descends alors");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2.5f);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -657,7 +692,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(3);
             Debug.Log("ligne 21");
             soustitres.SetText("You need to go in the control room in front of you. You need the spare card to enter this room. My old one is in my office, behind the picture with the birds. Find it and come back here.");
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(12);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -672,11 +707,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("ligne 20");
             fondNoir.SetActive(true);
 
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[12];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             soustitres.SetText("Je suis arrivée dans un couloir je vais où maintenant?");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(3.5f);
             Debug.Log("ligne 21");
             soustitres.SetText("Tu dois avoir la salle de contrôle devant toi. Tu as besoin de la carte d'accès pour ouvrir cette pièce. Il doit y avoir mon ancienne carte dans mon bureau. Il y a une carte de secours derrière le tableau avec les oiseaux. Trouve la et reviens ici. ");
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(12f);
             soustitres.SetText(" ");
             fondNoir.SetActive(false) ;
             player.GetComponent<FPC>().haveToDegaine = true;
@@ -695,10 +733,10 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText(" I'm going in the room Dad.");
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3.5f);
             Debug.Log("ligne 23");
             soustitres.SetText("You see the red button in the middle? Push it.");
-            yield return new WaitForSeconds(7);
+            yield return new WaitForSeconds(7.5f);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -713,11 +751,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("ligne 22");
             fondNoir.SetActive(true);
 
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[13];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
             soustitres.SetText("Je rentre dans la salle papa.");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
             Debug.Log("ligne 23");
             soustitres.SetText("Tu vois le bouton rouge? appuie dessus. ");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(8);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
