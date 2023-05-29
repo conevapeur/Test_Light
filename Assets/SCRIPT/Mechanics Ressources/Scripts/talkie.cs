@@ -51,6 +51,9 @@ public class talkie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(transform.localScale);
+        //transform.localScale = new Vector3(1,1,1);
+        //Debug.Log(transform.localScale);
         /*
         if(Input.GetKey(KeyCode.O))
         {

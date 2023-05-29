@@ -7,6 +7,9 @@ public class ouais : MonoBehaviour
 {
 
     public int number;
+
+    public AudioSource myAudioSource;
+    public AudioClip myClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,8 @@ public class ouais : MonoBehaviour
         {
             GameManager.instance.trigger(number);
             GameManager.instance.lastCheckpoint = transform.position;
+            myAudioSource.clip = myClip;
+            myAudioSource.Play();
             //Destroy(this);
 
 
