@@ -73,16 +73,8 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] GameObject deathZone;
-    [SerializeField] GameObject position1;
-    [SerializeField] GameObject position2;
-    [SerializeField] GameObject position3;
-    [SerializeField] GameObject position4;
 
-    [SerializeField] GameObject soundPlayer1;
-    [SerializeField] GameObject soundPlayer2;
-    [SerializeField] GameObject soundPlayer3;
-    [SerializeField] GameObject soundPlayer4;
-    [SerializeField] GameObject soundPlayer5;
+    
 
     private void Awake()
     {
@@ -207,27 +199,27 @@ public class GameManager : MonoBehaviour
             //audioSource.clip = audioClip;
             //audioSource.Play();
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4.5f);
             Debug.Log("ligne 2");
             soustitres.SetText("In a hole? What do you see?");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2.5f);
             Debug.Log("ligne 3");
             soustitres.SetText("There is a big door, all old and rocks.");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(5);
             Debug.Log("ligne 4");
             soustitres.SetText("Do you see something written on the door?");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(2.5f);
             Debug.Log("ligne 5");
             soustitres.SetText("Yes, something like B-SKY-19 is written.");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(6f);
 
             player.GetComponent<FPC>().recover();
 
@@ -236,7 +228,7 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("Ok, I know the place. I used to work there before. Don'worry. If the door in front of you is closed, you should be able to see a vent on your right. Go through it.");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(7);
+            yield return new WaitForSeconds(11);
             soustitres.SetText(" ");
             fondNoir.SetActive(false);
 
@@ -259,6 +251,9 @@ public class GameManager : MonoBehaviour
 
             Wait(AudioClip.isplaying == false)
             */
+            talkie.GetComponent<talkie>().myAudioSource.clip = dialoguesFR[0];
+            talkie.GetComponent<talkie>().myAudioSource.Play();
+
 
             Debug.Log("ligne 1");
             fondNoir.SetActive(true);
@@ -267,27 +262,27 @@ public class GameManager : MonoBehaviour
             //audioSource.clip = audioClip;
             //audioSource.Play();
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
             Debug.Log("ligne 2");
             soustitres.SetText("Dans un trou? Qu'est ce que tu vois?");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2.5f);
             Debug.Log("ligne 3");
             soustitres.SetText("Y a une grande porte, toute vieille avec des cailloux.");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(4.5f);
             Debug.Log("ligne 4");
             soustitres.SetText("Est ce qu'il y a marqué quelque chose sur la porte?");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(3);
             Debug.Log("ligne 5");
             soustitres.SetText("Oui, y a marqué B-SKY-19 dessus.");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(5f);
 
             player.GetComponent<FPC>().recover();
 
@@ -296,7 +291,7 @@ public class GameManager : MonoBehaviour
             soustitres.SetText("Ok, je connais cet endroit. Je travaillais là avant. Ne t'inquiètes pas. Si la porte est fermée devant toi, tu devrais apercevoir un conduit d’aération sur la droite. Passe-y.");
             //audioSource.Play();
 
-            yield return new WaitForSeconds(7);
+            yield return new WaitForSeconds(11);
             fondNoir.SetActive(false);
 
             soustitres.SetText(" ");
@@ -321,7 +316,7 @@ public class GameManager : MonoBehaviour
             fondNoir.SetActive(true);
 
             soustitres.SetText("I'm here Dad, what do I do now?");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
 
             /*
             Debug.Log("ligne 8");
@@ -353,7 +348,7 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("ligne 10");
             soustitres.SetText("Go through the cabinet door, it will lead you to the reception. Go to the end of the corridor, the door to the lower level should be there.");
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(9);
 
 
             soustitres.SetText(" ");
@@ -937,8 +932,8 @@ public class GameManager : MonoBehaviour
     {
         if(i == 1)
         {
-            deathZone.transform.position = position1.transform.position;
-            soundPlayer1.GetComponent<AudioSource>().Play();
+            //deathZone.transform.position = position1.transform.position;
+            //soundPlayer1.GetComponent<AudioSource>().Play();
         }
     }
 
