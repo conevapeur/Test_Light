@@ -26,10 +26,10 @@ public class ouais : MonoBehaviour
     {
         if (other.CompareTag("Player") /*&& GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f*/)
         {
-            GameManager.instance.trigger(number);
-            GameManager.instance.lastCheckpoint = transform.position;
-            myAudioSource.clip = myClip;
-            myAudioSource.Play();
+            GameManager.instance.trigger();
+            //GameManager.instance.lastCheckpoint = transform.position;
+            //myAudioSource.clip = myClip;
+            //myAudioSource.Play();
             //Destroy(this);
 
 

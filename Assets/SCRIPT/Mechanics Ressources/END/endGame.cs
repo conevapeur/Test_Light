@@ -36,15 +36,17 @@ public class endGame : MonoBehaviour
         GameManager.instance.myAudioSource.clip = cri;
         GameManager.instance.myAudioSource.Play();
 
-        GameManager.instance.player.GetComponent<FPC>().lockAbilities("scared");
-
-        yield return new WaitForSeconds(3);
+        GameManager.instance.player.GetComponent<FPC>().lockAbilities("climb");
 
         GameManager.instance.player.GetComponent<FPC>().animator.SetTrigger("triggerDeath");
-        
+
+        yield return new WaitForSeconds(11);
+        GameManager.instance.player.GetComponent<FPC>().lockAbilities("scared");
+        yield return new WaitForSeconds(1.3f);
+
 
         GameManager.instance.player.GetComponent<FPC>().animatorUI.SetTrigger("triggerFade");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         GameManager.instance.myAudioSource.clip = deathSound;
         GameManager.instance.myAudioSource.Play();

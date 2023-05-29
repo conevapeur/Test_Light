@@ -25,7 +25,7 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player") /*&& GameManager.instance.player.GetComponent<Rigidbody>().velocity.magnitude > .7f*/)
         {
             GameManager.instance.lastCheckpoint = transform.position;
-
+            GameManager.instance.dying = false;
             transform.position = new Vector3(0,5000,0);
         }
 

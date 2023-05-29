@@ -969,13 +969,32 @@ public class GameManager : MonoBehaviour
 
     #region finalRoom
 
-    public void trigger(int i)
+    public void trigger()
     {
-        if(i == 1)
-        {
-            //deathZone.transform.position = position1.transform.position;
-            //soundPlayer1.GetComponent<AudioSource>().Play();
-        }
+        //if(i == 1)
+        //{
+        //    //deathZone.transform.position = position1.transform.position;
+        //    //soundPlayer1.GetComponent<AudioSource>().Play();
+        //}
+
+        
+
+        StartCoroutine(glassDie());
+    }
+
+    public IEnumerator glassDie()
+    {
+        myAudioSource.clip = breakingGlass;
+        myAudioSource.Play();
+
+
+        yield return new WaitForSeconds(1.5f);
+
+        myAudioSource.clip = criMonstre;
+        myAudioSource.Play();
+        Die();
+
+        yield return null;
     }
 
 
