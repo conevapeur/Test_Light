@@ -933,9 +933,13 @@ public class GameManager : MonoBehaviour
 
     #region finalRoom
 
-    public void trigger1()
+    public void trigger(int i)
     {
-
+        if(i == 1)
+        {
+            deathZone.transform.position = position1.transform.position;
+            soundPlayer1.GetComponent<AudioSource>().Play();
+        }
     }
 
 
